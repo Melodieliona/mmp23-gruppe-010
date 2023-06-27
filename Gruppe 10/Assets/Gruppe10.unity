@@ -4883,6 +4883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipsPrefab: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
   spawnPoint: {fileID: 1506270152}
+  playerManager: {fileID: 0}
   startingShips: 5
   shipsPerSecond: 0.5
 --- !u!4 &491435572
@@ -5018,6 +5019,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da8c1cd11652af40bc7961e7cd29d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldCount: 10
+  score: 0
+  currentWave: 0
+  healthPoints: 10
 --- !u!4 &614789479
 Transform:
   m_ObjectHideFlags: 0
@@ -5147,6 +5152,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f061e5bcc490949c087dd65c8fd94b30, type: 3}
+--- !u!1 &695154630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 695154632}
+  - component: {fileID: 695154631}
+  m_Layer: 0
+  m_Name: ShipSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &695154631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695154630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9688594af62e64fe881e64969342e31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipsPrefab: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
+  spawnPoint: {fileID: 1506270152}
+  playerManager: {fileID: 614789477}
+  startingShips: 5
+  shipsPerSecond: 0.5
+--- !u!4 &695154632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695154630}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7019982, y: 0.6809515, z: 0.03563479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &752136065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5383,7 +5437,7 @@ Transform:
   - {fileID: 1939799772}
   - {fileID: 1479131786}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1223745806 stripped
 Transform:
