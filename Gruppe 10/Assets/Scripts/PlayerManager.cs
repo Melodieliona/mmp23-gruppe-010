@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
 
-    public int goldCount = 10;
+    public int goldCount = 50;
     public int score = 0;
     public int currentWave = 0;
     public int healthPoints = 10;
