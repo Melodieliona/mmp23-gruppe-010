@@ -31,7 +31,7 @@ public class ShipSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Attempts to spawn a new priate ship if the current wave is active and enough
+    /// Attempts to spawn a new pirate ship if the current wave is active and enough
     /// time has passed since the last spawn.
     /// </summary>
     void Update()
