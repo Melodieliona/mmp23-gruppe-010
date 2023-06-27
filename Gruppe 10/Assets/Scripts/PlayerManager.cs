@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
 
-    private int goldCount = 10;
-    private int score = 0;
-    private int currentWave = 0;
+    public int goldCount = 10;
+    public int score = 0;
+    public int currentWave = 0;
+    public int healthPoints = 10;
 
 
     // Start is called before the first frame update
@@ -22,16 +23,37 @@ public class PlayerManager : MonoBehaviour
         
     }
 
-    public void addGold(int number)
+    public void AddGold(int number)
     {
         goldCount = goldCount + number;
     }
 
-    public void removeGold(int number)
+    public void RemoveGold(int number)
     {
         if(goldCount - number >= 0)
         {
             goldCount = goldCount - number;
+        }
+        else
+        {
+            //Show the user that he can't afford it
+        }
+    }
+
+    public void AddHP(int number)
+    {
+        healthPoints = healthPoints + number;
+    }
+
+    public void RemoveHP(int number)
+    {
+        if (healthPoints - number > 0)
+        {
+            healthPoints = healthPoints - number;
+        }
+        else
+        {
+            //Game Over!
         }
     }
 }

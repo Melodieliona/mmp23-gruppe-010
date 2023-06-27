@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -5,6 +6,10 @@ public class ShipSpawner : MonoBehaviour
 {
     public Transform shipsPrefab;
     public Transform spawnPoint;
+
+    public GameObject playerManager;
+    private PlayerManager playerManagerScript;
+
 
     public int startingShips = 5;
     public float shipsPerSecond = 0.5f;
@@ -28,6 +33,7 @@ public class ShipSpawner : MonoBehaviour
     {
         this.waveActive = true;
         this.shipsLeftToSpawn = ShipsPerWave();
+        playerManagerScript = GameObject.FindObjectOfType<PlayerManager>();
     }
 
     /// <summary>
@@ -61,6 +67,8 @@ public class ShipSpawner : MonoBehaviour
     {
         Debug.Log("Ship has reached the gold");
         this.shipsAlive--;
+        playerManagerScript.RemoveHP(1);
+        Debug.Log(playerManagerScript.healthPoints);
     }
 
     /// <summary>
