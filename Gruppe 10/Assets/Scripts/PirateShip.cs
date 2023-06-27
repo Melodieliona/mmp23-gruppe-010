@@ -14,7 +14,7 @@ public class PirateShip : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves the ship in the direction of the targetted waypoint.
+    /// Moves the ship in the direction of the targeted waypoint.
     /// On reaching the target, the next waypoint is set.
     /// </summary>
     void Update()
@@ -31,7 +31,7 @@ public class PirateShip : MonoBehaviour
     /// <summary>
     /// Attempts to get the next waypoint to target.
     /// If there are no more waypoints available, the ship has reached the treasure chest
-    /// and will therefore be destoryed, invoking <see cref="ShipSpawner.onReachTreasureChest"/>.
+    /// and will therefore be destroyed, invoking <see cref="ShipSpawner.onReachTreasureChest"/>.
     /// </summary>
     private void GetNextWaypoint()
     {

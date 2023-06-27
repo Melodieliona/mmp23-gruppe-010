@@ -10,7 +10,6 @@ public class PlayerManager : MonoBehaviour
     public int currentWave = 0;
     public int healthPoints = 10;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +24,14 @@ public class PlayerManager : MonoBehaviour
 
     public void AddGold(int number)
     {
-        goldCount = goldCount + number;
+        goldCount += number;
     }
 
     public void RemoveGold(int number)
     {
-        if(goldCount - number >= 0)
+        if (goldCount - number >= 0)
         {
-            goldCount = goldCount - number;
+            goldCount -= number;
         }
         else
         {
