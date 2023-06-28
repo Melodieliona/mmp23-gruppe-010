@@ -5,12 +5,12 @@ using UnityEngine.Events;
 public class ShipSpawner : MonoBehaviour
 {
     [Header("References")]
-    public Transform shipsPrefab;
-    public Transform spawnPoint;
+    [SerializeField] private Transform shipsPrefab;
+    [SerializeField] private Transform spawnPoint;
 
     [Header("Attributes")]
-    public int startingShips = 5;
-    public float shipsPerSecond = 0.5f;
+    [SerializeField] private int startingShips = 5;
+    [SerializeField] private float shipsPerSecond = 0.5f;
 
     [Header("Events")]
     public static readonly UnityEvent ReachTreasureChestEvent = new();
@@ -81,8 +81,8 @@ public class ShipSpawner : MonoBehaviour
     private void ReachTreasureChest()
     {
         shipsAlive--;
-        playerManagerScript.RemoveHP(1);
-        Debug.Log("Ship has reached the gold. New HP: " + playerManagerScript.healthPoints);
+        playerManagerScript.RemoveHealthPoints(1);
+        Debug.Log("Ship has reached the gold. New HP: " + playerManagerScript.GetHealthPoints());
     }
 
     /// <summary>

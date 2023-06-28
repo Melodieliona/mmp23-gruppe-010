@@ -4,7 +4,7 @@ using static Unity.Burst.Intrinsics.X86;
 public class PirateShip : MonoBehaviour
 {
     [Header("Attributes")] 
-    public float speed = 3f;
+    [SerializeField] private float speed = 3f;
 
     private Transform target;
     private int waypointIndex = 0;
