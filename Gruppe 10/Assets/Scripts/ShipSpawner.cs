@@ -4,43 +4,41 @@ using UnityEngine.Events;
 
 public class ShipSpawner : MonoBehaviour
 {
+    [Header("References")]
     public Transform shipsPrefab;
     public Transform spawnPoint;
 
-    public GameObject playerManager;
-    private PlayerManager playerManagerScript;
-
-
+    [Header("Attributes")]
     public int startingShips = 5;
     public float shipsPerSecond = 0.5f;
 
-    public static UnityEvent onReachTreasureChest = new UnityEvent();
+    [Header("Events")]
+    public static readonly UnityEvent ReachTreasureChestEvent = new();
+
+    private PlayerManager playerManagerScript;
 
     private bool waveActive = true;
 
     private int currentWave = 1;
-    private int shipsLeftToSpawn;
     private int shipsAlive;
-
+    private int shipsLeftToSpawn;
     private float timeSinceLastSpawn;
 
-    void Awake()
+    private void Awake()
     {
-        onReachTreasureChest.AddListener(ReachTreasureChest);
+        ReachTreasureChestEvent.AddListener(ReachTreasureChest);
+        playerManagerScript = FindObjectOfType<PlayerManager>();
     }
 
-    void Start()
+    private void Start()
     {
-        this.waveActive = true;
-        this.shipsLeftToSpawn = ShipsPerWave();
-        playerManagerScript = GameObject.FindObjectOfType<PlayerManager>();
+        StartWave();
     }
 
     /// <summary>
-    /// Attempts to spawn a new pirate ship if the current wave is active and enough
-    /// time has passed since the last spawn.
+    /// Attempts to spawn a new pirate ship if the current wave is active and enough time has passed since the last spawn.
     /// </summary>
-    void Update()
+    private void Update()
     {
         if (!waveActive) return;
 
@@ -50,14 +48,31 @@ public class ShipSpawner : MonoBehaviour
         {
             SpawnShip();
         }
+
+        if (shipsAlive == 0 && shipsLeftToSpawn == 0)
+        {
+            EndWave();
+        }
+    }
+
+    private void StartWave()
+    {
+        waveActive = true;
+        shipsLeftToSpawn = ShipsPerWave();
+    }
+
+    private void EndWave()
+    {
+        waveActive = false;
+        timeSinceLastSpawn = 0f;
     }
 
     private void SpawnShip()
     {
         Instantiate(shipsPrefab, spawnPoint.position, spawnPoint.rotation);
-        this.shipsLeftToSpawn--;
-        this.shipsAlive++;
-        this.timeSinceLastSpawn = 0f;
+        shipsLeftToSpawn--;
+        shipsAlive++;
+        timeSinceLastSpawn = 0f;
     }
 
     /// <summary>
@@ -65,10 +80,9 @@ public class ShipSpawner : MonoBehaviour
     /// </summary>
     private void ReachTreasureChest()
     {
-        Debug.Log("Ship has reached the gold");
-        this.shipsAlive--;
+        shipsAlive--;
         playerManagerScript.RemoveHP(1);
-        Debug.Log(playerManagerScript.healthPoints);
+        Debug.Log("Ship has reached the gold. New HP: " + playerManagerScript.healthPoints);
     }
 
     /// <summary>
