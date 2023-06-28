@@ -3,7 +3,7 @@ using static Unity.Burst.Intrinsics.X86;
 
 public class PirateShip : MonoBehaviour
 {
-    [Header("Attributes")] 
+    [Header("Attributes")]
     [SerializeField] private float speed = 3f;
 
     private Transform target;
