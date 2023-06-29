@@ -13,6 +13,7 @@ public class ShipSpawner : MonoBehaviour
 
     [Header("Events")]
     public static readonly UnityEvent ReachTreasureChestEvent = new();
+    public static readonly UnityEvent onEnemyDestroy = new();
 
     private PlayerManager playerManagerScript;
 
@@ -27,6 +28,7 @@ public class ShipSpawner : MonoBehaviour
     {
         ReachTreasureChestEvent.AddListener(ReachTreasureChest);
         playerManagerScript = FindObjectOfType<PlayerManager>();
+        onEnemyDestroy.AddListener(EnemyDestroyed);
     }
 
     private void Start()
@@ -91,5 +93,9 @@ public class ShipSpawner : MonoBehaviour
     private int ShipsPerWave()
     {
         return Mathf.RoundToInt(startingShips * Mathf.Pow(currentWave, 0.75f));
+    }
+
+    private void EnemyDestroyed() {
+        shipsAlive--;
     }
 }
