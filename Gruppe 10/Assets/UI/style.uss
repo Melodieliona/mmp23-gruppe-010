@@ -1,0 +1,6 @@
+.label {
+    -unity-font: url('project://database/Assets/TextMesh%20Pro/Fonts/Bangers.ttf?fileID=12800000&guid=5dd49b3eacc540408c98eee0de38e0f1&type=3#Bangers');   
+    font-size: 32px;
+    color: rgba(255, 255, 255, 255);
+    -unity-font-style: bold;
+}
