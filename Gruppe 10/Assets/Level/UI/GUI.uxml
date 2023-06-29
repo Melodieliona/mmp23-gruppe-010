@@ -1,7 +1,7 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/style.uss?fileID=7433441132597879392&amp;guid=6fe8556d612c0744d8bc8939030d735d&amp;type=3#style" />
-    <ui:VisualElement style="height: 100%; width: 100%; flex-grow: 1; align-items: stretch;">
-        <ui:VisualElement style="align-items: center; justify-content: space-between; flex-direction: row; flex-grow: 0; padding-left: 20%; padding-right: 20%; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(159, 159, 159, 0.42);">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Level/UI/style.uss?fileID=7433441132597879392&amp;guid=6fe8556d612c0744d8bc8939030d735d&amp;type=3#style" />
+    <ui:VisualElement style="height: 100%; width: 15%; flex-grow: 1; align-items: stretch;">
+        <ui:VisualElement style="align-items: flex-start; justify-content: flex-start; flex-direction: column; flex-grow: 1; padding-left: 0; padding-right: 0; padding-top: 50px; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(159, 159, 159, 0.42); flex-shrink: 1;">
             <ui:Label text="HP: 10" display-tooltip-when-elided="true" name="HP_Label" class="label" />
             <ui:Label text="Gold: 50" display-tooltip-when-elided="true" name="Gold_Label" class="label" />
             <ui:Label text="Wave: 1" display-tooltip-when-elided="true" name="Wave_Label" class="label" />

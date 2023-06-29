@@ -1,6 +1,12 @@
 .label {
-    -unity-font: url('project://database/Assets/ThirdParty/TextMesh%20Pro/Fonts/Bangers.ttf?fileID=12800000&guid=5dd49b3eacc540408c98eee0de38e0f1&type=3#Bangers');   
-    font-size: 32px;
-    color: rgba(255, 255, 255, 255);
+    -unity-font: url('project://database/Assets/ThirdParty/TextMesh%20Pro/Fonts/alagard.ttf?fileID=12800000&guid=da7226d4b3c6d41a393a12760e66905a&type=3#alagard');
+    font-size: 16px;
+    color: rgb(255, 255, 255);
     -unity-font-style: bold;
+    max-width: 30%;
+    max-height: 35%;
+    margin-left: 5px;
+    margin-right: 0;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
