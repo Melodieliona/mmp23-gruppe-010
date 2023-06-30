@@ -10,3 +10,10 @@
     margin-top: 5px;
     margin-bottom: 0;
 }
+
+.shopButton {
+    opacity: 1;
+    display: flex;
+    visibility: visible;
+    background-color: rgba(164, 164, 164, 0.2);
+}
