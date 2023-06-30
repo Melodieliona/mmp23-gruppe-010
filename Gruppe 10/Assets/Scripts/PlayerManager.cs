@@ -4,9 +4,9 @@ using UnityEngine.Events;
 public class PlayerManager : MonoBehaviour
 {
     [Header("Attributes")]
-    [SerializeField] private int score = 0;
-    [SerializeField] private int healthPoints = 10;
-    [SerializeField] private int goldCount = 50;
+    private int score = 0;
+    private int healthPoints = 10;
+    private int goldCount = 500;
 
     [Header("Events")]
     private readonly UnityEvent scoreChangeEvent = new();
@@ -60,16 +60,18 @@ public class PlayerManager : MonoBehaviour
         goldChangeEvent.Invoke();
     }
 
-    public void RemoveGold(int number)
+    public bool RemoveGold(int number)
     {
         if (goldCount - number >= 0)
         {
             goldCount -= number;
             goldChangeEvent.Invoke();
+            return true;
         }
         else
         {
             //Show the user that he can't afford it
+            return false;
         }
     }
 
