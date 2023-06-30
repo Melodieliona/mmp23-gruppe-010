@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 
 public class GUIManager : MonoBehaviour
 {
+    [Header("References")]
     private PlayerManager playerManager;
 
     private Label hpLabel;
@@ -12,6 +13,9 @@ public class GUIManager : MonoBehaviour
     private void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
+        UpdateHp();
+        UpdateScore();
+        UpdateGold();
     }
 
     private void OnEnable()
@@ -26,18 +30,15 @@ public class GUIManager : MonoBehaviour
     public void UpdateHp()
     {
         hpLabel.text = "HP: " + playerManager.GetHealthPoints();
-        Debug.Log("test");
     }
 
     public void UpdateScore()
     {
         //scoreLabel.text = "Score: " + playerManager.GetScore();
-        Debug.Log("test");
     }
 
     public void UpdateGold()
     {
         goldLabel.text = "Gold: " + playerManager.GetGold();
-        Debug.Log("test");
     }
 }

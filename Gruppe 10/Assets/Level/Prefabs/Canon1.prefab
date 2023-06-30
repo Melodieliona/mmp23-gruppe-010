@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 2580092390061179384}
   - component: {fileID: 2580092390061179385}
   m_Layer: 7
-  m_Name: Canon
+  m_Name: Canon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   turretRotationPoint: {fileID: 2580092389826512481}
   enemyMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   bulletPrefab: {fileID: 5953930906818198071, guid: ae91c88e58d90f771a5bbfeb5180ad98, type: 3}
   firingPoint: {fileID: 2580092388935625462}
   targetingRange: 3

@@ -6,24 +6,29 @@ using UnityEngine.UIElements;
 
 public class ShopController : MonoBehaviour
 {
-    private PlayerManager playerManager;
+    [Header("References")]
+    private PlayerManager PlayerManager;
 
     private Button Cannon1Button;
     private Button Cannon2Button;
     private Button Cannon3Button;
     private Button Cannon4Button;
 
-    private int lastSelected = 0;
-
     public Tilemap GrassTiles;
     public Tilemap WaterTiles;
 
     public GameObject Cannon1Prefab;
+    public GameObject Cannon2Prefab;
+
+    [Header("Attributes")]
+    private int lastSelected = 0;
+    private int cannon1Cost = 10;
+    private int cannon2Cost = 20;
 
 
     private void Start()
     {
-        playerManager = FindObjectOfType<PlayerManager>();
+        PlayerManager = FindObjectOfType<PlayerManager>();
     }
 
     private void OnEnable()
@@ -78,10 +83,30 @@ public class ShopController : MonoBehaviour
 
             Vector3 cellCenter = GrassTiles.GetCellCenterWorld(cellPosition);
 
-            Instantiate(Cannon1Prefab, cellCenter, Cannon1Prefab.transform.rotation);
+            switch(lastSelected)
+            {
+                case 1:
+                    if(PlayerManager.RemoveGold(cannon1Cost))
+                    {
+                        Instantiate(Cannon1Prefab, cellCenter, Cannon1Prefab.transform.rotation);
+                    } 
+                    else
+                    {
+                        Debug.Log("Too expensive! You can't afford it");
+                    }
+                    break;
+                case 2:
+                    if (PlayerManager.RemoveGold(cannon2Cost))
+                    {
+                        Instantiate(Cannon2Prefab, cellCenter, Cannon2Prefab.transform.rotation);
+                    }
+                    else
+                    {
+                        Debug.Log("Too expensive! You can't afford it");
+                    }
+                    break;
 
-            Debug.Log(cellPosition);
-
+            }
         }
     }
 }
