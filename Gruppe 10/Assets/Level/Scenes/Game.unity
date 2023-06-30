@@ -6383,10 +6383,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4865de80be2cdf540b50e881ced37d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GrassTiles: {fileID: 181599086}
-  WaterTiles: {fileID: 455788926}
-  Cannon1Prefab: {fileID: 2580092390061179386, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
-  Cannon2Prefab: {fileID: 2580092390061179386, guid: 8e43cf1b510df3b4a9c0432924e34bda, type: 3}
+  grassTiles: {fileID: 181599086}
+  waterTiles: {fileID: 455788926}
+  cannon1Prefab: {fileID: 2580092390061179386, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
+  cannon2Prefab: {fileID: 2580092390061179386, guid: 8e43cf1b510df3b4a9c0432924e34bda, type: 3}
 --- !u!1 &1739363381
 GameObject:
   m_ObjectHideFlags: 0
