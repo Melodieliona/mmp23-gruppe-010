@@ -86,26 +86,33 @@ public class ShopController : MonoBehaviour
             switch(lastSelected)
             {
                 case 1:
-                    if(PlayerManager.RemoveGold(cannon1Cost))
+                    if (CheckIfOccupied(cellPosition))
                     {
-                        CheckIfOccupied(cellPosition);
-                        Instantiate(Cannon1Prefab, cellCenter, Cannon1Prefab.transform.rotation);
-                        lastSelected = 0;
+                        if (PlayerManager.RemoveGold(cannon1Cost))
+                        {
+                            Instantiate(Cannon1Prefab, cellCenter, Cannon1Prefab.transform.rotation);
+                            lastSelected = 0;
+                            GrassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
+                        }
+                        else
+                        {
+                            Debug.Log("Too expensive! You can't afford it");
+                        }
                     } 
-                    else
-                    {
-                        Debug.Log("Too expensive! You can't afford it");
-                    }
                     break;
                 case 2:
-                    if (PlayerManager.RemoveGold(cannon2Cost))
+                    if (CheckIfOccupied(cellPosition))
                     {
-                        Instantiate(Cannon2Prefab, cellCenter, Cannon2Prefab.transform.rotation);
-                        lastSelected = 0;
-                    }
-                    else
-                    {
-                        Debug.Log("Too expensive! You can't afford it");
+                        if (PlayerManager.RemoveGold(cannon2Cost))
+                        {
+                            Instantiate(Cannon2Prefab, cellCenter, Cannon2Prefab.transform.rotation);
+                            lastSelected = 0;
+                            GrassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
+                        }
+                        else
+                        {
+                            Debug.Log("Too expensive! You can't afford it");
+                        }
                     }
                     break;
 
