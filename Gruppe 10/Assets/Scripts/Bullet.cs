@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -13,34 +11,28 @@ public class Bullet : MonoBehaviour
 
     private Transform target;
 
-    public void SetTarget(Transform _target) {
-        target = _target;
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
         Destroy(gameObject, 10.0f);
     }
 
-    private void FixedUpdate() {
-        if(!target) return;
+    private void FixedUpdate()
+    {
+        if (!target) return;
 
-        Vector2 direction = (target.position - transform.position).normalized; //direction to target
-
-        rb.velocity = direction * bulletSpeed; //recalculate target position
-
+        Vector2 direction = (target.position - transform.position).normalized; // Direction to target
+        rb.velocity = direction * bulletSpeed; // Recalculate target position
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject != null || other == null) 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other == null || other.gameObject == null)
         {
-            try
-            {
-              other.gameObject.GetComponent<Health>().TakeDamage(bulletDamage);
-              Destroy(gameObject);
-            }
-            catch (System.NullReferenceException)
-            {
-              
-            }
-
+            return;
         }
-        
+
+        other.gameObject.GetComponent<PirateShip>().damage(bulletDamage);
+        Destroy(gameObject);
     }
 }

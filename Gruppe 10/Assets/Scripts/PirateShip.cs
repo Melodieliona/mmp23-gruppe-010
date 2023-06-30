@@ -1,16 +1,23 @@
 using UnityEngine;
-using static Unity.Burst.Intrinsics.X86;
 
-public class PirateShip : MonoBehaviour
+public class PirateShip : MonoBehaviour, IDamageable
 {
     [Header("Attributes")]
     [SerializeField] private float speed = 3f;
+    [SerializeField] private double health = 2;
+    [SerializeField] private int scoreValue = 1;
+    [SerializeField] private int goldValue = 1;
+
+    [Header("References")]
+    private PlayerManager playerManager;
 
     private Transform target;
     private int waypointIndex = 0;
 
     private void Start()
     {
+        playerManager = FindObjectOfType<PlayerManager>();
+
         target = Waypoints.points[0];
     }
 
@@ -46,5 +53,23 @@ public class PirateShip : MonoBehaviour
         }
 
         target = Waypoints.points[waypointIndex];
+    }
+
+    public void damage(double amount)
+    {
+        health -= amount;
+
+        if (health <= 0)
+        {
+            ShipSpawner.EnemyDestroyEvent.Invoke();
+            Destroy(gameObject);
+            playerManager.AddScore(scoreValue);
+            playerManager.AddGold(goldValue);
+        }
+    }
+
+    public double getHealth()
+    {
+        return health;
     }
 }

@@ -14,9 +14,9 @@ public class ShipSpawner : MonoBehaviour
 
     [Header("Events")]
     public static readonly UnityEvent ReachTreasureChestEvent = new();
-    public static readonly UnityEvent onEnemyDestroy = new();
+    public static readonly UnityEvent EnemyDestroyEvent = new();
 
-    private PlayerManager playerManagerScript;
+    private PlayerManager playerManager;
 
     private bool waveActive = true;
 
@@ -28,8 +28,9 @@ public class ShipSpawner : MonoBehaviour
     private void Awake()
     {
         ReachTreasureChestEvent.AddListener(ReachTreasureChest);
-        playerManagerScript = FindObjectOfType<PlayerManager>();
-        onEnemyDestroy.AddListener(EnemyDestroyed);
+        EnemyDestroyEvent.AddListener(EnemyDestroyed);
+        
+        playerManager = FindObjectOfType<PlayerManager>();
     }
 
     private void Start()
@@ -83,10 +84,17 @@ public class ShipSpawner : MonoBehaviour
     private void ReachTreasureChest()
     {
         shipsAlive--;
-        playerManagerScript.RemoveHealthPoints(1);
-        Debug.Log("Ship has reached the gold. New HP: " + playerManagerScript.GetHealthPoints());
+        playerManager.RemoveHealthPoints(1);
+        Debug.Log("Ship has reached the gold. New HP: " + playerManager.GetHealthPoints());
     }
-
+    
+    /// <summary>
+    /// Called, whenever a pirate ship is destroyed by a cannon.
+    /// </summary>
+    private void EnemyDestroyed() {
+        shipsAlive--;
+    }
+    
     /// <summary>
     /// Calculates the amount of ships which are to be spawned in the current wave.
     /// </summary>
@@ -94,9 +102,5 @@ public class ShipSpawner : MonoBehaviour
     private int ShipsPerWave()
     {
         return Mathf.RoundToInt(startingShips * Mathf.Pow(currentWave, 0.75f));
-    }
-
-    private void EnemyDestroyed() {
-        shipsAlive--;
     }
 }

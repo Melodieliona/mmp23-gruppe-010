@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -7,56 +6,42 @@ using UnityEngine.UIElements;
 public class ShopController : MonoBehaviour
 {
     [Header("References")]
-    private PlayerManager PlayerManager;
+    private PlayerManager playerManager;
 
-    private Button Cannon1Button;
-    private Button Cannon2Button;
-    private Button Cannon3Button;
-    private Button Cannon4Button;
+    private Button cannon1Button;
+    private Button cannon2Button;
+    private Button cannon3Button;
+    private Button cannon4Button;
 
-    public Tilemap GrassTiles;
-    public Tilemap WaterTiles;
+    public Tilemap grassTiles;
+    public Tilemap waterTiles;
 
-    public GameObject Cannon1Prefab;
-    public GameObject Cannon2Prefab;
+    public GameObject cannon1Prefab;
+    public GameObject cannon2Prefab;
 
     [Header("Attributes")]
     private int lastSelected = 0;
     private int cannon1Cost = 10;
     private int cannon2Cost = 20;
 
-
     private void Start()
     {
-        PlayerManager = FindObjectOfType<PlayerManager>();
+        playerManager = FindObjectOfType<PlayerManager>();
     }
 
     private void OnEnable()
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
 
-        Cannon1Button = root.Q<Button>("Cannon1Button");
-        Cannon2Button = root.Q<Button>("Cannon2Button");
-        Cannon3Button = root.Q<Button>("Cannon3Button");
-        Cannon4Button = root.Q<Button>("Cannon4Button");
+        cannon1Button = root.Q<Button>("Cannon1Button");
+        cannon2Button = root.Q<Button>("Cannon2Button");
+        cannon3Button = root.Q<Button>("Cannon3Button");
+        cannon4Button = root.Q<Button>("Cannon4Button");
 
-
-        Cannon1Button.clicked += () =>
-        {
-            CannonButton_clicked(1);
-        };
-        Cannon2Button.clicked += () =>
-        {
-            CannonButton_clicked(2);
-        };
-        Cannon3Button.clicked += () =>
-        {
-            CannonButton_clicked(3);
-        };
-        Cannon4Button.clicked += () =>
-        {
-            CannonButton_clicked(4);
-        };
+        cannon1Button.clicked += () => { CannonButton_clicked(1); };
+        cannon2Button.clicked += () => { CannonButton_clicked(2); };
+        cannon3Button.clicked += () => { CannonButton_clicked(3); };
+        cannon4Button.clicked += () => { CannonButton_clicked(4); };
     }
 
     private void CannonButton_clicked(int number)
@@ -67,68 +52,53 @@ public class ShopController : MonoBehaviour
 
     private void Update()
     {
-        if(lastSelected > 0)
+        if (lastSelected > 0)
         {
-            //A button was pressed in the shop
+            // A button was pressed in the shop
             PlaceOnGrass();
         }
     }
 
     private void PlaceOnGrass()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0)) return;
+
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int cellPosition = grassTiles.WorldToCell(mousePosition);
+
+        if (!IsOccupied(cellPosition)) return;
+
+        GameObject cannonPrefab;
+        int cannonCost;
+
+        switch (lastSelected)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = GrassTiles.WorldToCell(mousePosition);
-
-            Vector3 cellCenter = GrassTiles.GetCellCenterWorld(cellPosition);
-
-            switch(lastSelected)
-            {
-                case 1:
-                    if (CheckIfOccupied(cellPosition))
-                    {
-                        if (PlayerManager.RemoveGold(cannon1Cost))
-                        {
-                            Instantiate(Cannon1Prefab, cellCenter, Cannon1Prefab.transform.rotation);
-                            lastSelected = 0;
-                            GrassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
-                        }
-                        else
-                        {
-                            Debug.Log("Too expensive! You can't afford it");
-                        }
-                    } 
-                    break;
-                case 2:
-                    if (CheckIfOccupied(cellPosition))
-                    {
-                        if (PlayerManager.RemoveGold(cannon2Cost))
-                        {
-                            Instantiate(Cannon2Prefab, cellCenter, Cannon2Prefab.transform.rotation);
-                            lastSelected = 0;
-                            GrassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
-                        }
-                        else
-                        {
-                            Debug.Log("Too expensive! You can't afford it");
-                        }
-                    }
-                    break;
-
-            }
+            case 1:
+                cannonPrefab = cannon1Prefab;
+                cannonCost = cannon1Cost;
+                break;
+            case 2:
+                cannonPrefab = cannon2Prefab;
+                cannonCost = cannon2Cost;
+                break;
+            default:
+                throw new NullReferenceException("Player has not selected");
         }
+        
+        if (!playerManager.RemoveGold(cannonCost))
+        {
+            Debug.Log("Too expensive! You can't afford it");
+            return;
+        }
+
+        Vector3 cellCenter = grassTiles.GetCellCenterWorld(cellPosition);
+        Instantiate(cannonPrefab, cellCenter, cannonPrefab.transform.rotation);
+        lastSelected = 0;
+        grassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
     }
 
-    private bool CheckIfOccupied(Vector3Int cellPosition)
+    private bool IsOccupied(Vector3Int cellPosition)
     {
-        if(GrassTiles.GetColliderType(cellPosition) == Tile.ColliderType.Sprite)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return grassTiles.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
     }
 }
