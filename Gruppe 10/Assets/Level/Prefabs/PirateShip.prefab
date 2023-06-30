@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -90258016447299697}
   - component: {fileID: -5537596019407243953}
   - component: {fileID: 8135951637550241164}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: PirateShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2131010895
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -150,3 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a28a0b60fd17f5c5b8d267c0da22f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPoints: 2
