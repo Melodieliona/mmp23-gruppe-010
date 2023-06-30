@@ -15,6 +15,7 @@ public class Bullet : MonoBehaviour
 
     public void SetTarget(Transform _target) {
         target = _target;
+        Destroy(gameObject, 10.0f);
     }
 
     private void FixedUpdate() {

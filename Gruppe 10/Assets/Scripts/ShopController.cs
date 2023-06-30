@@ -88,7 +88,9 @@ public class ShopController : MonoBehaviour
                 case 1:
                     if(PlayerManager.RemoveGold(cannon1Cost))
                     {
+                        CheckIfOccupied(cellPosition);
                         Instantiate(Cannon1Prefab, cellCenter, Cannon1Prefab.transform.rotation);
+                        lastSelected = 0;
                     } 
                     else
                     {
@@ -99,6 +101,7 @@ public class ShopController : MonoBehaviour
                     if (PlayerManager.RemoveGold(cannon2Cost))
                     {
                         Instantiate(Cannon2Prefab, cellCenter, Cannon2Prefab.transform.rotation);
+                        lastSelected = 0;
                     }
                     else
                     {
@@ -107,6 +110,18 @@ public class ShopController : MonoBehaviour
                     break;
 
             }
+        }
+    }
+
+    private bool CheckIfOccupied(Vector3Int cellPosition)
+    {
+        if(GrassTiles.GetColliderType(cellPosition) == Tile.ColliderType.Sprite)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
