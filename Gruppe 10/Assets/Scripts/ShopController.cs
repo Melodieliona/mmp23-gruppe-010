@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -20,6 +21,7 @@ public class ShopController : MonoBehaviour
     public GameObject cannon2Prefab;
 
     public GameObject placementGrid;
+    public Material gridMaterial;
 
     [Header("Attributes")]
     private int lastSelected = 0;
@@ -29,6 +31,7 @@ public class ShopController : MonoBehaviour
     private void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
+        deactivateGrid();
     }
 
     private void OnEnable()
@@ -57,6 +60,7 @@ public class ShopController : MonoBehaviour
         if (lastSelected > 0)
         {
             // A button was pressed in the shop
+            activateGrid();
             PlaceOnGrass();
         }
     }
@@ -86,7 +90,7 @@ public class ShopController : MonoBehaviour
             default:
                 throw new NullReferenceException("Player has not selected");
         }
-        
+
         if (!playerManager.RemoveGold(cannonCost))
         {
             Debug.Log("Too expensive! You can't afford it");
@@ -97,10 +101,21 @@ public class ShopController : MonoBehaviour
         Instantiate(cannonPrefab, cellCenter, cannonPrefab.transform.rotation);
         lastSelected = 0;
         grassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
+        deactivateGrid();
     }
 
     private bool IsOccupied(Vector3Int cellPosition)
     {
         return grassTiles.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
+    }
+
+    private void activateGrid()
+    {
+        placementGrid.SetActive(true);
+    }
+
+    private void deactivateGrid()
+    {
+        placementGrid.SetActive(false);
     }
 }
