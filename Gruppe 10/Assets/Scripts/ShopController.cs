@@ -19,6 +19,8 @@ public class ShopController : MonoBehaviour
     public GameObject cannon1Prefab;
     public GameObject cannon2Prefab;
 
+    public GameObject placementGrid;
+
     [Header("Attributes")]
     private int lastSelected = 0;
     private int cannon1Cost = 10;
