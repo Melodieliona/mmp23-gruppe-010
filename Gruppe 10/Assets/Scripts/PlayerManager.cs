@@ -13,6 +13,9 @@ public class PlayerManager : MonoBehaviour
     private readonly UnityEvent healthChangeEvent = new();
     private readonly UnityEvent goldChangeEvent = new();
 
+    [Header("Screens")]
+    public GameOverScreen gameOverScreen;
+
     public void Start()
     {
         scoreChangeEvent.AddListener(FindObjectOfType<GUIManager>().UpdateScore);
@@ -51,6 +54,7 @@ public class PlayerManager : MonoBehaviour
         else
         {
             //Game Over!
+            gameOverScreen.Setup(GetScore());
         }
     }
 
