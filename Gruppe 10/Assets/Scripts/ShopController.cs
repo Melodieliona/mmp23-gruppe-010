@@ -10,16 +10,17 @@ public class ShopController : MonoBehaviour
     [Header("References")]
     private PlayerManager playerManager;
 
-    private Button cannon1Button;
-    private Button cannon2Button;
-    private Button cannon3Button;
-    private Button cannon4Button;
+    private Button shopButton1;
+    private Button shopButton2;
+    private Button shopButton3;
+    private Button shopButton4;
 
     public Tilemap grassTiles;
     public Tilemap waterTiles;
 
     public GameObject cannon1Prefab;
     public GameObject cannon2Prefab;
+    public GameObject krakenPrefab;
 
     public GameObject placementGrid;
     private Material gridMaterial;
@@ -27,16 +28,18 @@ public class ShopController : MonoBehaviour
     public GameObject cursor;
 
     [Header("Attributes")]
-    private int lastSelected = 0;
+    private int currentlySelected = 0;
     private int cannon1Cost = 10;
     private int cannon2Cost = 20;
+    private int krakenCost = 50;
 
     private bool canPlaceItem = false;
 
     //Values for the grid fading
     private float fadeDuration = 1f;
-    private float minOpacity = 0f;
+    private float minOpacity = 0;
     private float maxOpacity = 1f;
+
 
     private void Start()
     {
@@ -57,33 +60,32 @@ public class ShopController : MonoBehaviour
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
 
-        cannon1Button = root.Q<Button>("Cannon1Button");
-        cannon2Button = root.Q<Button>("Cannon2Button");
-        cannon3Button = root.Q<Button>("Cannon3Button");
-        cannon4Button = root.Q<Button>("Cannon4Button");
+        shopButton1 = root.Q<Button>("ShopButton1");
+        shopButton2 = root.Q<Button>("ShopButton2");
+        shopButton3 = root.Q<Button>("ShopButton3");
+        shopButton4 = root.Q<Button>("ShopButton4");
 
-        cannon1Button.clicked += () => { CannonButton_clicked(1); };
-        cannon2Button.clicked += () => { CannonButton_clicked(2); };
-        cannon3Button.clicked += () => { CannonButton_clicked(3); };
-        cannon4Button.clicked += () => { CannonButton_clicked(4); };
+        shopButton1.clicked += () => { ShopButton_clicked(1); };
+        shopButton2.clicked += () => { ShopButton_clicked(2); };
+        shopButton3.clicked += () => { ShopButton_clicked(3); };
+        shopButton4.clicked += () => { ShopButton_clicked(4); };
     }
 
-    private void CannonButton_clicked(int number)
+    private void ShopButton_clicked(int number)
     {
-        lastSelected = number;
-        Debug.Log("Button " + number);
+        currentlySelected = number;
     }
 
     private void Update()
     {
-        if (lastSelected > 0)
+        if (currentlySelected > 0)
         {
             // A button was pressed in the shop
             ActivateGrid();
             PlaceOnGrass();
             canPlaceItem = true;
         }
-        if(canPlaceItem)
+        if (canPlaceItem)
         {
             showIndicator();
         }
@@ -94,52 +96,90 @@ public class ShopController : MonoBehaviour
         if (!Input.GetMouseButtonDown(0)) return;
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int cellPosition = grassTiles.WorldToCell(mousePosition);
+        Vector3Int cellPosition;
+        if (currentlySelected != 3)
+        {
+            cellPosition = grassTiles.WorldToCell(mousePosition);
+        }
+        else
+        {
+            cellPosition = waterTiles.WorldToCell(mousePosition);
+        }
 
         if (!IsEligible(cellPosition)) return;
 
-        GameObject cannonPrefab;
-        int cannonCost;
+        GameObject weaponPrefab;
+        int weaponCost;
 
-        switch (lastSelected)
+        switch (currentlySelected)
         {
             case 1:
-                cannonPrefab = cannon1Prefab;
-                cannonCost = cannon1Cost;
+                weaponPrefab = cannon1Prefab;
+                weaponCost = cannon1Cost;
                 break;
             case 2:
-                cannonPrefab = cannon2Prefab;
-                cannonCost = cannon2Cost;
+                weaponPrefab = cannon2Prefab;
+                weaponCost = cannon2Cost;
+                break;
+            case 3:
+                weaponPrefab = krakenPrefab;
+                weaponCost = krakenCost;
                 break;
             default:
                 throw new NullReferenceException("Player has not selected");
         }
 
-        if (!playerManager.RemoveGold(cannonCost))
+        if (!playerManager.RemoveGold(weaponCost))
         {
             Debug.Log("Too expensive! You can't afford it");
             return;
         }
 
-        Vector3 cellCenter = grassTiles.GetCellCenterWorld(cellPosition);
-        Instantiate(cannonPrefab, cellCenter, cannonPrefab.transform.rotation);
-        lastSelected = 0;
+        Vector3 cellCenter;
+        if (currentlySelected != 3)
+        {
+            cellCenter = grassTiles.GetCellCenterWorld(cellPosition);
+        }
+        else
+        {
+            cellCenter = waterTiles.GetCellCenterWorld(cellPosition);
+        }
+
+        Instantiate(weaponPrefab, cellCenter, weaponPrefab.transform.rotation);
         grassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
         canPlaceItem = false;
         DeactivateGrid();
+        currentlySelected = 0;
     }
 
     private bool IsEligible(Vector3Int cellPosition)
     {
-        return grassTiles.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
+        if (currentlySelected != 3)
+        {
+            return grassTiles.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
+        }
+        else
+        {
+            return waterTiles.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
+        }
     }
 
     private void showIndicator()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int cellPosition = grassTiles.WorldToCell(mousePosition);
-        Vector3 cellCenter = grassTiles.GetCellCenterWorld(cellPosition);
-        if(IsEligible(cellPosition))
+        Vector3Int cellPosition;
+        Vector3 cellCenter;
+        if (currentlySelected != 3)
+        {
+            cellPosition = grassTiles.WorldToCell(mousePosition);
+            cellCenter = grassTiles.GetCellCenterWorld(cellPosition);
+        }
+        else
+        {
+            cellPosition = waterTiles.WorldToCell(mousePosition);
+            cellCenter = waterTiles.GetCellCenterWorld(cellPosition);
+        }
+        if (IsEligible(cellPosition))
         {
             cursor.transform.position = cellCenter;
         }
@@ -154,17 +194,31 @@ public class ShopController : MonoBehaviour
     private void DeactivateGrid()
     {
         //gridMaterial.SetFloat("_Opacity", 0.1f);
+
         StartCoroutine(FadeOut());
     }
 
     private IEnumerator FadeIn()
     {
         float currentOpacity = minOpacity;
-        while (currentOpacity < maxOpacity)
+        while (currentOpacity < maxOpacity - 0.05)
         {
             currentOpacity += Time.deltaTime / fadeDuration;
             gridMaterial.SetFloat("_Opacity", currentOpacity);
             cursorMaterial.SetFloat("_Opacity", currentOpacity);
+            Color colour;
+            Tilemap currentTiles;
+            if (currentlySelected != 3)
+            {
+                currentTiles = waterTiles;
+            }
+            else
+            {
+                currentTiles = grassTiles;
+            }
+            colour = currentTiles.color;
+            colour.a = 1 - currentOpacity;
+            //currentTiles.color = colour;
             yield return null;
         }
 
@@ -176,11 +230,27 @@ public class ShopController : MonoBehaviour
     private IEnumerator FadeOut()
     {
         float currentOpacity = maxOpacity;
-        while (currentOpacity > minOpacity)
+        while (currentOpacity > minOpacity + 0.05)
         {
             currentOpacity -= Time.deltaTime / fadeDuration;
             gridMaterial.SetFloat("_Opacity", currentOpacity);
             cursorMaterial.SetFloat("_Opacity", currentOpacity);
+            Color colour;
+            Tilemap currentTiles;
+            if (currentlySelected != 3)
+            {
+                currentTiles = waterTiles;
+            }
+            else
+            {
+                currentTiles = grassTiles;
+            }
+            colour = currentTiles.color;
+            colour.a = 1 - currentOpacity;
+            //currentTiles.color = colour;
+
+            print(currentOpacity);
+
             yield return null;
         }
 

@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 96185644}
   - component: {fileID: 96185643}
   m_Layer: 5
-  m_Name: Cursor
+  m_Name: PlacementCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,7 +270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96185642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0.45}
+  m_LocalPosition: {x: 11.76, y: 0.5, z: 0.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5374,6 +5374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da8c1cd11652af40bc7961e7cd29d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverScreen: {fileID: 0}
 --- !u!4 &614789479
 Transform:
   m_ObjectHideFlags: 0
@@ -6141,6 +6142,7 @@ MonoBehaviour:
   waterTiles: {fileID: 455788926}
   cannon1Prefab: {fileID: 2580092390061179386, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
   cannon2Prefab: {fileID: 2580092390061179386, guid: 8e43cf1b510df3b4a9c0432924e34bda, type: 3}
+  krakenPrefab: {fileID: 6120980693190603084, guid: f743e415e4d05da4dbef286596752246, type: 3}
   placementGrid: {fileID: 333188236}
   cursor: {fileID: 96185642}
 --- !u!1 &1739363381
