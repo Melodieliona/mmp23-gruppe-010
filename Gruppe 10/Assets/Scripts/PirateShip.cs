@@ -8,17 +8,22 @@ public class PirateShip : MonoBehaviour, IDamageable
     [SerializeField] private int scoreValue = 1;
     [SerializeField] private int goldValue = 1;
 
+    public Sprite[] sprites;
+
     [Header("References")]
     private PlayerManager playerManager;
 
     private Transform target;
     private int waypointIndex = 0;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
 
         target = Waypoints.points[0];
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        SetSpriteForDirection(target.position - transform.position);
     }
 
     /// <summary>
@@ -33,6 +38,7 @@ public class PirateShip : MonoBehaviour, IDamageable
         if (Vector2.Distance(target.position, transform.position) <= 0.05f)
         {
             GetNextWaypoint();
+            SetSpriteForDirection(target.position - transform.position);
         }
     }
 
@@ -71,5 +77,23 @@ public class PirateShip : MonoBehaviour, IDamageable
     public double GetHealth()
     {
         return health;
+    }
+
+    /// Sets the sprite based on the direction.
+    private void SetSpriteForDirection(Vector2 direction)
+    {
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Suche das entsprechende Sprite basierend auf dem Winkel
+        int spriteIndex = 0;
+
+        if (angle >= 45f && angle < 135f)
+            spriteIndex = 1; // nach unten
+        else if (angle >= 135f || angle < -135f)
+            spriteIndex = 2; // nach links
+        else if (angle >= -135f && angle < -45f)
+            spriteIndex = 3; // nach oben
+
+        spriteRenderer.sprite = sprites[spriteIndex];
     }
 }
