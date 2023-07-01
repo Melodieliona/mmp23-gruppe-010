@@ -31,7 +31,7 @@ public class ShopController : MonoBehaviour
     private void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
-        deactivateGrid();
+        DeactivateGrid();
     }
 
     private void OnEnable()
@@ -60,7 +60,7 @@ public class ShopController : MonoBehaviour
         if (lastSelected > 0)
         {
             // A button was pressed in the shop
-            activateGrid();
+            ActivateGrid();
             PlaceOnGrass();
         }
     }
@@ -101,7 +101,7 @@ public class ShopController : MonoBehaviour
         Instantiate(cannonPrefab, cellCenter, cannonPrefab.transform.rotation);
         lastSelected = 0;
         grassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
-        deactivateGrid();
+        DeactivateGrid();
     }
 
     private bool IsOccupied(Vector3Int cellPosition)
@@ -109,12 +109,12 @@ public class ShopController : MonoBehaviour
         return grassTiles.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
     }
 
-    private void activateGrid()
+    private void ActivateGrid()
     {
         placementGrid.SetActive(true);
     }
 
-    private void deactivateGrid()
+    private void DeactivateGrid()
     {
         placementGrid.SetActive(false);
     }

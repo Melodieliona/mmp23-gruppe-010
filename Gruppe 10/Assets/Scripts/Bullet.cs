@@ -32,7 +32,13 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        other.gameObject.GetComponent<PirateShip>().damage(bulletDamage);
+        PirateShip ship = other.gameObject.GetComponent<PirateShip>();
+        if (ship == null)
+        {
+            return;
+        }
+
+        ship.Damage(bulletDamage);
         Destroy(gameObject);
     }
 }

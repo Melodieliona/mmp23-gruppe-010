@@ -50,8 +50,7 @@ public class Canon : MonoBehaviour
 
     private void FindTarget()
     {
-        RaycastHit2D[] hits =
-            Physics2D.CircleCastAll(transform.position, targetingRange, transform.position, 0f, enemyMask);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange, transform.position, 0f, enemyMask);
 
         if (hits.Length > 0)
         {
@@ -66,12 +65,9 @@ public class Canon : MonoBehaviour
 
     private void RotateTowardsTarget()
     {
-        float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) *
-            Mathf.Rad2Deg + 90f;
-
+        float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg + 90f;
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-        turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation,
-            rotationSpeed * Time.deltaTime);
+        turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         //turretRotationPoint.rotation = targetRotation;
     }
 

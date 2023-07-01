@@ -13,7 +13,7 @@ public class GUIManager : MonoBehaviour
     private void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
-        
+
         UpdateHp();
         UpdateScore();
         UpdateGold();

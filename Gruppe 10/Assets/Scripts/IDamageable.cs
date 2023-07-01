@@ -1,6 +1,6 @@
 public interface IDamageable
 {
-    public void damage(double amount);
+    public void Damage(double amount);
 
-    public double getHealth();
+    public double GetHealth();
 }

@@ -80,12 +80,7 @@ public class PlayerManager : MonoBehaviour
         score += number;
         scoreChangeEvent.Invoke();
     }
-
-    public void AddHP(int number)
-    {
-        healthPoints = healthPoints + number;
-    }
-
+    
     public void RemoveHP(int number)
     {
         if (healthPoints - number > 0)

@@ -55,7 +55,7 @@ public class PirateShip : MonoBehaviour, IDamageable
         target = Waypoints.points[waypointIndex];
     }
 
-    public void damage(double amount)
+    public void Damage(double amount)
     {
         health -= amount;
 
@@ -68,7 +68,7 @@ public class PirateShip : MonoBehaviour, IDamageable
         }
     }
 
-    public double getHealth()
+    public double GetHealth()
     {
         return health;
     }

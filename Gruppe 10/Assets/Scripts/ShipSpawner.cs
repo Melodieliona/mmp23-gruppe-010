@@ -29,7 +29,7 @@ public class ShipSpawner : MonoBehaviour
     {
         ReachTreasureChestEvent.AddListener(ReachTreasureChest);
         EnemyDestroyEvent.AddListener(EnemyDestroyed);
-        
+
         playerManager = FindObjectOfType<PlayerManager>();
     }
 
@@ -87,14 +87,15 @@ public class ShipSpawner : MonoBehaviour
         playerManager.RemoveHealthPoints(1);
         Debug.Log("Ship has reached the gold. New HP: " + playerManager.GetHealthPoints());
     }
-    
+
     /// <summary>
     /// Called, whenever a pirate ship is destroyed by a cannon.
     /// </summary>
-    private void EnemyDestroyed() {
+    private void EnemyDestroyed()
+    {
         shipsAlive--;
     }
-    
+
     /// <summary>
     /// Calculates the amount of ships which are to be spawned in the current wave.
     /// </summary>
