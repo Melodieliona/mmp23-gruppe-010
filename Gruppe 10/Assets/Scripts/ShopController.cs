@@ -188,6 +188,4 @@ public class ShopController : MonoBehaviour
         gridMaterial.SetFloat("_Opacity", currentOpacity);
         cursorMaterial.SetFloat("_Opacity", currentOpacity);
     }
-
-
 }

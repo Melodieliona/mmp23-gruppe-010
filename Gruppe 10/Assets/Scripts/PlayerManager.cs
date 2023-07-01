@@ -5,7 +5,7 @@ public class PlayerManager : MonoBehaviour
 {
     [Header("Attributes")]
     private int score = 0;
-    private int healthPoints = 10;
+    private int healthPoints = 3;
     private int goldCount = 500;
 
     [Header("Events")]
