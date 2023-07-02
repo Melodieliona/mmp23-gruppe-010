@@ -85,9 +85,10 @@ public class ShopController : MonoBehaviour
             PlaceOnGrass();
             canPlaceItem = true;
         }
+
         if (canPlaceItem)
         {
-            showIndicator();
+            ShowIndicator();
         }
     }
 
@@ -96,16 +97,7 @@ public class ShopController : MonoBehaviour
         if (!Input.GetMouseButtonDown(0)) return;
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int cellPosition;
-        if (currentlySelected != 3)
-        {
-            cellPosition = grassTiles.WorldToCell(mousePosition);
-        }
-        else
-        {
-            cellPosition = waterTiles.WorldToCell(mousePosition);
-        }
-
+        Vector3Int cellPosition = currentlySelected != 3 ? grassTiles.WorldToCell(mousePosition) : waterTiles.WorldToCell(mousePosition);
         if (!IsEligible(cellPosition)) return;
 
         GameObject weaponPrefab;
@@ -135,16 +127,7 @@ public class ShopController : MonoBehaviour
             return;
         }
 
-        Vector3 cellCenter;
-        if (currentlySelected != 3)
-        {
-            cellCenter = grassTiles.GetCellCenterWorld(cellPosition);
-        }
-        else
-        {
-            cellCenter = waterTiles.GetCellCenterWorld(cellPosition);
-        }
-
+        Vector3 cellCenter = currentlySelected != 3 ? grassTiles.GetCellCenterWorld(cellPosition) : waterTiles.GetCellCenterWorld(cellPosition);
         Instantiate(weaponPrefab, cellCenter, weaponPrefab.transform.rotation);
         grassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
         canPlaceItem = false;
@@ -154,17 +137,11 @@ public class ShopController : MonoBehaviour
 
     private bool IsEligible(Vector3Int cellPosition)
     {
-        if (currentlySelected != 3)
-        {
-            return grassTiles.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
-        }
-        else
-        {
-            return waterTiles.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
-        }
+        Tilemap tilemap = currentlySelected != 3 ? grassTiles : waterTiles;
+        return tilemap.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
     }
 
-    private void showIndicator()
+    private void ShowIndicator()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int cellPosition;
@@ -179,6 +156,7 @@ public class ShopController : MonoBehaviour
             cellPosition = waterTiles.WorldToCell(mousePosition);
             cellCenter = waterTiles.GetCellCenterWorld(cellPosition);
         }
+
         if (IsEligible(cellPosition))
         {
             cursor.transform.position = cellCenter;
@@ -216,6 +194,7 @@ public class ShopController : MonoBehaviour
             {
                 currentTiles = grassTiles;
             }
+
             colour = currentTiles.color;
             colour.a = 1 - currentOpacity;
             //currentTiles.color = colour;
@@ -245,6 +224,7 @@ public class ShopController : MonoBehaviour
             {
                 currentTiles = grassTiles;
             }
+
             colour = currentTiles.color;
             colour.a = 1 - currentOpacity;
             //currentTiles.color = colour;

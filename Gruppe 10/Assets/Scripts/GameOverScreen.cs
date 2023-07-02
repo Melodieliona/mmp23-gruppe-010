@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -9,12 +6,11 @@ public class GameOverScreen : MonoBehaviour
 {
     public Text scoreNumber;
 
-
     public void Setup(int score)
     {
         Debug.Log("2 Step works");
         gameObject.SetActive(true);
-        scoreNumber.text = "SCORE: " + score.ToString();
+        scoreNumber.text = "SCORE: " + score;
     }
 
     public void RetryButton()
