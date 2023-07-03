@@ -184,19 +184,20 @@ public class ShopController : MonoBehaviour
             currentOpacity += Time.deltaTime / fadeDuration;
             gridMaterial.SetFloat("_Opacity", currentOpacity);
             cursorMaterial.SetFloat("_Opacity", currentOpacity);
-            Color colour;
-            Tilemap currentTiles;
-            if (currentlySelected != 3)
-            {
-                currentTiles = waterTiles;
-            }
-            else
-            {
-                currentTiles = grassTiles;
-            }
-
-            colour = currentTiles.color;
-            colour.a = 1 - currentOpacity;
+            //--Not done yet, will finish it later
+            //Color colour;
+            //Tilemap currentTiles;
+            //if (currentlySelected != 3)
+            //{
+            //    currentTiles = waterTiles;
+            //}
+            //else
+            //{
+            //    currentTiles = grassTiles;
+            //}
+            //
+            //colour = currentTiles.color;
+            //colour.a = 1 - currentOpacity;
             //currentTiles.color = colour;
             yield return null;
         }
@@ -214,19 +215,20 @@ public class ShopController : MonoBehaviour
             currentOpacity -= Time.deltaTime / fadeDuration;
             gridMaterial.SetFloat("_Opacity", currentOpacity);
             cursorMaterial.SetFloat("_Opacity", currentOpacity);
-            Color colour;
-            Tilemap currentTiles;
-            if (currentlySelected != 3)
-            {
-                currentTiles = waterTiles;
-            }
-            else
-            {
-                currentTiles = grassTiles;
-            }
-
-            colour = currentTiles.color;
-            colour.a = 1 - currentOpacity;
+            //--Not done yet, will finish it later
+            //Color colour;
+            //Tilemap currentTiles;
+            //if (currentlySelected != 3)
+            //{
+            //    currentTiles = waterTiles;
+            //}
+            //else
+            //{
+            //    currentTiles = grassTiles;
+            //}
+            //
+            //colour = currentTiles.color;
+            //colour.a = 1 - currentOpacity;
             //currentTiles.color = colour;
 
             print(currentOpacity);
