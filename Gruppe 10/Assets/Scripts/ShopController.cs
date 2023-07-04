@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -27,6 +29,8 @@ public class ShopController : MonoBehaviour
     private Material cursorMaterial;
     public GameObject cursor;
 
+    private GameObject[] ObstacleList;
+
     [Header("Attributes")]
     private int currentlySelected = 0;
     private int cannon1Cost = 10;
@@ -44,6 +48,7 @@ public class ShopController : MonoBehaviour
     private void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
+        ObstacleList = GameObject.FindGameObjectsWithTag("Obstacles");
 
         //Instantiate the material to prevent the changes to stay even after the game ended
         var meshRenderer = placementGrid.GetComponent<MeshRenderer>();
@@ -98,7 +103,7 @@ public class ShopController : MonoBehaviour
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int cellPosition = currentlySelected != 3 ? grassTiles.WorldToCell(mousePosition) : waterTiles.WorldToCell(mousePosition);
-        if (!IsEligible(cellPosition)) return;
+        if (!IsEligible(cellPosition) || CheckForObstacle(mousePosition)) return;
 
         GameObject weaponPrefab;
         int weaponCost;
@@ -139,6 +144,15 @@ public class ShopController : MonoBehaviour
     {
         Tilemap tilemap = currentlySelected != 3 ? grassTiles : waterTiles;
         return tilemap.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
+    }
+
+    private bool CheckForObstacle(Vector3 mousePosition)
+    {
+        foreach (GameObject obstacle in ObstacleList)
+        {
+            return obstacle.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition);
+        }
+        return false;
     }
 
     private void ShowIndicator()
