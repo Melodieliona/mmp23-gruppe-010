@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -29,7 +27,7 @@ public class ShopController : MonoBehaviour
     private Material cursorMaterial;
     public GameObject cursor;
 
-    private GameObject[] ObstacleList;
+    private GameObject[] obstacleList;
 
     [Header("Attributes")]
     private int currentlySelected = 0;
@@ -39,16 +37,15 @@ public class ShopController : MonoBehaviour
 
     private bool canPlaceItem = false;
 
-    //Values for the grid fading
-    private float fadeDuration = 1f;
-    private float minOpacity = 0;
-    private float maxOpacity = 1f;
-
+    // Values for the grid fading
+    private const float FadeDuration = 1f;
+    private const float MinOpacity = 0;
+    private const float MaxOpacity = 1f;
 
     private void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
-        ObstacleList = GameObject.FindGameObjectsWithTag("Obstacles");
+        obstacleList = GameObject.FindGameObjectsWithTag("Obstacles");
 
         //Instantiate the material to prevent the changes to stay even after the game ended
         var meshRenderer = placementGrid.GetComponent<MeshRenderer>();
@@ -132,12 +129,13 @@ public class ShopController : MonoBehaviour
             return;
         }
 
+        DeactivateGrid();
+        currentlySelected = 0;
+        canPlaceItem = false;
+
         Vector3 cellCenter = currentlySelected != 3 ? grassTiles.GetCellCenterWorld(cellPosition) : waterTiles.GetCellCenterWorld(cellPosition);
         Instantiate(weaponPrefab, cellCenter, weaponPrefab.transform.rotation);
         grassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
-        canPlaceItem = false;
-        DeactivateGrid();
-        currentlySelected = 0;
     }
 
     private bool IsEligible(Vector3Int cellPosition)
@@ -148,11 +146,9 @@ public class ShopController : MonoBehaviour
 
     private bool CheckForObstacle(Vector3 mousePosition)
     {
-        foreach (GameObject obstacle in ObstacleList)
-        {
-            return obstacle.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition);
-        }
-        return false;
+        return obstacleList
+            .Select(obstacle => obstacle.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition))
+            .FirstOrDefault();
     }
 
     private void ShowIndicator()
@@ -186,16 +182,15 @@ public class ShopController : MonoBehaviour
     private void DeactivateGrid()
     {
         //gridMaterial.SetFloat("_Opacity", 0.1f);
-
         StartCoroutine(FadeOut());
     }
 
     private IEnumerator FadeIn()
     {
-        float currentOpacity = minOpacity;
-        while (currentOpacity < maxOpacity - 0.05)
+        float currentOpacity = MinOpacity;
+        while (currentOpacity < MaxOpacity - 0.05)
         {
-            currentOpacity += Time.deltaTime / fadeDuration;
+            currentOpacity += Time.deltaTime / FadeDuration;
             gridMaterial.SetFloat("_Opacity", currentOpacity);
             cursorMaterial.SetFloat("_Opacity", currentOpacity);
             //--Not done yet, will finish it later
@@ -216,17 +211,17 @@ public class ShopController : MonoBehaviour
             yield return null;
         }
 
-        currentOpacity = maxOpacity;
+        currentOpacity = MaxOpacity;
         gridMaterial.SetFloat("_Opacity", currentOpacity);
         cursorMaterial.SetFloat("_Opacity", currentOpacity);
     }
 
     private IEnumerator FadeOut()
     {
-        float currentOpacity = maxOpacity;
-        while (currentOpacity > minOpacity + 0.05)
+        float currentOpacity = MaxOpacity;
+        while (currentOpacity > MinOpacity + 0.05)
         {
-            currentOpacity -= Time.deltaTime / fadeDuration;
+            currentOpacity -= Time.deltaTime / FadeDuration;
             gridMaterial.SetFloat("_Opacity", currentOpacity);
             cursorMaterial.SetFloat("_Opacity", currentOpacity);
             //--Not done yet, will finish it later
@@ -243,6 +238,11 @@ public class ShopController : MonoBehaviour
             //
             //colour = currentTiles.color;
             //colour.a = 1 - currentOpacity;
+            Color colour;
+            Tilemap currentTiles = currentlySelected != 3 ? waterTiles : grassTiles;
+
+            colour = currentTiles.color;
+            colour.a = 1 - currentOpacity;
             //currentTiles.color = colour;
 
             print(currentOpacity);
@@ -250,7 +250,7 @@ public class ShopController : MonoBehaviour
             yield return null;
         }
 
-        currentOpacity = minOpacity;
+        currentOpacity = MinOpacity;
         gridMaterial.SetFloat("_Opacity", currentOpacity);
         cursorMaterial.SetFloat("_Opacity", currentOpacity);
     }

@@ -28,22 +28,6 @@ public class PlayerManager : MonoBehaviour
         return healthPoints;
     }
 
-    public int GetScore()
-    {
-        return score;
-    }
-
-    public int GetGold()
-    {
-        return goldCount;
-    }
-
-    public void AddHealthPoints(int number)
-    {
-        healthPoints += number;
-        healthChangeEvent.Invoke();
-    }
-
     public void RemoveHealthPoints(int number)
     {
         if (healthPoints - number > 0)
@@ -57,6 +41,12 @@ public class PlayerManager : MonoBehaviour
             gameOverScreen.Setup(GetScore());
         }
     }
+
+    public int GetGold()
+    {
+        return goldCount;
+    }
+
 
     public void AddGold(int number)
     {
@@ -79,21 +69,14 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public int GetScore()
+    {
+        return score;
+    }
+
     public void AddScore(int number)
     {
         score += number;
         scoreChangeEvent.Invoke();
-    }
-    
-    public void RemoveHP(int number)
-    {
-        if (healthPoints - number > 0)
-        {
-            healthPoints = healthPoints - number;
-        }
-        else
-        {
-            //Game Over!
-        }
     }
 }

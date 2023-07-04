@@ -82,17 +82,23 @@ public class PirateShip : MonoBehaviour, IDamageable
     /// Sets the sprite based on the direction.
     private void SetSpriteForDirection(Vector2 direction)
     {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
         // Suche das entsprechende Sprite basierend auf dem Winkel
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         int spriteIndex = 0;
 
-        if (angle >= 45f && angle < 135f)
-            spriteIndex = 1; // nach unten
-        else if (angle >= 135f || angle < -135f)
-            spriteIndex = 2; // nach links
-        else if (angle >= -135f && angle < -45f)
-            spriteIndex = 3; // nach oben
+        switch (angle)
+        {
+            case >= 45f and < 135f:
+                spriteIndex = 1; // nach unten
+                break;
+            case >= 135f:
+            case < -135f:
+                spriteIndex = 2; // nach links
+                break;
+            case >= -135f and < -45f:
+                spriteIndex = 3; // nach oben
+                break;
+        }
 
         spriteRenderer.sprite = sprites[spriteIndex];
     }
