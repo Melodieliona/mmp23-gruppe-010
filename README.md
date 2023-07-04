@@ -1,92 +1,49 @@
-# mmp23-gruppe-010
+# Gold Guard - Tower Defense - Gruppe 10
+
+Gold Guard ist ein spannendes Tower Defense-Spiel, das mit Unity und C# entwickelt wurde. In diesem Spiel musst du deine Schatztruhe vor feindlichen Piratenschiffen schützen, die versuchen, dein wertvolles Gold zu plündern. Platziere strategisch Waffen entlang des Flusses, um die Piratenschiffe zu zerstören und dein Gold zu verteidigen. Das Spiel besteht aus mehreren Levels, und du musst alle Levels erfolgreich bestreiten, um das Spiel zu gewinnen.
+
+## Spielziel
+
+Das Ziel des Spiels ist es, alle Piratenschiffe daran zu hindern, deine Schatztruhe zu erreichen und das Gold zu stehlen. Jedes Level wird schwieriger, da die Piratenschiffe schneller und widerstandsfähiger werden. Deine Aufgabe ist es, deine Waffen strategisch zu platzieren und Upgrades zu kaufen, um den Angriffen der Piraten standzuhalten.
+
+## Spielablauf
+
+1. Startbildschirm: Der Spieler wird mit einem Startbildschirm begrüßt, auf dem er das Spiel starten oder Anleitungen erhalten kann.
+
+2. Vorbereitung: Vor Beginn jedes Levels hat der Spieler die Möglichkeit, seine Waffen zu kaufen und zu platzieren. Der Spieler verwendet das Gold aus der Schatztruhe, um verschiedene Waffen zu erwerben, z. B. Kanonen, Bogenschützen oder Magier. Jede Waffe hat unterschiedliche Kosten und Fähigkeiten.
+
+3. Kampf: Sobald das Level gestartet ist, beginnen die feindlichen Piratenschiffe entlang des Flusses zu spawnen und sich auf die Schatztruhe zuzubewegen. Der Spieler muss seine Waffen effektiv einsetzen, um die Schiffe zu zerstören, bevor sie die Schatztruhe erreichen. Der Spieler kann auch nach jedem Level, Upgrades für seine Waffen kaufen, um ihre Leistung zu verbessern.
+
+4. Belohnungen: Für jedes zerstörte Piratenschiff erhält der Spieler zusätzliches Gold. Der Spieler kann dieses Gold verwenden, um im laufenden Level weitere Waffen oder Upgrades zu kaufen.
+
+5. Levelabschluss: Das Level endet, wenn alle Piratenschiffe zerstört wurden oder wenn ein Piratenschiff die Schatztruhe erreicht hat. Wenn der Spieler alle Levels erfolgreich abgeschlossen hat, gewinnt er das Spiel.
+
+6. Game Over: Wenn ein Piratenschiff die Schatztruhe erreicht, verliert der Spieler ein Leben. Wenn alle Leben verloren sind, endet das Spiel.
 
 
+## Steuerung
 
-## Getting started
+Die Steuerung des Spiels erfolgt über Maus und Tastatur:
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab2.cip.ifi.lmu.de/meaney/mmp23-gruppe-010.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab2.cip.ifi.lmu.de/meaney/mmp23-gruppe-010/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- Maus: Der Spieler kann mit der Maus Waffen kaufen, platzieren und Upgrades durchführen.
+- Tastatur: Der Spieler kann verschiedene Tasten verwenden, um im Spiel Menüs zu öffnen, Waffen auszuwählen und andere Aktionen durchzuführen.
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Um das Spiel zu spielen, müssen folgende Schritte befolgt werden:
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+1. Unity installieren: Gehe auf die offizielle Unity-Website (https://unity.com/) und lade die neueste Version von Unity herunter. Befolge die Anweisungen zur Installation.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+2. Projekt öffnen: Starte Unity und öffne das Gold Guard Tower Defense-Projekt.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+3. Kompilieren und Ausführen: Wähle die gewünschte Zielplattform aus (z. B. Windows, Mac, Android) und klicke auf "Build" oder "Run", um das Spiel zu kompilieren und auszuführen.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Mitwirkende
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+- Thomas Meaney
+- Stephan Hefele
+- Mihnea-Andrei Stefanescu 
+- Petra Murr Yana
+- Maximilian Kriebel
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Vielen Dank für das Spielen von Gold Guard Tower Defense! Wir hoffen, Sie haben viel Spaß beim Verteidigen Ihrer Schatztruhe vor den Piraten!
