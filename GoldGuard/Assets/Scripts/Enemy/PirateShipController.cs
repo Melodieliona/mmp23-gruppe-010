@@ -11,22 +11,23 @@ namespace Enemy
         [SerializeField] private int scoreValue = 1;
         [SerializeField] private int goldValue = 1;
 
-        public Sprite[] sprites;
-
         [Header("References")]
         private PlayerController playerController;
 
         private Transform target;
         private int waypointIndex = 0;
-        private SpriteRenderer spriteRenderer;
+        private AnimationClip[] animationClips;
+        private Animator animator;
+        private float directionX;
+        private float directionY;
 
         private void Start()
         {
             playerController = FindObjectOfType<PlayerController>();
 
             target = Waypoints.points[0];
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            SetSpriteForDirection(target.position - transform.position);
+            animator = GetComponent<Animator>();
+            SetAnimationForDirection(target.position - transform.position);
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace Enemy
             if (Vector2.Distance(target.position, transform.position) <= 0.05f)
             {
                 GetNextWaypoint();
-                SetSpriteForDirection(target.position - transform.position);
+                SetAnimationForDirection(target.position - transform.position);
             }
         }
 
@@ -82,27 +83,14 @@ namespace Enemy
             return health;
         }
 
-        private void SetSpriteForDirection(Vector2 direction)
+        private void SetAnimationForDirection(Vector2 direction)
         {
-            // Find the correct sprite base on the direction angle
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            int spriteIndex = 0; // Right
+            direction.Normalize();
+            directionX = Mathf.RoundToInt(direction.x);
+            directionY = Mathf.RoundToInt(direction.y);
 
-            switch (angle)
-            {
-                case >= 45f and < 135f:
-                    spriteIndex = 1; // Down
-                    break;
-                case >= 135f:
-                case < -135f:
-                    spriteIndex = 2; // Left
-                    break;
-                case >= -135f and < -45f:
-                    spriteIndex = 3; // Up
-                    break;
-            }
-
-            spriteRenderer.sprite = sprites[spriteIndex];
+            animator.SetFloat("directionX", directionX);
+            animator.SetFloat("directionY", directionY);
         }
     }
 }

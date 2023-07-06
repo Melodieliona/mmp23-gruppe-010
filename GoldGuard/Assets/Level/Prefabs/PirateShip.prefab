@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4710413063683574015}
   - component: {fileID: -90258016447299697}
   - component: {fileID: -5537596019407243953}
+  - component: {fileID: 260252472802202050}
   m_Layer: 7
   m_Name: PirateShip
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 2131010895
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -826667764, guid: cacfb875298650f418503426738fbd0f, type: 3}
+  m_Sprite: {fileID: 2022352258, guid: 878806120c1d06b45bf438d817fef721, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,8 +141,30 @@ MonoBehaviour:
   health: 2
   scoreValue: 1
   goldValue: 1
-  sprites:
-  - {fileID: -826667764, guid: cacfb875298650f418503426738fbd0f, type: 3}
-  - {fileID: -138878247, guid: cacfb875298650f418503426738fbd0f, type: 3}
-  - {fileID: 227654032, guid: cacfb875298650f418503426738fbd0f, type: 3}
-  - {fileID: -138878247, guid: cacfb875298650f418503426738fbd0f, type: 3}
+  sprites: []
+  animationClips:
+  - {fileID: 7400000, guid: ac9d6437fb2739946825431210112c42, type: 2}
+  - {fileID: 7400000, guid: ac9d6437fb2739946825431210112c42, type: 2}
+  - {fileID: 7400000, guid: d95684998b852374fb745d8419524370, type: 2}
+  - {fileID: 7400000, guid: d95684998b852374fb745d8419524370, type: 2}
+--- !u!95 &260252472802202050
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5034949488155426279}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b23baa656966f0942ae6e67306e309d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
