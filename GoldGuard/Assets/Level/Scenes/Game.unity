@@ -5804,6 +5804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da8c1cd11652af40bc7961e7cd29d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthPoints: 5
+  goldCount: 500
 --- !u!4 &614789479
 Transform:
   m_ObjectHideFlags: 0
@@ -7734,13 +7736,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4865de80be2cdf540b50e881ced37d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cannon1Prefab: {fileID: 2580092390061179386, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
+  cannon1Cost: 10
+  cannon2Prefab: {fileID: 2580092390061179386, guid: 8e43cf1b510df3b4a9c0432924e34bda, type: 3}
+  cannon2Cost: 20
+  krakenPrefab: {fileID: 6120980693190603084, guid: f743e415e4d05da4dbef286596752246, type: 3}
+  krakenCost: 50
   grassTiles: {fileID: 1915517723}
   waterTiles: {fileID: 1570976782}
-  cannon1Prefab: {fileID: 2580092390061179386, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
-  cannon2Prefab: {fileID: 2580092390061179386, guid: 8e43cf1b510df3b4a9c0432924e34bda, type: 3}
-  krakenPrefab: {fileID: 6120980693190603084, guid: f743e415e4d05da4dbef286596752246, type: 3}
   placementGrid: {fileID: 333188236}
   cursor: {fileID: 96185642}
+  fadeDuration: 0.25
 --- !u!1 &1739363381
 GameObject:
   m_ObjectHideFlags: 0

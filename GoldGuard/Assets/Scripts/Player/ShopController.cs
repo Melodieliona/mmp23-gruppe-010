@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,39 +7,32 @@ namespace Player
 {
     public class ShopController : MonoBehaviour
     {
-        [Header("References")]
-        private PlayerController playerController;
-
-        private Button shopButton1;
-        private Button shopButton2;
-        private Button shopButton3;
-        private Button shopButton4;
-
-        public Tilemap grassTiles;
-        public Tilemap waterTiles;
-
-        public GameObject cannon1Prefab;
-        public GameObject cannon2Prefab;
-        public GameObject krakenPrefab;
-
-        public GameObject placementGrid;
-        private Material gridMaterial;
-        private Material cursorMaterial;
-        public GameObject cursor;
-
-        private GameObject[] obstacleList;
-
-        [Header("Attributes")]
-        private int currentlySelected = 0;
-        private int cannon1Cost = 10;
-        private int cannon2Cost = 20;
-        private int krakenCost = 50;
-
-        private bool canPlaceItem = false;
         private static readonly int Opacity = Shader.PropertyToID("_Opacity");
 
-        // Values for the grid fading
-        private const float FadeDuration = 1f;
+        [Header("Items")]
+        [SerializeField] private GameObject cannon1Prefab;
+        [SerializeField] private int cannon1Cost = 10;
+        [SerializeField] private GameObject cannon2Prefab;
+        [SerializeField] private int cannon2Cost = 20;
+        [SerializeField] private GameObject krakenPrefab;
+        [SerializeField] private int krakenCost = 50;
+
+        [Header("Grid")]
+        [SerializeField] private Tilemap grassTiles;
+        [SerializeField] private Tilemap waterTiles;
+        [SerializeField] private GameObject placementGrid;
+        [SerializeField] private GameObject cursor;
+        [SerializeField] private float fadeDuration = 0.25f;
+
+        [Header("References")]
+        private PlayerController playerController;
+        private GameObject[] obstacleList;
+        private Material gridMaterial;
+        private Material cursorMaterial;
+
+        private ShopItem selectedShopItem;
+        private bool canPlaceItem = false;
+
         private const float MinOpacity = 0f;
         private const float MaxOpacity = 1f;
         private bool fadeIn = false;
@@ -65,71 +57,49 @@ namespace Player
 
         private void OnEnable()
         {
-            var root = GetComponent<UIDocument>().rootVisualElement;
+            ShopItem[] items =
+            {
+                new(cannon1Prefab, 1, cannon1Cost, TileType.Land),
+                new(cannon2Prefab, 2, cannon2Cost, TileType.Land),
+                new(krakenPrefab, 3, krakenCost, TileType.Water),
+                new(cannon1Prefab, 4, cannon1Cost, TileType.Land)
+            };
 
-            shopButton1 = root.Q<Button>("ShopButton1");
-            shopButton2 = root.Q<Button>("ShopButton2");
-            shopButton3 = root.Q<Button>("ShopButton3");
-            shopButton4 = root.Q<Button>("ShopButton4");
-
-            shopButton1.clicked += () => { ShopButton_clicked(1); };
-            shopButton2.clicked += () => { ShopButton_clicked(2); };
-            shopButton3.clicked += () => { ShopButton_clicked(3); };
-            shopButton4.clicked += () => { ShopButton_clicked(4); };
-        }
-
-        private void ShopButton_clicked(int number)
-        {
-            currentlySelected = number;
+            foreach (ShopItem item in items)
+            {
+                Button button = GetComponent<UIDocument>().rootVisualElement.Q<Button>("ShopButton" + item.GetSlot());
+                button.clicked += () => { selectedShopItem = selectedShopItem == item ? null : item; };
+            }
         }
 
         private void Update()
         {
             CalculateGridAlpha();
+            ShowIndicator();
 
-            if (currentlySelected > 0)
+            if (selectedShopItem != null)
             {
-                // A button was pressed in the shop
                 ActivateGrid();
-                PlaceOnGrass();
+                CheckForPlacement();
                 canPlaceItem = true;
             }
-
-            if (canPlaceItem)
+            else
             {
-                ShowIndicator();
+                DeactivateGrid();
+                canPlaceItem = false;
             }
         }
 
-        private void PlaceOnGrass()
+        private void CheckForPlacement()
         {
             if (!Input.GetMouseButtonDown(0)) return;
 
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition = currentlySelected != 3 ? grassTiles.WorldToCell(mousePosition) : waterTiles.WorldToCell(mousePosition);
+            Tilemap selectedTiles = selectedShopItem.GetTileType() != TileType.Water ? grassTiles : waterTiles;
+            Vector3Int cellPosition = selectedTiles.WorldToCell(mousePosition);
             if (!IsEligible(cellPosition) || CheckForObstacle(mousePosition)) return;
 
-            GameObject weaponPrefab;
-            int weaponCost;
-
-            switch (currentlySelected)
-            {
-                case 1:
-                    weaponPrefab = cannon1Prefab;
-                    weaponCost = cannon1Cost;
-                    break;
-                case 2:
-                    weaponPrefab = cannon2Prefab;
-                    weaponCost = cannon2Cost;
-                    break;
-                case 3:
-                    weaponPrefab = krakenPrefab;
-                    weaponCost = krakenCost;
-                    break;
-                default:
-                    throw new NullReferenceException("Player has not selected");
-            }
-
+            int weaponCost = selectedShopItem.GetCost();
             if (!playerController.RemoveGold(weaponCost))
             {
                 Debug.Log("Too expensive! You can't afford it");
@@ -137,17 +107,21 @@ namespace Player
             }
 
             DeactivateGrid();
-            currentlySelected = 0;
-            canPlaceItem = false;
 
-            Vector3 cellCenter = currentlySelected != 3 ? grassTiles.GetCellCenterWorld(cellPosition) : waterTiles.GetCellCenterWorld(cellPosition);
+            Vector3 cellCenter = selectedTiles.GetCellCenterWorld(cellPosition);
+            GameObject weaponPrefab = selectedShopItem.GetPrefab();
             Instantiate(weaponPrefab, cellCenter, weaponPrefab.transform.rotation);
             grassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
+
+            selectedShopItem = null;
+            canPlaceItem = false;
         }
 
         private bool IsEligible(Vector3Int cellPosition)
         {
-            Tilemap tilemap = currentlySelected != 3 ? grassTiles : waterTiles;
+            if (selectedShopItem == null) return false;
+
+            Tilemap tilemap = selectedShopItem.GetTileType() != TileType.Water ? grassTiles : waterTiles;
             return tilemap.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
         }
 
@@ -160,10 +134,12 @@ namespace Player
 
         private void ShowIndicator()
         {
+            if (!canPlaceItem || selectedShopItem == null) return;
+
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int cellPosition;
             Vector3 cellCenter;
-            if (currentlySelected != 3)
+            if (selectedShopItem != null && selectedShopItem.GetTileType() != TileType.Water)
             {
                 cellPosition = grassTiles.WorldToCell(mousePosition);
                 cellCenter = grassTiles.GetCellCenterWorld(cellPosition);
@@ -198,7 +174,7 @@ namespace Player
 
             if (fadeIn && alpha <= MaxOpacity)
             {
-                alpha += Time.deltaTime / FadeDuration;
+                alpha += Time.deltaTime / fadeDuration;
                 gridMaterial.SetFloat(Opacity, alpha);
                 cursorMaterial.SetFloat(Opacity, alpha);
 
@@ -210,7 +186,7 @@ namespace Player
 
             if (fadeOut && alpha >= MinOpacity)
             {
-                alpha -= Time.deltaTime / FadeDuration;
+                alpha -= Time.deltaTime / fadeDuration;
                 gridMaterial.SetFloat(Opacity, alpha);
                 cursorMaterial.SetFloat(Opacity, alpha);
 

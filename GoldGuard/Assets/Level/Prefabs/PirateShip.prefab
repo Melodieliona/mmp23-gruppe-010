@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2972565148141615693}
   - component: {fileID: 5325684809344662239}
   m_Layer: 7
-  m_Name: HealthBar
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   slider: {fileID: 2256434643242238264}
   low: {r: 1, g: 0, b: 0.05882353, a: 1}
   high: {r: 0.22352941, g: 1, b: 0, a: 1}
-  offset: {x: 0, y: 2.5, z: 0}
+  offset: {x: 0, y: 2, z: 0}
 --- !u!1 &2851294873105751314
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 1179947690465793220}
   - component: {fileID: 2256434643242238264}
   m_Layer: 7
-  m_Name: Slider
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -501,10 +501,10 @@ RectTransform:
   m_Father: {fileID: 3438527448693673925}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 15}
+  m_SizeDelta: {x: 70, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2256434643242238264
 MonoBehaviour:
