@@ -1675,7 +1675,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 563749610}
         m_TargetAssemblyTypeName: SoundEffectsPlayer, Assembly-CSharp
-        m_MethodName: PlaySFX
+        m_MethodName: PlaySfx
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: 4d5c03259cc255347aea4ca43ecf252b, type: 3}
@@ -2035,7 +2035,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 563749610}
         m_TargetAssemblyTypeName: SoundEffectsPlayer, Assembly-CSharp
-        m_MethodName: PlaySFX
+        m_MethodName: PlaySfx
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: 4d5c03259cc255347aea4ca43ecf252b, type: 3}
