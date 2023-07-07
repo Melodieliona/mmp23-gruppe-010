@@ -6,24 +6,30 @@ namespace Enemy
     public class PirateShipController : MonoBehaviour
     {
         [Header("Attributes")]
+        [SerializeField] private HealthBar healthBar;
+        [SerializeField] private double maxHealth = 20;
+        [SerializeField] private double currentHealth;
         [SerializeField] private float speed = 3f;
-        [SerializeField] private double health = 2;
         [SerializeField] private int scoreValue = 1;
         [SerializeField] private int goldValue = 1;
 
         [Header("References")]
         private PlayerController playerController;
-
-        private Transform target;
+        
         private int waypointIndex = 0;
-        private AnimationClip[] animationClips;
-        private Animator animator;
+        private Transform target;
         private float directionX;
         private float directionY;
+
+        private AnimationClip[] animationClips;
+        private Animator animator;
 
         private void Start()
         {
             playerController = FindObjectOfType<PlayerController>();
+
+            currentHealth = maxHealth;
+            healthBar.SetHealth(currentHealth, maxHealth);
 
             target = Waypoints.points[0];
             animator = GetComponent<Animator>();
@@ -67,9 +73,10 @@ namespace Enemy
 
         public void Damage(double amount)
         {
-            health -= amount;
+            currentHealth -= amount;
+            healthBar.SetHealth(currentHealth, maxHealth);
 
-            if (health <= 0)
+            if (currentHealth <= 0)
             {
                 ShipSpawner.EnemyDestroyEvent.Invoke();
                 Destroy(gameObject);
@@ -80,7 +87,7 @@ namespace Enemy
 
         public double GetHealth()
         {
-            return health;
+            return currentHealth;
         }
 
         private void SetAnimationForDirection(Vector2 direction)

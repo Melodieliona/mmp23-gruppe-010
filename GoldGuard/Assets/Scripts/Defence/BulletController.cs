@@ -10,7 +10,7 @@ namespace Defence
 
         [Header("Attributes")]
         [SerializeField] private float bulletSpeed = 5f;
-        [SerializeField] private int bulletDamage = 1;
+        [SerializeField] private int bulletDamage = 5;
 
         private Transform target;
 
