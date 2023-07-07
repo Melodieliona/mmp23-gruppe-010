@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundEffectsPlayer : MonoBehaviour
-{   
+{
     [Header("--------------- Audio Source -----------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
@@ -18,7 +18,7 @@ public class SoundEffectsPlayer : MonoBehaviour
         musicSource.Play();
     }
 
-        public void PlaySFX(AudioClip clip)
+    public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
     }

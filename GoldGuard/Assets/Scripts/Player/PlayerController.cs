@@ -7,8 +7,8 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         [Header("Attributes")]
-        private int healthPoints = 5;
-        private int goldCount = 500;
+        [SerializeField] private int healthPoints = 5;
+        [SerializeField] private int goldCount = 500;
 
         [Header("Events")]
         private readonly UnityEvent scoreChangeEvent = new();
