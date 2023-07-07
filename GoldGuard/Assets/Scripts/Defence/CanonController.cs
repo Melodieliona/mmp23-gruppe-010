@@ -18,6 +18,12 @@ namespace Defence
 
         private Transform target;
         private float timeUntilFire;
+        SoundEffectsPlayer soundEffect;
+
+        private void Awake()
+        {
+            soundEffect = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+        }
 
         private void Update()
         {
@@ -39,6 +45,7 @@ namespace Defence
             if (timeUntilFire >= 1f / bps)
             {
                 Shoot();
+                soundEffect.PlaySFX(soundEffect.cannon);
                 timeUntilFire = 0f;
             }
         }

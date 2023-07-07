@@ -7,7 +7,7 @@ namespace Enemy
     {
         [Header("Attributes")]
         [SerializeField] private HealthBar healthBar;
-        [SerializeField] private double maxHealth = 20;
+        [SerializeField] private double maxHealth = 100;
         [SerializeField] private double currentHealth;
         [SerializeField] private float speed = 3f;
         [SerializeField] private int scoreValue = 1;

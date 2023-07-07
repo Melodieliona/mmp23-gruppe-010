@@ -33,11 +33,14 @@ namespace Enemy
         private int shipsAlive;
         private int shipsLeftToSpawn;
         private float timeSinceLastSpawn;
+        SoundEffectsPlayer soundEffect;
+
 
         private void Awake()
         {
             playerController = FindObjectOfType<PlayerController>();
             guiManager = FindObjectOfType<GUIManager>();
+            soundEffect = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
 
             ReachTreasureChestEvent.AddListener(ReachTreasureChest);
             EnemyDestroyEvent.AddListener(EnemyDestroyed);
@@ -72,12 +75,14 @@ namespace Enemy
         private IEnumerator StartWave()
         {
             guiManager.ShowTimer();
+            soundEffect.PlayBackgroundMusic(soundEffect.settingTime);
             for (timerCounter = timeBetweenWaves; timerCounter >= 0; timerCounter--)
             {
                 float percentageOfMax = (float)timerCounter / timeBetweenWaves;
                 guiManager.UpdateTimer(timerCounter, percentageOfMax);
                 yield return new WaitForSeconds(1);
             }
+            soundEffect.PlayBackgroundMusic(soundEffect.background);
             guiManager.HideTimer();
             currentWave++;
             waveChangeEvent.Invoke();
@@ -106,6 +111,7 @@ namespace Enemy
         private void ReachTreasureChest()
         {
             shipsAlive--;
+            soundEffect.PlaySFX(soundEffect.hp);
             playerController.RemoveHealthPoints(1);
             Debug.Log("Ship has reached the gold. New HP: " + playerController.GetHealthPoints());
         }
