@@ -29,12 +29,14 @@ namespace Player
 
 
         [Header("Grid")]
+        [SerializeField] private GameObject Map;
         [SerializeField] private Tilemap grassTiles;
         [SerializeField] private Tilemap waterTiles;
         [SerializeField] private GameObject placementGrid;
         [SerializeField] private GameObject cursor;
         [SerializeField] private GameObject radius;
         [SerializeField] private float fadeDuration = 0.25f;
+        private Grid MapGrid;
 
         [Header("References")]
         private PlayerController playerController;
@@ -53,6 +55,7 @@ namespace Player
 
         private void Start()
         {
+            MapGrid = Map.GetComponent<Grid>();
             playerController = FindObjectOfType<PlayerController>();
             obstacleList = GameObject.FindGameObjectsWithTag("Obstacles");
 
@@ -106,6 +109,7 @@ namespace Player
 
             if (selectedShopItem != null)
             {
+                IsMouseInGrid();
                 ActivateGrid();
                 CheckForPlacement();
                 canPlaceItem = true;
@@ -205,13 +209,6 @@ namespace Player
                 kraken_Transparent_Renderer.color = new Color(1f, 0f, 0f, 110 / 255f);
                 cursorMaterial.SetColor("_Color", new Color(1f, 0.3f, 0.3f, 1f));
                 radiusMaterial.SetColor("_Color", new Color(1f, 0.3f, 0.3f, 1f));
-
-                Vector2 offScreen = new Vector2(50, 0); // Some value not visible on the screen
-                //cursor.transform.position = offScreen;
-                //radius.transform.position = offScreen;
-                //cannon1_Transparent.transform.position = offScreen;
-                //cannon2_Transparent.transform.position = offScreen;
-                //kraken_Transparent.transform.position = offScreen;
             }
             switch (selectedShopItem.GetSlot())
             {
@@ -229,6 +226,13 @@ namespace Player
             cursor.transform.position = cellCenter;
             radius.transform.position = cellCenter;
             var currentRange = selectedShopItem.GetRange() * 12;
+            if(currentRange >= 24)
+            {
+                radiusMaterial.SetFloat("_Thickness", 0.05f);
+            } else
+            {
+                radiusMaterial.SetFloat("_Thickness", 0.1f);
+            }
             radius.transform.localScale = new Vector3(currentRange, currentRange, currentRange);
         }
 
@@ -272,6 +276,20 @@ namespace Player
                 {
                     fadeOut = false;
                 }
+            }
+        }
+
+        private void IsMouseInGrid()
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if(!MapGrid.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition))
+            {
+                Vector2 offScreen = new Vector2(50, 0); // Some value not visible on the screen
+                cursor.transform.position = offScreen;
+                radius.transform.position = offScreen;
+                cannon1_Transparent.transform.position = offScreen;
+                cannon2_Transparent.transform.position = offScreen;
+                kraken_Transparent.transform.position = offScreen;
             }
         }
     }
