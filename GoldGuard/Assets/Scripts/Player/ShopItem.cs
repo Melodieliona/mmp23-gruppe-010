@@ -11,14 +11,16 @@ namespace Player
         private readonly int slot;
         private readonly int cost;
         private readonly TileType tileType;
+        private readonly float range;
 
-        public ShopItem(GameObject prefab, int slot, int cost, TileType tileType)
+        public ShopItem(GameObject prefab, int slot, int cost, TileType tileType, float range)
         {
             this.prefab = prefab;
 
             this.slot = slot;
             this.cost = cost;
             this.tileType = tileType;
+            this.range = range;
         }
 
         public GameObject GetPrefab()
@@ -39,6 +41,11 @@ namespace Player
         public TileType GetTileType()
         {
             return tileType;
+        }
+
+        public float GetRange()
+        {
+            return range;        
         }
     }
 

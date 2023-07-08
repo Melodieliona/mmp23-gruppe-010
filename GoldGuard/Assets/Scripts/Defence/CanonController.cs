@@ -87,5 +87,10 @@ namespace Defence
             //Handles.color = Color.cyan;
             //Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
         }
+
+        public float GetRange()
+        {
+            return targetingRange;
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Defence;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -22,6 +23,7 @@ namespace Player
         [SerializeField] private Tilemap waterTiles;
         [SerializeField] private GameObject placementGrid;
         [SerializeField] private GameObject cursor;
+        [SerializeField] private GameObject radius;
         [SerializeField] private float fadeDuration = 0.25f;
 
         [Header("References")]
@@ -29,6 +31,7 @@ namespace Player
         private GameObject[] obstacleList;
         private Material gridMaterial;
         private Material cursorMaterial;
+        private Material radiusMaterial;
 
         private ShopItem selectedShopItem;
         private bool canPlaceItem = false;
@@ -53,16 +56,26 @@ namespace Player
             cursorMaterial = Instantiate(cursorRenderer.sharedMaterial);
             cursorMaterial.SetFloat(Opacity, MinOpacity);
             cursorRenderer.material = cursorMaterial;
+
+            var radiusRenderer = radius.GetComponent<SpriteRenderer>();
+            radiusMaterial = Instantiate(radiusRenderer.sharedMaterial);
+            radiusMaterial.SetFloat(Opacity, MinOpacity);
+            radiusRenderer.material = radiusMaterial;
         }
 
         private void OnEnable()
         {
+            var cannon1Range = cannon1Prefab.GetComponent<CanonController>().GetRange();
+            var cannon2Range = cannon2Prefab.GetComponent<CanonController>().GetRange();
+            var krakenRange = krakenPrefab.GetComponent<KrakenController>().GetRange();
+            //Add 4th item here
+
             ShopItem[] items =
             {
-                new(cannon1Prefab, 1, cannon1Cost, TileType.Land),
-                new(cannon2Prefab, 2, cannon2Cost, TileType.Land),
-                new(krakenPrefab, 3, krakenCost, TileType.Water),
-                new(cannon1Prefab, 4, cannon1Cost, TileType.Land)
+                new(cannon1Prefab, 1, cannon1Cost, TileType.Land, cannon1Range),
+                new(cannon2Prefab, 2, cannon2Cost, TileType.Land, cannon2Range),
+                new(krakenPrefab, 3, krakenCost, TileType.Water, krakenRange),
+                new(cannon1Prefab, 4, cannon1Cost, TileType.Land, cannon1Range)
             };
 
             foreach (ShopItem item in items)
@@ -153,6 +166,9 @@ namespace Player
             if (IsEligible(cellPosition))
             {
                 cursor.transform.position = cellCenter;
+                radius.transform.position = cellCenter;
+                var currentRange = selectedShopItem.GetRange() * 12;
+                radius.transform.localScale = new Vector3(currentRange, currentRange, currentRange);
             }
         }
 
@@ -177,6 +193,7 @@ namespace Player
                 alpha += Time.deltaTime / fadeDuration;
                 gridMaterial.SetFloat(Opacity, alpha);
                 cursorMaterial.SetFloat(Opacity, alpha);
+                radiusMaterial.SetFloat(Opacity, alpha);
 
                 if (alpha >= MaxOpacity)
                 {
@@ -189,6 +206,7 @@ namespace Player
                 alpha -= Time.deltaTime / fadeDuration;
                 gridMaterial.SetFloat(Opacity, alpha);
                 cursorMaterial.SetFloat(Opacity, alpha);
+                radiusMaterial.SetFloat(Opacity, alpha);
 
                 if (alpha <= MinOpacity)
                 {

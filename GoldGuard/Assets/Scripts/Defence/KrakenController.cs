@@ -10,7 +10,7 @@ namespace Defence
         //[SerializeField] private Rigidbody2D rb;
 
         [Header("Attribute")]
-        //[SerializeField] private float targetingRange = 1f;
+        [SerializeField] private float targetingRange = 1f;
         [SerializeField] private float damage = 5f;
         [SerializeField] private float damageUntilDestroyed = 25f;
 
@@ -80,6 +80,11 @@ namespace Defence
         {
             //return Vector2.Distance(target.position, transform.position) <= targetingRange;
             return true;
+        }
+
+        public float GetRange()
+        {
+            return targetingRange;
         }
     }
 }
