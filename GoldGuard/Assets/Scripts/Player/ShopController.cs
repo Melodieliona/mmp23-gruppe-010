@@ -17,6 +17,12 @@ namespace Player
         [SerializeField] private int cannon2Cost = 20;
         [SerializeField] private GameObject krakenPrefab;
         [SerializeField] private int krakenCost = 50;
+        [SerializeField] private GameObject cannon1_Transparent;
+        [SerializeField] private GameObject cannon2_Transparent;
+        [SerializeField] private GameObject kraken_Transparent;
+        private Color cannon1_Transparent_color;
+        private Color cannon2_Transparent_color;
+        private Color kraken_Transparent_color;
 
         [Header("Grid")]
         [SerializeField] private Tilemap grassTiles;
@@ -61,6 +67,10 @@ namespace Player
             radiusMaterial = Instantiate(radiusRenderer.sharedMaterial);
             radiusMaterial.SetFloat(Opacity, MinOpacity);
             radiusRenderer.material = radiusMaterial;
+
+            cannon1_Transparent_color = cannon1_Transparent.GetComponent<SpriteRenderer>().color;
+            cannon2_Transparent_color = cannon2_Transparent.GetComponent<SpriteRenderer>().color;
+            kraken_Transparent_color = kraken_Transparent.GetComponent<SpriteRenderer>().color;
         }
 
         private void OnEnable()
@@ -128,6 +138,9 @@ namespace Player
 
             selectedShopItem = null;
             canPlaceItem = false;
+            cannon1_Transparent.transform.position = new Vector2(50, 0);
+            cannon2_Transparent.transform.position = new Vector2(50, 0);
+            kraken_Transparent.transform.position =  new Vector2(50, 0);
         }
 
         private bool IsEligible(Vector3Int cellPosition)
@@ -165,16 +178,36 @@ namespace Player
 
             if (IsEligible(cellPosition))
             {
+                //cursor follows the mouse
                 cursor.transform.position = cellCenter;
+                //Set the radius of the item
                 radius.transform.position = cellCenter;
                 var currentRange = selectedShopItem.GetRange() * 12;
                 radius.transform.localScale = new Vector3(currentRange, currentRange, currentRange);
+                //show the preview of the item
+                switch(selectedShopItem.GetSlot())
+                {
+                    case 1:
+                        cannon1_Transparent.transform.position = cellCenter;
+                        break;
+                    case 2:
+                        cannon2_Transparent.transform.position = cellCenter;
+                        break;
+                    case 3:
+                        kraken_Transparent.transform.position = cellCenter;
+                        break;
+                    default: break;
+                }
+
             }
             else
             {
-                Vector2 offScreen = new Vector2(2500, 2500); // Some value not visible on the screen
+                Vector2 offScreen = new Vector2(50, 0); // Some value not visible on the screen
                 cursor.transform.position = offScreen;
                 radius.transform.position = offScreen;
+                cannon1_Transparent.transform.position = offScreen;
+                cannon2_Transparent.transform.position = offScreen;
+                kraken_Transparent.transform.position = offScreen;
             }
         }
 
