@@ -1,3 +1,4 @@
+using Sound;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace Defence
 
         private Transform target;
         private float timeUntilFire;
-        SoundEffectsPlayer soundEffect;
+        private SoundEffectsPlayer soundEffect;
 
         private void Awake()
         {
@@ -45,7 +46,7 @@ namespace Defence
             if (timeUntilFire >= 1f / bps)
             {
                 Shoot();
-                soundEffect.PlaySFX(soundEffect.cannon);
+                soundEffect.PlaySfx(soundEffect.cannon);
                 timeUntilFire = 0f;
             }
         }

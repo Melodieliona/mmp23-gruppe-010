@@ -4265,13 +4265,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 243225515}
-  SFXSource: {fileID: 1693760015}
+  sfxSource: {fileID: 0}
   button: {fileID: 8300000, guid: 4d5c03259cc255347aea4ca43ecf252b, type: 3}
-  background: {fileID: 8300000, guid: b2a9b0a7ff3470342916cd86720cfdac, type: 3}
-  settingTime: {fileID: 8300000, guid: fcf0d58e93b6b984b87555dbb30382b5, type: 3}
-  timer: {fileID: 8300000, guid: 6e24d235fe6aeb540be0f45027822046, type: 3}
-  hp: {fileID: 8300000, guid: 68b029a7b4c64de43b91d0aff0ebb695, type: 3}
-  cannon: {fileID: 8300000, guid: 1007fcb187e8bb741a17aa07cb9803e3, type: 3}
+  background: {fileID: 0}
+  settingTime: {fileID: 0}
+  timer: {fileID: 0}
+  hp: {fileID: 0}
+  cannon: {fileID: 0}
 --- !u!4 &242725730
 Transform:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +6,7 @@ namespace Scenes
 {
     public class MainMenuScreen : MonoBehaviour
     {
-        SoundEffectsPlayer soundEffect;
+        private SoundEffectsPlayer soundEffect;
 
         private void Awake()
         {
@@ -15,14 +16,14 @@ namespace Scenes
         public void PlayButton()
         {
             DontDestroyOnLoad(soundEffect);
-            soundEffect.PlaySFX(soundEffect.button);
+            soundEffect.PlaySfx(soundEffect.button);
             SceneManager.LoadScene("Game");
         }
 
         public void QuitButton()
         {
             Application.Quit();
-            soundEffect.PlaySFX(soundEffect.button);
+            soundEffect.PlaySfx(soundEffect.button);
             Debug.Log("Quit Application");
         }
     }

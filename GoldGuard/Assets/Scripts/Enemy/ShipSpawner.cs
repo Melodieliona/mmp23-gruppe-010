@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Reflection.Emit;
 using Player;
+using Sound;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -26,15 +27,14 @@ namespace Enemy
 
         private PlayerController playerController;
         private GUIManager guiManager;
-
+        private SoundEffectsPlayer soundEffect;
+        
         private bool waveActive = true;
 
         private int currentWave = 0;
         private int shipsAlive;
         private int shipsLeftToSpawn;
         private float timeSinceLastSpawn;
-        SoundEffectsPlayer soundEffect;
-
 
         private void Awake()
         {
@@ -58,7 +58,7 @@ namespace Enemy
         private void Update()
         {
             if (!waveActive || currentWave == 0) return;
-        
+
             timeSinceLastSpawn += Time.deltaTime;
 
             if (shipsLeftToSpawn > 0 && timeSinceLastSpawn >= (1f / shipsPerSecond))
@@ -82,6 +82,7 @@ namespace Enemy
                 guiManager.UpdateTimer(timerCounter, percentageOfMax);
                 yield return new WaitForSeconds(1);
             }
+
             soundEffect.PlayBackgroundMusic(soundEffect.background);
             guiManager.HideTimer();
             currentWave++;
@@ -111,7 +112,7 @@ namespace Enemy
         private void ReachTreasureChest()
         {
             shipsAlive--;
-            soundEffect.PlaySFX(soundEffect.hp);
+            soundEffect.PlaySfx(soundEffect.hp);
             playerController.RemoveHealthPoints(1);
             Debug.Log("Ship has reached the gold. New HP: " + playerController.GetHealthPoints());
         }

@@ -170,6 +170,12 @@ namespace Player
                 var currentRange = selectedShopItem.GetRange() * 12;
                 radius.transform.localScale = new Vector3(currentRange, currentRange, currentRange);
             }
+            else
+            {
+                Vector2 offScreen = new Vector2(2500, 2500); // Some value not visible on the screen
+                cursor.transform.position = offScreen;
+                radius.transform.position = offScreen;
+            }
         }
 
         private void ActivateGrid()
