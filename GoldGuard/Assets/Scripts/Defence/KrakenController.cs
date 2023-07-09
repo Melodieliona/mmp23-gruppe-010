@@ -1,22 +1,23 @@
+using System;
 using Enemy;
+using Player.ShopItems;
 using UnityEngine;
 
 namespace Defence
 {
-    public class KrakenController : MonoBehaviour, IRange
+    public class KrakenController : MonoBehaviour
     {
         [Header("References")]
         //[SerializeField] private LayerMask enemyMask;
         //[SerializeField] private Rigidbody2D rb;
-
+        
         [Header("Attribute")]
-        [SerializeField] private float targetingRange = 1f;
         [SerializeField] private float damage = 5f;
         [SerializeField] private float damageUntilDestroyed = 25f;
 
         //private Transform target;
         //private float timeUntilAttack;
-
+        
         private void Update()
         {
             //if (target == null)
@@ -46,7 +47,6 @@ namespace Defence
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.Log("collision");
             if (other == null || other.gameObject == null)
             {
                 return;
@@ -60,7 +60,7 @@ namespace Defence
 
             ship.Damage(damage);
             damageUntilDestroyed -= damage;
-            if(damageUntilDestroyed <= 0f)
+            if (damageUntilDestroyed <= 0f)
             {
                 Destroy(gameObject);
             }
@@ -80,11 +80,6 @@ namespace Defence
         {
             //return Vector2.Distance(target.position, transform.position) <= targetingRange;
             return true;
-        }
-
-        public float GetRange()
-        {
-            return targetingRange;
         }
     }
 }

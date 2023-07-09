@@ -1,6 +1,5 @@
-using Defence;
 using System.Linq;
-using Unity.VisualScripting;
+using Player.ShopItems;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -13,22 +12,8 @@ namespace Player
         private static readonly int Color = Shader.PropertyToID("_Color");
         private static readonly int Thickness = Shader.PropertyToID("_Thickness");
 
-        [Header("Items")]
-        [SerializeField] private GameObject cannon1Prefab;
-        [SerializeField] private int cannon1Cost = 10;
-        [SerializeField] private GameObject cannon2Prefab;
-        [SerializeField] private int cannon2Cost = 20;
-        [SerializeField] private GameObject krakenPrefab;
-        [SerializeField] private int krakenCost = 50;
-        [SerializeField] private GameObject cannon1Transparent;
-        [SerializeField] private GameObject cannon2Transparent;
-        [SerializeField] private GameObject krakenTransparent;
-
-        private SpriteRenderer cannon1TransparentRenderer;
-        private SpriteRenderer cannon2TransparentRenderer;
-        private SpriteRenderer krakenTransparentRenderer;
-        private SpriteRenderer radiusRenderer;
-        private MeshRenderer cursorRenderer;
+        private const float MinOpacity = 0f;
+        private const float MaxOpacity = 1f;
 
         [Header("Grid")]
         [SerializeField] private GameObject map;
@@ -38,20 +23,20 @@ namespace Player
         [SerializeField] private GameObject cursor;
         [SerializeField] private GameObject radius;
         [SerializeField] private float fadeDuration = 0.25f;
-        private Grid mapGrid;
 
         [Header("References")]
         private PlayerController playerController;
+        private Grid mapGrid;
         private GameObject[] obstacleList;
         private Material gridMaterial;
         private Material cursorMaterial;
         private Material radiusMaterial;
+        private SpriteRenderer radiusRenderer;
+        private MeshRenderer cursorRenderer;
 
         private ShopItem selectedShopItem;
         private bool canPlaceItem = false;
 
-        private const float MinOpacity = 0f;
-        private const float MaxOpacity = 1f;
         private bool fadeIn = false;
         private bool fadeOut = false;
 
@@ -61,35 +46,33 @@ namespace Player
             playerController = FindObjectOfType<PlayerController>();
             obstacleList = GameObject.FindGameObjectsWithTag("Obstacles");
 
-            cannon1TransparentRenderer = cannon1Transparent.GetComponent<SpriteRenderer>();
-            cannon2TransparentRenderer = cannon2Transparent.GetComponent<SpriteRenderer>();
-            krakenTransparentRenderer = krakenTransparent.GetComponent<SpriteRenderer>();
-            radiusRenderer = radius.GetComponent<SpriteRenderer>();
-            cursorRenderer = cursor.GetComponent<MeshRenderer>();
-
             // Instantiate the material to prevent the changes to stay even after the game ended
             var meshRenderer = placementGrid.GetComponent<MeshRenderer>();
             gridMaterial = Instantiate(meshRenderer.sharedMaterial);
             gridMaterial.SetFloat(Opacity, MinOpacity);
             meshRenderer.material = gridMaterial;
 
+            cursorRenderer = cursor.GetComponent<MeshRenderer>();
             cursorMaterial = Instantiate(cursorRenderer.sharedMaterial);
             cursorMaterial.SetFloat(Opacity, MinOpacity);
             cursorRenderer.material = cursorMaterial;
 
+            radiusRenderer = radius.GetComponent<SpriteRenderer>();
             radiusMaterial = Instantiate(radiusRenderer.sharedMaterial);
             radiusMaterial.SetFloat(Opacity, MinOpacity);
             radiusRenderer.material = radiusMaterial;
+
+            InitShopItems();
         }
 
-        private void OnEnable()
+        private void InitShopItems()
         {
             ShopItem[] items =
             {
-                new(cannon1Prefab, 1, cannon1Cost, TileType.Land, cannon1Prefab.GetComponent<CanonController>()),
-                new(cannon2Prefab, 2, cannon2Cost, TileType.Land, cannon2Prefab.GetComponent<CanonController>()),
-                new(krakenPrefab, 3, krakenCost, TileType.Water, krakenPrefab.GetComponent<KrakenController>()),
-                new(cannon1Prefab, 4, cannon1Cost, TileType.Land, cannon1Prefab.GetComponent<CanonController>())
+                new Cannon1Item(),
+                new Cannon2Item(),
+                new KrakenItem(),
+                new Slot4Item()
             };
 
             foreach (ShopItem item in items)
@@ -141,11 +124,9 @@ namespace Player
             Instantiate(weaponPrefab, cellCenter, weaponPrefab.transform.rotation);
             grassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
 
+            selectedShopItem.GetTransparent().transform.position = new Vector2(50, 0);
             selectedShopItem = null;
             canPlaceItem = false;
-            cannon1Transparent.transform.position = new Vector2(50, 0);
-            cannon2Transparent.transform.position = new Vector2(50, 0);
-            krakenTransparent.transform.position = new Vector2(50, 0);
         }
 
         private bool IsEligible(Vector3Int cellPosition)
@@ -186,34 +167,18 @@ namespace Player
                 //Set the radius of the item
                 radius.transform.position = cellCenter;
                 //show the preview of the item
-                cannon1TransparentRenderer.color = new Color(1f, 1f, 1f, 110 / 255f);
-                cannon2TransparentRenderer.color = new Color(1f, 1f, 1f, 110 / 255f);
-                krakenTransparentRenderer.color = new Color(1f, 1f, 1f, 70 / 255f);
+                selectedShopItem.GetTransparentRenderer().color = new Color(1f, 1f, 1f, 110 / 255f);
                 cursorMaterial.SetColor(Color, new Color(1f, 1f, 1f, 1f));
                 radiusMaterial.SetColor(Color, new Color(1f, 1f, 1f, 1f));
             }
             else
             {
-                cannon1TransparentRenderer.color = new Color(1f, 0f, 0f, 110 / 255f);
-                cannon2TransparentRenderer.color = new Color(1f, 0f, 0f, 110 / 255f);
-                krakenTransparentRenderer.color = new Color(1f, 0f, 0f, 110 / 255f);
+                selectedShopItem.GetTransparentRenderer().color = new Color(1f, 0f, 0f, 110 / 255f);
                 cursorMaterial.SetColor(Color, new Color(1f, 0.3f, 0.3f, 1f));
                 radiusMaterial.SetColor(Color, new Color(1f, 0.3f, 0.3f, 1f));
             }
 
-            switch (selectedShopItem.GetSlot())
-            {
-                case 1:
-                    cannon1Transparent.transform.position = cellCenter;
-                    break;
-                case 2:
-                    cannon2Transparent.transform.position = cellCenter;
-                    break;
-                case 3:
-                    krakenTransparent.transform.position = cellCenter;
-                    break;
-            }
-
+            selectedShopItem.GetTransparent().transform.position = cellCenter;
             cursor.transform.position = cellCenter;
             radius.transform.position = cellCenter;
             var currentRange = selectedShopItem.GetRange() * 12;
@@ -272,9 +237,7 @@ namespace Player
             Vector2 offScreen = new Vector2(50, 0); // Some value not visible on the screen
             cursor.transform.position = offScreen;
             radius.transform.position = offScreen;
-            cannon1Transparent.transform.position = offScreen;
-            cannon2Transparent.transform.position = offScreen;
-            krakenTransparent.transform.position = offScreen;
+            selectedShopItem.GetTransparent().transform.position = offScreen;
         }
     }
 }

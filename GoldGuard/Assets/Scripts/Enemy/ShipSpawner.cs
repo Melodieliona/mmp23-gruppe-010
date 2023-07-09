@@ -1,22 +1,21 @@
 using System.Collections;
-using System.Reflection.Emit;
 using Player;
 using Sound;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 namespace Enemy
 {
     public class ShipSpawner : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private Transform shipsPrefab;
         [SerializeField] private Transform spawnPoint;
+        [SerializeField] private GameObject normalShip;
+        [SerializeField] private GameObject fastShip;
 
         [Header("Attributes")]
-        [SerializeField] private int startingShips = 5;
-        [SerializeField] private float shipsPerSecond = 0.5f;
+        [SerializeField] private int startingShips = 10;
+        [SerializeField] private float shipsPerSecond = 1f;
         [SerializeField] private int timeBetweenWaves = 20;
         [SerializeField] private int timerCounter;
 
@@ -28,7 +27,7 @@ namespace Enemy
         private PlayerController playerController;
         private GUIManager guiManager;
         private SoundEffectsPlayer soundEffect;
-        
+
         private bool waveActive = true;
 
         private int currentWave = 0;
@@ -100,7 +99,9 @@ namespace Enemy
 
         private void SpawnShip()
         {
-            Instantiate(shipsPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject ship = Random.Range(0, 10) < 5 ? normalShip : fastShip;
+            Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
+
             shipsLeftToSpawn--;
             shipsAlive++;
             timeSinceLastSpawn = 0f;

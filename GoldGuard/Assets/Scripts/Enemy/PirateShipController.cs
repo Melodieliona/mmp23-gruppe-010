@@ -5,17 +5,29 @@ namespace Enemy
 {
     public class PirateShipController : MonoBehaviour
     {
-        [Header("Attributes")]
-        [SerializeField] private HealthBar healthBar;
-        [SerializeField] private double maxHealth = 100;
-        [SerializeField] private double currentHealth;
-        [SerializeField] private float speed = 3f;
-        [SerializeField] private int scoreValue = 1;
-        [SerializeField] private int goldValue = 1;
+        private static readonly int DirectionX = Animator.StringToHash("directionX");
+        private static readonly int DirectionY = Animator.StringToHash("directionY");
 
         [Header("References")]
         private PlayerController playerController;
-        
+
+        [Header("Attributes")]
+        [SerializeField] private HealthBar healthBar;
+        [SerializeField] private double currentHealth;
+
+        private readonly double maxHealth;
+        private readonly float speed;
+        private readonly int scoreValue;
+        private readonly int goldValue;
+
+        protected PirateShipController(double maxHealth, float speed, int scoreValue, int goldValue)
+        {
+            this.maxHealth = maxHealth;
+            this.speed = speed;
+            this.scoreValue = scoreValue;
+            this.goldValue = goldValue;
+        }
+
         private int waypointIndex = 0;
         private Transform target;
         private float directionX;
@@ -71,6 +83,16 @@ namespace Enemy
             target = Waypoints.points[waypointIndex];
         }
 
+        private void SetAnimationForDirection(Vector2 direction)
+        {
+            direction.Normalize();
+            directionX = Mathf.RoundToInt(direction.x);
+            directionY = Mathf.RoundToInt(direction.y);
+
+            animator.SetFloat(DirectionX, directionX);
+            animator.SetFloat(DirectionY, directionY);
+        }
+
         public void Damage(double amount)
         {
             currentHealth -= amount;
@@ -88,16 +110,6 @@ namespace Enemy
         public double GetHealth()
         {
             return currentHealth;
-        }
-
-        private void SetAnimationForDirection(Vector2 direction)
-        {
-            direction.Normalize();
-            directionX = Mathf.RoundToInt(direction.x);
-            directionY = Mathf.RoundToInt(direction.y);
-
-            animator.SetFloat("directionX", directionX);
-            animator.SetFloat("directionY", directionY);
         }
     }
 }
