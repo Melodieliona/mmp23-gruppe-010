@@ -1,6 +1,7 @@
 using System.Linq;
 using Player.ShopItems;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
@@ -17,7 +18,7 @@ namespace Player
 
         [Header("Grid")]
         [SerializeField] private GameObject map;
-        [SerializeField] private Tilemap grassTiles;
+        [SerializeField] private Tilemap landTiles;
         [SerializeField] private Tilemap waterTiles;
         [SerializeField] private GameObject placementGrid;
         [SerializeField] private GameObject cursor;
@@ -89,7 +90,7 @@ namespace Player
 
             if (selectedShopItem != null)
             {
-                IsMouseInGrid();
+                CheckMousePosition();
                 ActivateGrid();
                 CheckForPlacement();
                 canPlaceItem = true;
@@ -106,7 +107,7 @@ namespace Player
             if (!Input.GetMouseButtonDown(0)) return;
 
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Tilemap selectedTiles = selectedShopItem.GetTileType() != TileType.Water ? grassTiles : waterTiles;
+            Tilemap selectedTiles = selectedShopItem.GetTileType() != TileType.Water ? landTiles : waterTiles;
             Vector3Int cellPosition = selectedTiles.WorldToCell(mousePosition);
             if (!IsEligible(cellPosition) || CheckForObstacle(mousePosition)) return;
 
@@ -122,7 +123,7 @@ namespace Player
             Vector3 cellCenter = selectedTiles.GetCellCenterWorld(cellPosition);
             GameObject weaponPrefab = selectedShopItem.GetPrefab();
             Instantiate(weaponPrefab, cellCenter, weaponPrefab.transform.rotation);
-            grassTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
+            landTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
 
             selectedShopItem.GetTransparent().transform.position = new Vector2(50, 0);
             selectedShopItem = null;
@@ -133,7 +134,7 @@ namespace Player
         {
             if (selectedShopItem == null) return false;
 
-            Tilemap tilemap = selectedShopItem.GetTileType() != TileType.Water ? grassTiles : waterTiles;
+            Tilemap tilemap = selectedShopItem.GetTileType() != TileType.Water ? landTiles : waterTiles;
             return tilemap.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
         }
 
@@ -142,23 +143,17 @@ namespace Player
             return obstacleList.Any(obstacle => obstacle.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition));
         }
 
+        /// <summary>
+        /// Check if the defence placement indicator should be activated.
+        /// </summary>
         private void ShowIndicator()
         {
             if (!canPlaceItem || selectedShopItem == null) return;
 
+            Tilemap tiles = selectedShopItem.GetTileType() == TileType.Land ? landTiles : waterTiles;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int cellPosition;
-            Vector3 cellCenter;
-            if (selectedShopItem != null && selectedShopItem.GetTileType() != TileType.Water)
-            {
-                cellPosition = grassTiles.WorldToCell(mousePosition);
-                cellCenter = grassTiles.GetCellCenterWorld(cellPosition);
-            }
-            else
-            {
-                cellPosition = waterTiles.WorldToCell(mousePosition);
-                cellCenter = waterTiles.GetCellCenterWorld(cellPosition);
-            }
+            Vector3Int cellPosition = tiles.WorldToCell(mousePosition);
+            Vector3 cellCenter = tiles.GetCellCenterWorld(cellPosition);
 
             if (IsEligible(cellPosition) && !CheckForObstacle(mousePosition))
             {
@@ -229,7 +224,13 @@ namespace Player
             }
         }
 
-        private void IsMouseInGrid()
+        /// <summary>
+        /// Checks if the cursor is on the main grid.
+        /// If not then reset the position of all indicators to a value off the screen.
+        /// <!---->
+        /// This is to fix a visual issue.
+        /// </summary>
+        private void CheckMousePosition()
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (mapGrid.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition)) return;

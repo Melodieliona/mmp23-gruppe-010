@@ -23,7 +23,6 @@ namespace Player
             shipSpawner = FindObjectOfType<ShipSpawner>();
 
             UpdateHp();
-            UpdateScore();
             UpdateGold();
             UpdateWave();
         }
@@ -43,12 +42,7 @@ namespace Player
         {
             hpLabel.text = "HP: " + playerController.GetHealthPoints();
         }
-
-        public void UpdateScore()
-        {
-            //scoreLabel.text = "Score: " + playerManager.GetScore();
-        }
-
+        
         public void UpdateGold()
         {
             goldLabel.text = "Gold: " + playerController.GetGold();
