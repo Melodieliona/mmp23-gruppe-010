@@ -25,7 +25,6 @@ namespace Player
         [SerializeField] private GameObject radius;
         [SerializeField] private float fadeDuration = 0.25f;
 
-        [Header("References")]
         private PlayerController playerController;
         private Grid mapGrid;
         private GameObject[] obstacleList;

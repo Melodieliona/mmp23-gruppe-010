@@ -6,18 +6,17 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [Header("Attributes")]
-        [SerializeField] private int healthPoints = 5;
-        [SerializeField] private int goldCount = 500;
+        private int healthPoints = 5;
+        private int goldCount = 150;
 
-        [Header("Events")]
         private readonly UnityEvent healthChangeEvent = new();
         private readonly UnityEvent goldChangeEvent = new();
 
         private void Start()
         {
-            healthChangeEvent.AddListener(FindObjectOfType<GUIManager>().UpdateHp);
-            goldChangeEvent.AddListener(FindObjectOfType<GUIManager>().UpdateGold);
+            GUIManager guiManager = FindObjectOfType<GUIManager>();
+            healthChangeEvent.AddListener(guiManager.UpdateHp);
+            goldChangeEvent.AddListener(guiManager.UpdateGold);
         }
 
         public int GetHealthPoints()
@@ -63,7 +62,7 @@ namespace Player
                 return false;
             }
         }
-        
+
         public void AddScore(int score)
         {
             ScoreController.AddScore(score);

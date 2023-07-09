@@ -12,11 +12,10 @@ namespace Defence
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private Transform firingPoint;
 
-        [Header("Attribute")]
-        [SerializeField] private float rotationSpeed = 200f;
-        [SerializeField] private float bps = 1f;
+        private const float RotationSpeed = 200f;
+        private const float Bps = 1f;
         private float targetingRange;
-        
+
         private Transform target;
         private float timeUntilFire;
         private SoundEffectsPlayer soundEffect;
@@ -44,7 +43,7 @@ namespace Defence
             }
 
             timeUntilFire += Time.deltaTime;
-            if (timeUntilFire >= 1f / bps)
+            if (timeUntilFire >= 1f / Bps)
             {
                 Shoot();
                 soundEffect.PlaySfx(soundEffect.cannon);
@@ -80,7 +79,7 @@ namespace Defence
             Vector2 targetPos = target.position;
             float angle = Mathf.Atan2(targetPos.y - cannonPos.y, targetPos.x - cannonPos.x) * Mathf.Rad2Deg + 90f;
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-            turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, RotationSpeed * Time.deltaTime);
             //turretRotationPoint.rotation = targetRotation;
         }
 
