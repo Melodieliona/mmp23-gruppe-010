@@ -175,7 +175,7 @@ namespace Player
             selectedShopItem.GetTransparent().transform.position = cellCenter;
             cursor.transform.position = cellCenter;
             radius.transform.position = cellCenter;
-            var currentRange = selectedShopItem.GetRange() * 12;
+            var currentRange = selectedShopItem.GetRange() * 10;
             radius.transform.localScale = new Vector3(currentRange, currentRange, currentRange);
             radiusMaterial.SetFloat(Thickness, currentRange >= 24 ? 0.05f : 0.1f);
         }
