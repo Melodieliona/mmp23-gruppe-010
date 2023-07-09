@@ -19,8 +19,8 @@ namespace Player.ShopItems
             this.tileType = tileType;
             this.range = range;
 
-            this.normalPrefab = GameObject.Find(weaponName);
-            this.transparentPrefab = GameObject.Find("Transparent" + weaponName);
+            normalPrefab = GameObject.Find(weaponName);
+            transparentPrefab = GameObject.Find("Transparent" + weaponName);
         }
 
         public GameObject GetPrefab()

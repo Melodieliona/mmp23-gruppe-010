@@ -8,6 +8,10 @@ namespace Enemy
 {
     public class ShipSpawner : MonoBehaviour
     {
+        public static readonly UnityEvent ReachTreasureChestEvent = new();
+        public static readonly UnityEvent EnemyDestroyEvent = new();
+        private readonly UnityEvent waveChangeEvent = new();
+
         [Header("References")]
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private GameObject normalShip;
@@ -18,11 +22,6 @@ namespace Enemy
         [SerializeField] private float shipsPerSecond = 1f;
         [SerializeField] private int timeBetweenWaves = 20;
         [SerializeField] private int timerCounter;
-
-        [Header("Events")]
-        public static readonly UnityEvent ReachTreasureChestEvent = new();
-        public static readonly UnityEvent EnemyDestroyEvent = new();
-        private readonly UnityEvent waveChangeEvent = new();
 
         private PlayerController playerController;
         private GUIManager guiManager;

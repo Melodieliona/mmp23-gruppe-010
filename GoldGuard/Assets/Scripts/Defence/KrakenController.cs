@@ -1,6 +1,4 @@
-using System;
 using Enemy;
-using Player.ShopItems;
 using UnityEngine;
 
 namespace Defence

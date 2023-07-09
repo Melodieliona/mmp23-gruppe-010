@@ -11,13 +11,11 @@ namespace Player
         [SerializeField] private int goldCount = 500;
 
         [Header("Events")]
-        private readonly UnityEvent scoreChangeEvent = new();
         private readonly UnityEvent healthChangeEvent = new();
         private readonly UnityEvent goldChangeEvent = new();
 
         private void Start()
         {
-            scoreChangeEvent.AddListener(FindObjectOfType<GUIManager>().UpdateScore);
             healthChangeEvent.AddListener(FindObjectOfType<GUIManager>().UpdateHp);
             goldChangeEvent.AddListener(FindObjectOfType<GUIManager>().UpdateGold);
         }
@@ -36,7 +34,6 @@ namespace Player
             }
             else
             {
-                // Game over
                 SceneManager.LoadScene("GameOver");
             }
         }
@@ -66,16 +63,10 @@ namespace Player
                 return false;
             }
         }
-
-        public int GetScore()
-        {
-            return ScoreController.GetScore();
-        }
-
+        
         public void AddScore(int score)
         {
             ScoreController.AddScore(score);
-            scoreChangeEvent.Invoke();
         }
     }
 }
