@@ -71,8 +71,8 @@ namespace Player
             {
                 new Cannon1Item(),
                 new Cannon2Item(),
-                new KrakenItem(),
-                new Slot4Item()
+                new Cannon3Item(),
+                new KrakenItem()
             };
 
             foreach (ShopItem item in items)
