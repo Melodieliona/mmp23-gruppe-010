@@ -10,6 +10,8 @@ namespace Player
     public class ShopController : MonoBehaviour
     {
         private static readonly int Opacity = Shader.PropertyToID("_Opacity");
+        private static readonly int Color = Shader.PropertyToID("_Color");
+        private static readonly int Thickness = Shader.PropertyToID("_Thickness");
 
         [Header("Items")]
         [SerializeField] private GameObject cannon1Prefab;
@@ -18,25 +20,25 @@ namespace Player
         [SerializeField] private int cannon2Cost = 20;
         [SerializeField] private GameObject krakenPrefab;
         [SerializeField] private int krakenCost = 50;
-        [SerializeField] private GameObject cannon1_Transparent;
-        [SerializeField] private GameObject cannon2_Transparent;
-        [SerializeField] private GameObject kraken_Transparent;
-        private SpriteRenderer cannon1_Transparent_Renderer;
-        private SpriteRenderer cannon2_Transparent_Renderer;
-        private SpriteRenderer kraken_Transparent_Renderer;
+        [SerializeField] private GameObject cannon1Transparent;
+        [SerializeField] private GameObject cannon2Transparent;
+        [SerializeField] private GameObject krakenTransparent;
+
+        private SpriteRenderer cannon1TransparentRenderer;
+        private SpriteRenderer cannon2TransparentRenderer;
+        private SpriteRenderer krakenTransparentRenderer;
         private SpriteRenderer radiusRenderer;
         private MeshRenderer cursorRenderer;
 
-
         [Header("Grid")]
-        [SerializeField] private GameObject Map;
+        [SerializeField] private GameObject map;
         [SerializeField] private Tilemap grassTiles;
         [SerializeField] private Tilemap waterTiles;
         [SerializeField] private GameObject placementGrid;
         [SerializeField] private GameObject cursor;
         [SerializeField] private GameObject radius;
         [SerializeField] private float fadeDuration = 0.25f;
-        private Grid MapGrid;
+        private Grid mapGrid;
 
         [Header("References")]
         private PlayerController playerController;
@@ -55,13 +57,13 @@ namespace Player
 
         private void Start()
         {
-            MapGrid = Map.GetComponent<Grid>();
+            mapGrid = map.GetComponent<Grid>();
             playerController = FindObjectOfType<PlayerController>();
             obstacleList = GameObject.FindGameObjectsWithTag("Obstacles");
 
-            cannon1_Transparent_Renderer = cannon1_Transparent.GetComponent<SpriteRenderer>();
-            cannon2_Transparent_Renderer = cannon2_Transparent.GetComponent<SpriteRenderer>();
-            kraken_Transparent_Renderer = kraken_Transparent.GetComponent<SpriteRenderer>();
+            cannon1TransparentRenderer = cannon1Transparent.GetComponent<SpriteRenderer>();
+            cannon2TransparentRenderer = cannon2Transparent.GetComponent<SpriteRenderer>();
+            krakenTransparentRenderer = krakenTransparent.GetComponent<SpriteRenderer>();
             radiusRenderer = radius.GetComponent<SpriteRenderer>();
             cursorRenderer = cursor.GetComponent<MeshRenderer>();
 
@@ -82,17 +84,12 @@ namespace Player
 
         private void OnEnable()
         {
-            var cannon1Range = cannon1Prefab.GetComponent<CanonController>().GetRange();
-            var cannon2Range = cannon2Prefab.GetComponent<CanonController>().GetRange();
-            var krakenRange = krakenPrefab.GetComponent<KrakenController>().GetRange();
-            //Add 4th item here
-
             ShopItem[] items =
             {
-                new(cannon1Prefab, 1, cannon1Cost, TileType.Land, cannon1Range),
-                new(cannon2Prefab, 2, cannon2Cost, TileType.Land, cannon2Range),
-                new(krakenPrefab, 3, krakenCost, TileType.Water, krakenRange),
-                new(cannon1Prefab, 4, cannon1Cost, TileType.Land, cannon1Range)
+                new(cannon1Prefab, 1, cannon1Cost, TileType.Land, cannon1Prefab.GetComponent<CanonController>()),
+                new(cannon2Prefab, 2, cannon2Cost, TileType.Land, cannon2Prefab.GetComponent<CanonController>()),
+                new(krakenPrefab, 3, krakenCost, TileType.Water, krakenPrefab.GetComponent<KrakenController>()),
+                new(cannon1Prefab, 4, cannon1Cost, TileType.Land, cannon1Prefab.GetComponent<CanonController>())
             };
 
             foreach (ShopItem item in items)
@@ -146,9 +143,9 @@ namespace Player
 
             selectedShopItem = null;
             canPlaceItem = false;
-            cannon1_Transparent.transform.position = new Vector2(50, 0);
-            cannon2_Transparent.transform.position = new Vector2(50, 0);
-            kraken_Transparent.transform.position =  new Vector2(50, 0);
+            cannon1Transparent.transform.position = new Vector2(50, 0);
+            cannon2Transparent.transform.position = new Vector2(50, 0);
+            krakenTransparent.transform.position = new Vector2(50, 0);
         }
 
         private bool IsEligible(Vector3Int cellPosition)
@@ -161,14 +158,7 @@ namespace Player
 
         private bool CheckForObstacle(Vector3 mousePosition)
         {
-            foreach(GameObject obstacle in obstacleList)
-            {
-                if(obstacle.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return obstacleList.Any(obstacle => obstacle.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition));
         }
 
         private void ShowIndicator()
@@ -196,44 +186,39 @@ namespace Player
                 //Set the radius of the item
                 radius.transform.position = cellCenter;
                 //show the preview of the item
-                cannon1_Transparent_Renderer.color = new Color(1f, 1f, 1f, 110/255f);
-                cannon2_Transparent_Renderer.color = new Color(1f, 1f, 1f, 110 / 255f);
-                kraken_Transparent_Renderer.color = new Color(1f, 1f, 1f, 70 / 255f);
-                cursorMaterial.SetColor("_Color", new Color(1f, 1f, 1f, 1f));
-                radiusMaterial.SetColor("_Color", new Color(1f, 1f, 1f, 1f));
+                cannon1TransparentRenderer.color = new Color(1f, 1f, 1f, 110 / 255f);
+                cannon2TransparentRenderer.color = new Color(1f, 1f, 1f, 110 / 255f);
+                krakenTransparentRenderer.color = new Color(1f, 1f, 1f, 70 / 255f);
+                cursorMaterial.SetColor(Color, new Color(1f, 1f, 1f, 1f));
+                radiusMaterial.SetColor(Color, new Color(1f, 1f, 1f, 1f));
             }
             else
             {
-                cannon1_Transparent_Renderer.color = new Color(1f, 0f, 0f, 110 / 255f);
-                cannon2_Transparent_Renderer.color = new Color(1f, 0f, 0f, 110 / 255f);
-                kraken_Transparent_Renderer.color = new Color(1f, 0f, 0f, 110 / 255f);
-                cursorMaterial.SetColor("_Color", new Color(1f, 0.3f, 0.3f, 1f));
-                radiusMaterial.SetColor("_Color", new Color(1f, 0.3f, 0.3f, 1f));
+                cannon1TransparentRenderer.color = new Color(1f, 0f, 0f, 110 / 255f);
+                cannon2TransparentRenderer.color = new Color(1f, 0f, 0f, 110 / 255f);
+                krakenTransparentRenderer.color = new Color(1f, 0f, 0f, 110 / 255f);
+                cursorMaterial.SetColor(Color, new Color(1f, 0.3f, 0.3f, 1f));
+                radiusMaterial.SetColor(Color, new Color(1f, 0.3f, 0.3f, 1f));
             }
+
             switch (selectedShopItem.GetSlot())
             {
                 case 1:
-                    cannon1_Transparent.transform.position = cellCenter;
+                    cannon1Transparent.transform.position = cellCenter;
                     break;
                 case 2:
-                    cannon2_Transparent.transform.position = cellCenter;
+                    cannon2Transparent.transform.position = cellCenter;
                     break;
                 case 3:
-                    kraken_Transparent.transform.position = cellCenter;
+                    krakenTransparent.transform.position = cellCenter;
                     break;
-                default: break;
             }
+
             cursor.transform.position = cellCenter;
             radius.transform.position = cellCenter;
             var currentRange = selectedShopItem.GetRange() * 12;
-            if(currentRange >= 24)
-            {
-                radiusMaterial.SetFloat("_Thickness", 0.05f);
-            } else
-            {
-                radiusMaterial.SetFloat("_Thickness", 0.1f);
-            }
             radius.transform.localScale = new Vector3(currentRange, currentRange, currentRange);
+            radiusMaterial.SetFloat(Thickness, currentRange >= 24 ? 0.05f : 0.1f);
         }
 
         private void ActivateGrid()
@@ -282,15 +267,14 @@ namespace Player
         private void IsMouseInGrid()
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if(!MapGrid.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition))
-            {
-                Vector2 offScreen = new Vector2(50, 0); // Some value not visible on the screen
-                cursor.transform.position = offScreen;
-                radius.transform.position = offScreen;
-                cannon1_Transparent.transform.position = offScreen;
-                cannon2_Transparent.transform.position = offScreen;
-                kraken_Transparent.transform.position = offScreen;
-            }
+            if (mapGrid.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition)) return;
+
+            Vector2 offScreen = new Vector2(50, 0); // Some value not visible on the screen
+            cursor.transform.position = offScreen;
+            radius.transform.position = offScreen;
+            cannon1Transparent.transform.position = offScreen;
+            cannon2Transparent.transform.position = offScreen;
+            krakenTransparent.transform.position = offScreen;
         }
     }
 }

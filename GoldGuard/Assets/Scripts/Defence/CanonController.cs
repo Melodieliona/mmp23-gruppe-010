@@ -1,10 +1,9 @@
 using Sound;
-using UnityEditor;
 using UnityEngine;
 
 namespace Defence
 {
-    public class CanonController : MonoBehaviour
+    public class CanonController : MonoBehaviour, IRange
     {
         [Header("References")]
         [SerializeField] private Transform turretRotationPoint;
@@ -88,7 +87,7 @@ namespace Defence
             //Handles.color = Color.cyan;
             //Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
         }
-
+        
         public float GetRange()
         {
             return targetingRange;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Defence
 {
-    public class KrakenController : MonoBehaviour
+    public class KrakenController : MonoBehaviour, IRange
     {
         [Header("References")]
         //[SerializeField] private LayerMask enemyMask;

@@ -1,3 +1,4 @@
+using Defence;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,14 +14,14 @@ namespace Player
         private readonly TileType tileType;
         private readonly float range;
 
-        public ShopItem(GameObject prefab, int slot, int cost, TileType tileType, float range)
+        public ShopItem(GameObject prefab, int slot, int cost, TileType tileType, IRange range)
         {
             this.prefab = prefab;
 
             this.slot = slot;
             this.cost = cost;
             this.tileType = tileType;
-            this.range = range;
+            this.range = range.GetRange();
         }
 
         public GameObject GetPrefab()
@@ -32,7 +33,7 @@ namespace Player
         {
             return slot;
         }
-        
+
         public int GetCost()
         {
             return cost;
@@ -45,7 +46,7 @@ namespace Player
 
         public float GetRange()
         {
-            return range;        
+            return range;
         }
     }
 
