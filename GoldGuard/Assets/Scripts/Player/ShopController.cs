@@ -123,6 +123,7 @@ namespace Player
             GameObject weaponPrefab = selectedShopItem.GetPrefab();
             Instantiate(weaponPrefab, cellCenter, weaponPrefab.transform.rotation);
             landTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
+            waterTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
 
             selectedShopItem.GetTransparent().transform.position = new Vector2(50, 0);
             selectedShopItem = null;

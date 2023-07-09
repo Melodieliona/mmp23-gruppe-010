@@ -17,6 +17,7 @@ namespace Defence
 
             Vector2 direction = ((Vector2)target.position - (Vector2)transform.position).normalized;
             rb.velocity = direction * BulletSpeed;
+            Destroy(gameObject, 10f);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
