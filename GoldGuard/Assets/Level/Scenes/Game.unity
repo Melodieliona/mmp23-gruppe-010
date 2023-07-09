@@ -985,10 +985,6 @@ MonoBehaviour:
   spawnPoint: {fileID: 1506270152}
   normalShip: {fileID: 1281423270755742567, guid: 23dfd703e260d4650b1c6f491d60df7c, type: 3}
   fastShip: {fileID: 8977449828994055096, guid: 609be8e8a925144949bec5902598ca6f, type: 3}
-  startingShips: 5
-  shipsPerSecond: 0.5
-  timeBetweenWaves: 5
-  timerCounter: 0
 --- !u!4 &491435572
 Transform:
   m_ObjectHideFlags: 0
@@ -1205,8 +1201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da8c1cd11652af40bc7961e7cd29d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 5
-  goldCount: 500
 --- !u!4 &614789479
 Transform:
   m_ObjectHideFlags: 0
@@ -1949,10 +1943,10 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4f111d3c5805fb61bb3a0008baaf368f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c82c07216962ee4b9a012adb058c09c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.43137255}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
