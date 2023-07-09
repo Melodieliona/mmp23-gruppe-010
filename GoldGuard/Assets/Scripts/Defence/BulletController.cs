@@ -11,20 +11,12 @@ namespace Defence
         private const float BulletSpeed = 10f;
         private const int BulletDamage = 5;
 
-        private Transform target;
-
         public void SetTarget(Transform target)
         {
-            this.target = target;
-            Destroy(gameObject, 10.0f);
-        }
+            if (target == null) return;
 
-        private void FixedUpdate()
-        {
-            if (!target) return;
-
-            Vector2 direction = (target.position - transform.position).normalized; // Direction to target
-            rb.velocity = direction * BulletSpeed; // Recalculate target position
+            Vector2 direction = ((Vector2)target.position - (Vector2)transform.position).normalized;
+            rb.velocity = direction * BulletSpeed;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -35,13 +27,11 @@ namespace Defence
             }
 
             PirateShipController ship = other.gameObject.GetComponent<PirateShipController>();
-            if (ship == null)
+            if (ship != null)
             {
-                return;
+                ship.Damage(BulletDamage);
+                Destroy(gameObject);
             }
-
-            ship.Damage(BulletDamage);
-            Destroy(gameObject);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Defence
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private Transform firingPoint;
 
-        private const float RotationSpeed = 200f;
+        private const float RotationSpeed = 400f;
         private const float Bps = 1f;
         private float targetingRange;
 
