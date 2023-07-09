@@ -4246,7 +4246,7 @@ GameObject:
   - component: {fileID: 242725730}
   - component: {fileID: 242725729}
   m_Layer: 0
-  m_Name: SoundMgmt
+  m_Name: SoundManager
   m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4279,15 +4279,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242725728}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.93552, y: -2.2891154, z: -6.7444463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1693760016}
   - {fileID: 243225514}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1338549725}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &243225513
 GameObject:
@@ -4770,7 +4770,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357439347}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.6602998, y: 1.3152168, z: 0.0113332365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4780,8 +4780,8 @@ Transform:
   - {fileID: 313180070}
   - {fileID: 2112740576}
   - {fileID: 586065692}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 1739363383}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &409264443 stripped
 Transform:
@@ -6017,7 +6017,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &672982112
 MonoBehaviour:
@@ -6439,7 +6439,7 @@ GameObject:
   - component: {fileID: 1219658415}
   - component: {fileID: 1219658416}
   m_Layer: 3
-  m_Name: Cannon2 Transparent
+  m_Name: TransparentCannon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6620,6 +6620,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 242725730}
   - {fileID: 614789479}
   - {fileID: 491435572}
   - {fileID: 1719986409}
@@ -7888,7 +7889,8 @@ Transform:
   m_LocalPosition: {x: 4.93552, y: -2.2891154, z: -6.7444463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2135538165}
   m_Father: {fileID: 1338549725}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7910,10 +7912,10 @@ MonoBehaviour:
   cannon2Cost: 20
   krakenPrefab: {fileID: 6120980693190603084, guid: f743e415e4d05da4dbef286596752246, type: 3}
   krakenCost: 50
-  cannon1_Transparent: {fileID: 7699361667311093041}
-  cannon2_Transparent: {fileID: 1219658414}
-  kraken_Transparent: {fileID: 1879334011}
-  Map: {fileID: 1739363381}
+  cannon1Transparent: {fileID: 0}
+  cannon2Transparent: {fileID: 0}
+  krakenTransparent: {fileID: 0}
+  map: {fileID: 0}
   grassTiles: {fileID: 1915517723}
   waterTiles: {fileID: 1570976782}
   placementGrid: {fileID: 333188236}
@@ -7966,6 +7968,7 @@ Transform:
   - {fileID: 181599084}
   - {fileID: 1570976780}
   - {fileID: 455788924}
+  - {fileID: 357439348}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8095,7 +8098,7 @@ GameObject:
   - component: {fileID: 1879334012}
   - component: {fileID: 1879334013}
   m_Layer: 3
-  m_Name: Kraken Transparent
+  m_Name: TransparentKraken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12170,7 +12173,7 @@ Transform:
   - {fileID: 1506270152}
   - {fileID: 1210424557}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2012867276
 GameObject:
@@ -12238,7 +12241,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2026576207 stripped
 Transform:
@@ -12325,7 +12328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2135538165}
   m_Layer: 0
-  m_Name: PlacementOfWeapons
+  m_Name: WeaponsPlacement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12338,7 +12341,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135538164}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12349,8 +12352,8 @@ Transform:
   - {fileID: 2565208380653652738}
   - {fileID: 1219658415}
   - {fileID: 1879334012}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1719986409}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2565208380653652738
 Transform:
@@ -12560,7 +12563,7 @@ GameObject:
   - component: {fileID: 2565208380653652738}
   - component: {fileID: 2826850132369978283}
   m_Layer: 3
-  m_Name: Cannon1 Transparent
+  m_Name: TransparentCannon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
