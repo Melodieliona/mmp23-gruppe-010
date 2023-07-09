@@ -7912,10 +7912,10 @@ MonoBehaviour:
   cannon2Cost: 20
   krakenPrefab: {fileID: 6120980693190603084, guid: f743e415e4d05da4dbef286596752246, type: 3}
   krakenCost: 50
-  cannon1Transparent: {fileID: 0}
-  cannon2Transparent: {fileID: 0}
-  krakenTransparent: {fileID: 0}
-  map: {fileID: 0}
+  cannon1Transparent: {fileID: 7699361667311093041}
+  cannon2Transparent: {fileID: 1219658414}
+  krakenTransparent: {fileID: 1879334011}
+  map: {fileID: 1739363381}
   grassTiles: {fileID: 1915517723}
   waterTiles: {fileID: 1570976782}
   placementGrid: {fileID: 333188236}
