@@ -8,9 +8,8 @@ namespace Defence
         [Header("References")]
         [SerializeField] private Rigidbody2D rb;
 
-        [Header("Attributes")]
-        [SerializeField] private float bulletSpeed = 5f;
-        [SerializeField] private int bulletDamage = 5;
+        private const float BulletSpeed = 10f;
+        private const int BulletDamage = 5;
 
         private Transform target;
 
@@ -25,7 +24,7 @@ namespace Defence
             if (!target) return;
 
             Vector2 direction = (target.position - transform.position).normalized; // Direction to target
-            rb.velocity = direction * bulletSpeed; // Recalculate target position
+            rb.velocity = direction * BulletSpeed; // Recalculate target position
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -41,7 +40,7 @@ namespace Defence
                 return;
             }
 
-            ship.Damage(bulletDamage);
+            ship.Damage(BulletDamage);
             Destroy(gameObject);
         }
     }

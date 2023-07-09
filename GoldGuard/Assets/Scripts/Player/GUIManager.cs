@@ -6,7 +6,6 @@ namespace Player
 {
     public class GUIManager : MonoBehaviour
     {
-        [Header("References")]
         private PlayerController playerController;
         private ShipSpawner shipSpawner;
         private VisualElement rootVisualElement;

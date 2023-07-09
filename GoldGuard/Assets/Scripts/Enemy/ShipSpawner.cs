@@ -17,11 +17,10 @@ namespace Enemy
         [SerializeField] private GameObject normalShip;
         [SerializeField] private GameObject fastShip;
 
-        [Header("Attributes")]
-        [SerializeField] private int startingShips = 10;
-        [SerializeField] private float shipsPerSecond = 1f;
-        [SerializeField] private int timeBetweenWaves = 20;
-        [SerializeField] private int timerCounter;
+        private const int StartingShips = 15;
+        private const float ShipsPerSecond = 2f;
+        private const int TimeBetweenWaves = 10;
+        private int timerCounter;
 
         private PlayerController playerController;
         private GUIManager guiManager;
@@ -59,7 +58,7 @@ namespace Enemy
 
             timeSinceLastSpawn += Time.deltaTime;
 
-            if (shipsLeftToSpawn > 0 && timeSinceLastSpawn >= (1f / shipsPerSecond))
+            if (shipsLeftToSpawn > 0 && timeSinceLastSpawn >= (1f / ShipsPerSecond))
             {
                 SpawnShip();
             }
@@ -74,9 +73,9 @@ namespace Enemy
         {
             guiManager.ShowTimer();
             soundEffect.PlayBackgroundMusic(soundEffect.settingTime);
-            for (timerCounter = timeBetweenWaves; timerCounter >= 0; timerCounter--)
+            for (timerCounter = TimeBetweenWaves; timerCounter >= 0; timerCounter--)
             {
-                float percentageOfMax = (float)timerCounter / timeBetweenWaves;
+                float percentageOfMax = (float)timerCounter / TimeBetweenWaves;
                 guiManager.UpdateTimer(timerCounter, percentageOfMax);
                 yield return new WaitForSeconds(1);
             }
@@ -131,7 +130,7 @@ namespace Enemy
         /// <returns>The amount of ships</returns>
         private int ShipsPerWave()
         {
-            return Mathf.RoundToInt(startingShips * Mathf.Pow(currentWave, 0.75f));
+            return Mathf.RoundToInt(StartingShips * Mathf.Pow(currentWave, 0.75f));
         }
 
         public int GetCurrentWave()
