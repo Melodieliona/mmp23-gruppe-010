@@ -1,9 +1,10 @@
+using Player.ShopItems;
 using Sound;
 using UnityEngine;
 
 namespace Defence
 {
-    public class CanonController : MonoBehaviour, IRange
+    public class CannonController : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private Transform turretRotationPoint;
@@ -12,16 +13,17 @@ namespace Defence
         [SerializeField] private Transform firingPoint;
 
         [Header("Attribute")]
-        [SerializeField] private float targetingRange = 5f;
         [SerializeField] private float rotationSpeed = 200f;
         [SerializeField] private float bps = 1f;
-
+        private float targetingRange;
+        
         private Transform target;
         private float timeUntilFire;
         private SoundEffectsPlayer soundEffect;
 
         private void Awake()
         {
+            targetingRange = new Cannon1Item().GetRange();
             soundEffect = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
         }
 
@@ -86,11 +88,6 @@ namespace Defence
         {
             //Handles.color = Color.cyan;
             //Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
-        }
-        
-        public float GetRange()
-        {
-            return targetingRange;
         }
     }
 }

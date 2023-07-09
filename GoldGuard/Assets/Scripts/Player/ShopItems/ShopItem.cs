@@ -1,32 +1,41 @@
-using Defence;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace Player
+namespace Player.ShopItems
 {
     public class ShopItem
     {
-        private readonly GameObject prefab;
-        private readonly Button button;
-
         private readonly int slot;
         private readonly int cost;
         private readonly TileType tileType;
         private readonly float range;
 
-        public ShopItem(GameObject prefab, int slot, int cost, TileType tileType, IRange range)
-        {
-            this.prefab = prefab;
+        private readonly GameObject normalPrefab;
+        private readonly GameObject transparentPrefab;
 
+        protected ShopItem(string weaponName, int slot, int cost, TileType tileType, float range)
+        {
             this.slot = slot;
             this.cost = cost;
             this.tileType = tileType;
-            this.range = range.GetRange();
+            this.range = range;
+
+            this.normalPrefab = GameObject.Find(weaponName);
+            this.transparentPrefab = GameObject.Find("Transparent" + weaponName);
         }
 
         public GameObject GetPrefab()
         {
-            return prefab;
+            return normalPrefab;
+        }
+
+        public GameObject GetTransparent()
+        {
+            return transparentPrefab;
+        }
+
+        public SpriteRenderer GetTransparentRenderer()
+        {
+            return transparentPrefab.GetComponent<SpriteRenderer>();
         }
 
         public int GetSlot()
