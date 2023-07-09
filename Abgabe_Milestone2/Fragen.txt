@@ -1,0 +1,3 @@
+- Sollen die Kanonen "dumm" sein (aka vorbeischießen können), oder doch jedes Mal treffen?
+- Wie viele Schiffe sollen Spawnen bzw wie unterschiedlich sollen die Schwierigekeitsgrade pro Level/Welle sein?
+- Wir freuen uns über generelles Feedback zu unserem Spiel!
