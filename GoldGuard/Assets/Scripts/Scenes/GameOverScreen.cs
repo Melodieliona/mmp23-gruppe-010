@@ -11,7 +11,8 @@ namespace Scenes
 
         private void Awake()
         {
-            scoreNumber.text = "SCORE: " + ScoreController.GetScore();
+            scoreNumber.text = "SCORE: " + ScoreController.GetScore().ToString();
+            Debug.Log(scoreNumber.text);
         }
 
         public void RetryButton()
