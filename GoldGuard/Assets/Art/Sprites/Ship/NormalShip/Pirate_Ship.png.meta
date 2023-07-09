@@ -127,11 +127,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 900
         width: 300
         height: 300
       alignment: 9
-      pivot: {x: 0.5207839, y: 0.39261684}
+      pivot: {x: 0.47684523, y: 0.37682658}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -148,11 +148,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 300
-        y: 0
+        y: 900
         width: 300
         height: 300
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.47219777, y: 0.37685403}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -169,11 +169,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 600
-        y: 0
+        y: 900
         width: 300
         height: 300
       alignment: 9
-      pivot: {x: 0.50346434, y: 0.40300876}
+      pivot: {x: 0.48591512, y: 0.37679768}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,6 +181,195 @@ TextureImporter:
       bones: []
       spriteID: 61b7c4a6774c83c428dba786b759c4cc
       internalID: 227654032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pirate_Ship_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.6686647, y: 0.37685424}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5fe949445619d54d83acd39d6456e40
+      internalID: -2065740458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pirate_Ship_4
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 600
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.6686925, y: 0.37226236}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 544b212a0974d5746a1b47cf684ed623
+      internalID: -2144909511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pirate_Ship_5
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 600
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.66413045, y: 0.38138896}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfeab94b18728fe4aaeb66eb72aab5f2
+      internalID: -1257718720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pirate_Ship_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5045914, y: 0.376033}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3240aff72311fda408e0b86932d20ecc
+      internalID: -1533310306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pirate_Ship_7
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 300
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.4999999, y: 0.376033}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9f2d25cd17c7ed44a9e97558000eb98
+      internalID: -795197197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pirate_Ship_8
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 300
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5, y: 0.376033}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 082b1163e3ebc424dbe344cdbc4c73f6
+      internalID: -1778514156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pirate_Ship_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.39899006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05ea746fd1ea2ec4ab855efae8bb1e78
+      internalID: 670007417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pirate_Ship_10
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.4999999, y: 0.40358144}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3fd7ec92075a2348a6e9b35465d80cb
+      internalID: 1604511797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pirate_Ship_11
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5, y: 0.40358144}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88e72be33ed730a4aa9e2ec7c171a362
+      internalID: -1543624195
       vertices: []
       indices: 
       edges: []
@@ -198,7 +387,16 @@ TextureImporter:
     nameFileIdTable:
       Pirate_Ship_0: -826667764
       Pirate_Ship_1: -138878247
+      Pirate_Ship_10: 1604511797
+      Pirate_Ship_11: -1543624195
       Pirate_Ship_2: 227654032
+      Pirate_Ship_3: -2065740458
+      Pirate_Ship_4: -2144909511
+      Pirate_Ship_5: -1257718720
+      Pirate_Ship_6: -1533310306
+      Pirate_Ship_7: -795197197
+      Pirate_Ship_8: -1778514156
+      Pirate_Ship_9: 670007417
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

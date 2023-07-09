@@ -26,7 +26,6 @@ Das Ziel des Spiels ist es, alle Piratenschiffe daran zu hindern, deine Schatztr
 Die Steuerung des Spiels erfolgt über Maus und Tastatur:
 
 - Maus: Der Spieler kann mit der Maus Waffen kaufen, platzieren und Upgrades durchführen.
-- Tastatur: Der Spieler kann verschiedene Tasten verwenden, um im Spiel Menüs zu öffnen, Waffen auszuwählen und andere Aktionen durchzuführen.
 
 ## Installation
 
