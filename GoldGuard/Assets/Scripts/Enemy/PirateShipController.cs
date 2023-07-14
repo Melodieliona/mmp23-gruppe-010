@@ -107,24 +107,10 @@ namespace Enemy
             }
         }
 
-        public double GetHealth()
+        public void MultiplyHp(float factor)
         {
-            return currentHealth;
-        }
-
-        public double GetMaxHealth()
-        {
-            return maxHealth;
-        }
-        
-        public void SetHealth(double NewHealth)
-        {
-            currentHealth = NewHealth;
-        }
-
-        public void SetMaxHealth(double NewHealth)
-        {
-            maxHealth = NewHealth;
+            currentHealth *= factor;
+            maxHealth *= factor;
         }
     }
 }

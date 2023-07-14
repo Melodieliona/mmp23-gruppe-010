@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enemy.ShipVariants;
 using Player;
 using Sound;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -93,7 +94,7 @@ namespace Enemy
 
             soundEffect.PlayBackgroundMusic(soundEffect.background);
             guiManager.HideTimer();
-            
+
             currentWave++;
             waveChangeEvent.Invoke();
             shipsLeftToSpawn = ShipsPerWave();
@@ -110,7 +111,6 @@ namespace Enemy
 
         private void SpawnShip()
         {
-            //GameObject ship = Random.Range(0, 10) < 5 ? normalShip : fastShip;
             GameObject ship;
 
             int randomValue = Random.Range(0, 10);
@@ -127,26 +127,9 @@ namespace Enemy
                 ship = durableShip;
             }
 
-            //change HP depending on the wave
+            // Change HP depending on the wave
             GameObject currentShip = Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
-            if(ship == normalShip)
-            {
-                NormalPirateShip script = currentShip.GetComponent<NormalPirateShip>();
-                script.MultiplyHP(1 + currentWave * 0.125f);
-            } else if(ship == fastShip)
-            {
-                FastPirateShip script = currentShip.GetComponent<FastPirateShip>();
-                script.MultiplyHP(1 + currentWave * 0.125f);
-            }
-            else
-            {
-                DurablePirateShip script = currentShip.GetComponent<DurablePirateShip>();
-                script.MultiplyHP(1 + currentWave * 0.125f);
-            }
-
-
-
-
+            currentShip.GetComponent<PirateShipController>().MultiplyHp(1 + currentWave * 0.125f);
 
             //shipList.Add(currentShip);
             shipsLeftToSpawn--;
