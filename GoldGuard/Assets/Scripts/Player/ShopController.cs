@@ -106,7 +106,7 @@ namespace Player
             if (!Input.GetMouseButtonDown(0)) return;
 
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Tilemap selectedTiles = selectedShopItem.GetTileType() != TileType.Water ? landTiles : waterTiles;
+            Tilemap selectedTiles = selectedShopItem.GetTileType() == TileType.Land ? landTiles : waterTiles;
             Vector3Int cellPosition = selectedTiles.WorldToCell(mousePosition);
             if (!IsEligible(cellPosition) || CheckForObstacle(mousePosition)) return;
 
@@ -134,7 +134,7 @@ namespace Player
         {
             if (selectedShopItem == null) return false;
 
-            Tilemap tilemap = selectedShopItem.GetTileType() != TileType.Water ? landTiles : waterTiles;
+            Tilemap tilemap = selectedShopItem.GetTileType() == TileType.Land ? landTiles : waterTiles;
             return tilemap.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
         }
 

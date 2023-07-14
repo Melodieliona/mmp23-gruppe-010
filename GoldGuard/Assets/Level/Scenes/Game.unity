@@ -987,6 +987,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1506270152}
   normalShip: {fileID: 1281423270755742567, guid: 23dfd703e260d4650b1c6f491d60df7c, type: 3}
   fastShip: {fileID: 8977449828994055096, guid: 609be8e8a925144949bec5902598ca6f, type: 3}
+  durableShip: {fileID: 8977449828994055096, guid: 5c6ecebbd344509449199b967064b1f0, type: 3}
 --- !u!4 &491435572
 Transform:
   m_ObjectHideFlags: 0
