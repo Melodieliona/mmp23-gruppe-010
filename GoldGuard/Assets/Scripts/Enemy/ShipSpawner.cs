@@ -92,6 +92,7 @@ namespace Enemy
 
             soundEffect.PlayBackgroundMusic(soundEffect.background);
             guiManager.HideTimer();
+            
             currentWave++;
             waveChangeEvent.Invoke();
             shipsLeftToSpawn = ShipsPerWave();
