@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemy.ShipVariants;
 using Player;
 using Sound;
 using UnityEngine;
@@ -125,7 +126,26 @@ namespace Enemy
                 ship = durableShip;
             }
 
+            //change HP depending on the wave
             GameObject currentShip = Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
+            if(ship == normalShip)
+            {
+                NormalPirateShip script = currentShip.GetComponent<NormalPirateShip>();
+                script.MultiplyHP(1 + currentWave * 0.125f);
+            } else if(ship == fastShip)
+            {
+                FastPirateShip script = currentShip.GetComponent<FastPirateShip>();
+                script.MultiplyHP(1 + currentWave * 0.125f);
+            }
+            else
+            {
+                DurablePirateShip script = currentShip.GetComponent<DurablePirateShip>();
+                script.MultiplyHP(1 + currentWave * 0.125f);
+            }
+
+
+
+
 
             //shipList.Add(currentShip);
             shipsLeftToSpawn--;

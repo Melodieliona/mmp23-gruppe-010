@@ -15,7 +15,7 @@ namespace Enemy
         [SerializeField] private HealthBar healthBar;
         [SerializeField] private double currentHealth;
 
-        private readonly double maxHealth;
+        private double maxHealth;
         private readonly float speed;
         private readonly int scoreValue;
         private readonly int goldValue;
@@ -110,6 +110,21 @@ namespace Enemy
         public double GetHealth()
         {
             return currentHealth;
+        }
+
+        public double GetMaxHealth()
+        {
+            return maxHealth;
+        }
+        
+        public void SetHealth(double NewHealth)
+        {
+            currentHealth = NewHealth;
+        }
+
+        public void SetMaxHealth(double NewHealth)
+        {
+            maxHealth = NewHealth;
         }
     }
 }
