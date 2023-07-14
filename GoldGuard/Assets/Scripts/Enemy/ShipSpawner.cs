@@ -16,10 +16,11 @@ namespace Enemy
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private GameObject normalShip;
         [SerializeField] private GameObject fastShip;
+        [SerializeField] private GameObject durableShip;
 
         private const int StartingShips = 10;
-        private const float ShipsPerSecond = 2f;
         private const int TimeBetweenWaves = 10;
+        private float ShipsPerSecond = 2f;
         private int timerCounter;
 
         private PlayerController playerController;
@@ -63,7 +64,7 @@ namespace Enemy
                 SpawnShip();
             }
 
-            if (shipsLeftToSpawn == 0 && shipsAlive == 0)
+            if (shipsLeftToSpawn <= 0 && shipsAlive <= 0)
             {
                 EndWave();
             }
@@ -85,6 +86,7 @@ namespace Enemy
             currentWave++;
             waveChangeEvent.Invoke();
             shipsLeftToSpawn = ShipsPerWave();
+            ShipsPerSecond += currentWave * 0.2f;
             waveActive = true;
         }
 
@@ -97,7 +99,23 @@ namespace Enemy
 
         private void SpawnShip()
         {
-            GameObject ship = Random.Range(0, 10) < 5 ? normalShip : fastShip;
+            //GameObject ship = Random.Range(0, 10) < 5 ? normalShip : fastShip;
+            GameObject ship;
+
+            int randomValue = Random.Range(0, 10);
+            if (randomValue < 5 - currentWave * 0.5)
+            {
+                ship = normalShip;
+            }
+            else if (randomValue >= 5 - currentWave * 0.5 && randomValue < 8 - currentWave * 0.25)
+            {
+                ship = fastShip;
+            }
+            else
+            {
+                ship = durableShip;
+            }
+
             Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
 
             shipsLeftToSpawn--;
@@ -130,7 +148,7 @@ namespace Enemy
         /// <returns>The amount of ships</returns>
         private int ShipsPerWave()
         {
-            return Mathf.RoundToInt(StartingShips * Mathf.Pow(currentWave, 1.25f));
+            return Mathf.RoundToInt(StartingShips * Mathf.Pow(currentWave, 2f));
         }
 
         public int GetCurrentWave()
