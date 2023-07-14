@@ -36,6 +36,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DurablePirateShip
       objectReference: {fileID: 0}
+    - target: {fileID: 5034949488155426279, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
+      propertyPath: m_TagString
+      value: PirateShip
+      objectReference: {fileID: 0}
     - target: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Player;
 using Sound;
 using UnityEngine;
@@ -31,6 +32,7 @@ namespace Enemy
 
         private int currentWave = 0;
         private int shipsAlive;
+        private GameObject[] shipList;
         private int shipsLeftToSpawn;
         private float timeSinceLastSpawn;
 
@@ -64,7 +66,14 @@ namespace Enemy
                 SpawnShip();
             }
 
-            if (shipsLeftToSpawn <= 0 && shipsAlive <= 0)
+            //if (shipsLeftToSpawn <= 0 && shipsAlive <= 0)
+            //{
+            //    EndWave();
+            //}
+
+            shipList = GameObject.FindGameObjectsWithTag("PirateShip");
+
+            if (shipsLeftToSpawn <= 0 && shipList.Length <= 0)
             {
                 EndWave();
             }
@@ -116,8 +125,9 @@ namespace Enemy
                 ship = durableShip;
             }
 
-            Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
+            GameObject currentShip = Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
 
+            //shipList.Add(currentShip);
             shipsLeftToSpawn--;
             shipsAlive++;
             timeSinceLastSpawn = 0f;
