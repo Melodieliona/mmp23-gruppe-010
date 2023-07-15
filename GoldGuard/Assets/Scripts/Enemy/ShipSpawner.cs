@@ -91,7 +91,7 @@ namespace Enemy
                 guiManager.UpdateTimer(timerCounter, percentageOfMax);
                 yield return new WaitForSeconds(1);
             }
-
+            soundEffect.PlaySfx(soundEffect.horn);
             soundEffect.PlayBackgroundMusic(soundEffect.background);
             guiManager.HideTimer();
 

@@ -15,7 +15,6 @@ namespace Scenes
 
         public void PlayButton()
         {
-            DontDestroyOnLoad(soundEffect);
             soundEffect.PlaySfx(soundEffect.button);
             SceneManager.LoadScene("Game");
         }
