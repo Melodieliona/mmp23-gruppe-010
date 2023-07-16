@@ -7,6 +7,7 @@ TagManager:
   - UImanager
   - Obstacles
   - Audio
+  - PirateShip
   layers:
   - Default
   - TransparentFX
