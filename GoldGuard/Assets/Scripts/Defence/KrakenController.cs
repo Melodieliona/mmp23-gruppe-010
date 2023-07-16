@@ -1,47 +1,18 @@
 using Enemy;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Defence
 {
     public class KrakenController : MonoBehaviour
     {
         [Header("References")]
-        //[SerializeField] private LayerMask enemyMask;
-        //[SerializeField] private Rigidbody2D rb;
-        
+        [SerializeField] private Tilemap waterTiles;
+
         [Header("Attribute")]
         [SerializeField] private float damage = 5f;
         [SerializeField] private float damageUntilDestroyed = 25f;
 
-        //private Transform target;
-        //private float timeUntilAttack;
-        
-        private void Update()
-        {
-            //if (target == null)
-            //{
-            //    FindTarget();
-            //    return;
-            //}
-            //
-            //if (!CheckTargetIsInRange())
-            //{
-            //    target = null;
-            //    return;
-            //}
-            //
-            //timeUntilAttack += Time.deltaTime;
-            //if (timeUntilAttack >= 1f / damage)
-            //{
-            //    Attack();
-            //    timeUntilAttack = 0f;
-            //}
-        }
-
-        private void Attack()
-        {
-            Debug.Log("Attack");
-        }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -61,6 +32,8 @@ namespace Defence
             if (damageUntilDestroyed <= 0f)
             {
                 Destroy(gameObject);
+                Vector3Int position = waterTiles.WorldToCell(gameObject.transform.position);
+                waterTiles.SetColliderType(position, Tile.ColliderType.Sprite);
             }
         }
 

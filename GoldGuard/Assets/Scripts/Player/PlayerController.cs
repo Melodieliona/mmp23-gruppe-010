@@ -6,7 +6,7 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        private int healthPoints = 5;
+        private int healthPoints = 10;
         private int goldCount = 150;
 
         private readonly UnityEvent healthChangeEvent = new();

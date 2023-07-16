@@ -2908,6 +2908,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5475170298110988682, guid: f743e415e4d05da4dbef286596752246, type: 3}
+      propertyPath: waterTiles
+      value: 
+      objectReference: {fileID: 1570976782}
     - target: {fileID: 6120980693190603084, guid: f743e415e4d05da4dbef286596752246, type: 3}
       propertyPath: m_Name
       value: Kraken
@@ -6739,7 +6743,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -8838,12 +8842,12 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 41
     m_Data: {fileID: -2028033804, guid: a12b0f7b603218c488e5a381789c99e6, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 1862622060, guid: a12b0f7b603218c488e5a381789c99e6, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 2060597668, guid: a12b0f7b603218c488e5a381789c99e6, type: 3}
   - m_RefCount: 3
