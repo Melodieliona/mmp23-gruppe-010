@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sound
 {
@@ -16,15 +17,23 @@ namespace Sound
         public AudioClip timer;
         public AudioClip hp;
         public AudioClip cannon;
+        public AudioClip horn;
+        public AudioClip lost;
+
+        [Header("Sound Sliders")]
+        public Slider sfxVolumeSlider;
+        public Slider musicVolumeSlider;
 
         private bool isBackgroundMusicLooping = true;
         private float fadeDuration = 5f;
 
         private void Start()
         {
-            //PlayBackgroundMusic(settingTime);
             musicSource.clip = background;
             musicSource.Play();
+            
+            sfxVolumeSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
+            musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
         }
 
         public void PlaySfx(AudioClip clip)
@@ -59,32 +68,22 @@ namespace Sound
             musicSource.Stop();
             musicSource.clip = newClip;
             musicSource.Play();
-
-            StartCoroutine(FadeInMusic(newClip));
-        }
-
-        private IEnumerator FadeInMusic(AudioClip clip)
-        {
-            musicSource.clip = clip;
-            musicSource.volume = 0f;
-            musicSource.Play();
-
-            float elapsedTime = 0f;
-            while (elapsedTime < fadeDuration)
-            {
-                float fadeFactor = elapsedTime / fadeDuration;
-                musicSource.volume = fadeFactor;
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-
-            musicSource.volume = 1f;
         }
 
         public void ToggleBackgroundMusicLoop()
         {
             isBackgroundMusicLooping = !isBackgroundMusicLooping;
             musicSource.loop = isBackgroundMusicLooping;
+        }
+
+        private void OnSfxVolumeChanged(float volume)
+        {
+            sfxSource.volume = volume;
+        }
+
+        private void OnMusicVolumeChanged(float volume)
+        {
+            musicSource.volume = volume;
         }
     }
 }
