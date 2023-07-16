@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PirateShip
       objectReference: {fileID: 0}
+    - target: {fileID: 5657133592497516036, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -75,6 +79,18 @@ PrefabInstance:
     - target: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
       propertyPath: m_SizeDelta.y
       value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
       propertyPath: m_LocalPosition.x
@@ -123,6 +139,10 @@ PrefabInstance:
     - target: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654069028780006491, guid: d3774218c018c44d7bdc784eb15c2a84, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -209,7 +229,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2044435887, guid: 878806120c1d06b45bf438d817fef721, type: 3}
+  m_Sprite: {fileID: -1355775057, guid: ce29b2d8c445fd6449635a8b1eb2197f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -230,7 +250,7 @@ Animator:
   m_GameObject: {fileID: 8977449828994055096}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b23baa656966f0942ae6e67306e309d7, type: 2}
+  m_Controller: {fileID: 9100000, guid: b70fdb3843b98c343a496951002eafb7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
