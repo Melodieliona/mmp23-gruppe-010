@@ -21,9 +21,9 @@ namespace Enemy
         [SerializeField] private GameObject fastShip;
         [SerializeField] private GameObject durableShip;
 
-        private const int StartingShips = 10;
+        private const int StartingShips = 8;
         private const int TimeBetweenWaves = 10;
-        private float ShipsPerSecond = 2f;
+        private float ShipsPerSecond = 1.5f;
         private int timerCounter;
 
         private PlayerController playerController;
@@ -162,7 +162,7 @@ namespace Enemy
         /// <returns>The amount of ships</returns>
         private int ShipsPerWave()
         {
-            return Mathf.RoundToInt(StartingShips * Mathf.Pow(currentWave, 2f));
+            return Mathf.RoundToInt(StartingShips * Mathf.Pow(currentWave, 1.25f));
         }
 
         public int GetCurrentWave()
