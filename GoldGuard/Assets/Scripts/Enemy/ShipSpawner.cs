@@ -42,7 +42,7 @@ namespace Enemy
         {
             playerController = FindObjectOfType<PlayerController>();
             guiManager = FindObjectOfType<GUIManager>();
-            soundEffect = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+            soundEffect = SoundEffectsPlayer.Instance;
 
             ReachTreasureChestEvent.AddListener(ReachTreasureChest);
             EnemyDestroyEvent.AddListener(EnemyDestroyed);
@@ -92,7 +92,7 @@ namespace Enemy
                 yield return new WaitForSeconds(1);
             }
             soundEffect.PlaySfx(soundEffect.horn);
-            soundEffect.PlayBackgroundMusic(soundEffect.background);
+            soundEffect.PlayBackgroundMusic(soundEffect.backgroundGame);
             guiManager.HideTimer();
 
             currentWave++;
@@ -154,6 +154,7 @@ namespace Enemy
         private void EnemyDestroyed()
         {
             shipsAlive--;
+            soundEffect.PlaySfx(soundEffect.coins);
         }
 
         /// <summary>

@@ -23,7 +23,7 @@ namespace Defence
         private void Awake()
         {
             targetingRange = new Cannon1Item().GetRange();
-            soundEffect = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+            soundEffect = SoundEffectsPlayer.Instance;
         }
 
         private void Update()

@@ -45,7 +45,7 @@ namespace Player
         public void AddGold(int gold)
         {
             goldCount += gold;
-            goldChangeEvent.Invoke();
+            goldChangeEvent.Invoke();   
         }
 
         public bool RemoveGold(int gold)
