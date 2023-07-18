@@ -3527,7 +3527,7 @@ GameObject:
   - component: {fileID: 1219658415}
   - component: {fileID: 1219658416}
   m_Layer: 3
-  m_Name: TransparentCannon2
+  m_Name: TransparentHeavyCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5384,7 +5384,7 @@ GameObject:
   - component: {fileID: 1679499254}
   - component: {fileID: 1679499255}
   m_Layer: 3
-  m_Name: TransparentCannon3
+  m_Name: TransparentLongCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10761,7 +10761,7 @@ GameObject:
   - component: {fileID: 2565208380653652738}
   - component: {fileID: 2826850132369978283}
   m_Layer: 3
-  m_Name: TransparentCannon1
+  m_Name: TransparentNormalCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
