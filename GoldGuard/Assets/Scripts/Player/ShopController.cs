@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 namespace Player
 {
@@ -25,7 +26,7 @@ namespace Player
         [SerializeField] private GameObject radius;
         [SerializeField] private float fadeDuration = 0.25f;
 
-        [Header("ShopItems")]
+        [Header("Shop")]
         [SerializeField] private Sprite cannon1IMG;
         [SerializeField] private Sprite cannon1IMG_red;
         [SerializeField] private Sprite cannon2IMG;
@@ -46,6 +47,7 @@ namespace Player
 
         private ShopItem selectedShopItem;
         private bool canPlaceItem = false;
+        private ShopItem[] items;
 
         private bool fadeIn = false;
         private bool fadeOut = false;
@@ -77,7 +79,7 @@ namespace Player
 
         private void InitShopItems()
         {
-            ShopItem[] items =
+            items = new ShopItem[]
             {
                 new Cannon1Item(),
                 new Cannon2Item(),
@@ -96,6 +98,7 @@ namespace Player
         {
             CalculateGridAlpha();
             ShowIndicator();
+            CheckForPrice();
 
             if (selectedShopItem != null)
             {
@@ -117,6 +120,31 @@ namespace Player
                 canPlaceItem = false;
             }
         }
+
+        private void CheckForPrice()
+        {
+            foreach (ShopItem item in items)
+            {
+                Sprite Sprite = null;
+                switch (item.GetSlot())
+                {
+                    case 1:
+                        Sprite = item.GetCost() > playerController.GetGold() ? cannon1IMG_red : cannon1IMG;
+                        break;
+                    case 2:
+                        Sprite = item.GetCost() > playerController.GetGold() ? cannon2IMG_red : cannon2IMG;
+                        break;
+                    case 3:
+                        Sprite = item.GetCost() > playerController.GetGold() ? cannon3IMG_red : cannon3IMG;
+                        break;
+                    case 4:
+                        Sprite = item.GetCost() > playerController.GetGold() ? krakenIMG_red : krakenIMG;
+                        break;
+                }
+                GetComponent<UIDocument>().rootVisualElement.Q<Button>("ShopButton" + item.GetSlot()).style.backgroundImage = new StyleBackground(Sprite);
+            }
+        }
+
 
         private void CheckForPlacement()
         {

@@ -4702,14 +4702,14 @@ MonoBehaviour:
   cursor: {fileID: 96185642}
   radius: {fileID: 250588480}
   fadeDuration: 0.25
-  cannon1IMG: {fileID: 0}
-  cannon1IMG_red: {fileID: 0}
-  cannon2IMG: {fileID: 0}
-  cannon2IMG_red: {fileID: 0}
-  cannon3IMG: {fileID: 0}
-  cannon3IMG_red: {fileID: 0}
-  krakenIMG: {fileID: 0}
-  krakenIMG_red: {fileID: 0}
+  cannon1IMG: {fileID: 21300000, guid: e63fe0860957b844fb69c976ed29941f, type: 3}
+  cannon1IMG_red: {fileID: 21300000, guid: ebf955d19c05dd64280bc39a41e9c07e, type: 3}
+  cannon2IMG: {fileID: 21300000, guid: c0d3725c0089eda4b9dd6b47567b9678, type: 3}
+  cannon2IMG_red: {fileID: 21300000, guid: 0c6bc88fb5205804bb9fd877d1476ec6, type: 3}
+  cannon3IMG: {fileID: 21300000, guid: aac0d77148afb8e439263492012ad86f, type: 3}
+  cannon3IMG_red: {fileID: 21300000, guid: 2771e192051a6af478de84701451c7c3, type: 3}
+  krakenIMG: {fileID: 21300000, guid: 464e0351fd4bc11408f09219ad99881d, type: 3}
+  krakenIMG_red: {fileID: 21300000, guid: 95c59395f1de16144ad239fc33591487, type: 3}
 --- !u!1 &1739363381
 GameObject:
   m_ObjectHideFlags: 0
