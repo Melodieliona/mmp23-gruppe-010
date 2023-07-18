@@ -277,6 +277,7 @@ MonoBehaviour:
   sellButton: {fileID: 6239452904156836680}
   targetingRange: 5
   upgradeCost: 100
+  RotationSpeed: 400
 --- !u!212 &4419813023781334246
 SpriteRenderer:
   m_ObjectHideFlags: 0

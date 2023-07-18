@@ -56,11 +56,11 @@ namespace Sound
 
             musicVolumeSlider = uIDocument.rootVisualElement.Q<Slider>("MusicSlider");
             musicVolumeSlider.RegisterValueChangedCallback(OnMusicVolumeChanged);
-            musicVolumeSlider.value = MusicVolume;
+            musicVolumeSlider.value = 0.7f;
 
             sfxVolumeSlider = uIDocument.rootVisualElement.Q<Slider>("SFXSlider");
             sfxVolumeSlider.RegisterValueChangedCallback(OnSfxVolumeChanged);
-            sfxVolumeSlider.value = SfxVolume;
+            sfxVolumeSlider.value = 0.7f;
         }
 
         public static SoundEffectsPlayer Instance { get; private set; }

@@ -21,7 +21,7 @@ namespace Defence
         [Header("Attribute")]
         [SerializeField] private float targetingRange;
         [SerializeField] private int upgradeCost = 100;
-        private const float RotationSpeed = 400f;
+        [SerializeField] private float RotationSpeed;
         private const float Bps = 1f;
 
         // Default attributes of the turret (with no upgrades)
