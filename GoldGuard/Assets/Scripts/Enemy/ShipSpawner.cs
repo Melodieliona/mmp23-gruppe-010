@@ -92,7 +92,7 @@ namespace Enemy
             waveChangeEvent.Invoke();
             shipsLeftToSpawn = ShipsPerWave();
             Debug.Log("Wave: " + currentWave + ", Ships left: " + shipsLeftToSpawn);
-            shipsPerSecond += currentWave * 0.1f;
+            shipsPerSecond += currentWave * 0.075f;
             waveActive = true;
         }
 
@@ -162,7 +162,15 @@ namespace Enemy
         /// <returns>The amount of ships</returns>
         private int ShipsPerWave()
         {
-            int factor = currentWave < 5 ? 3 : 5;
+            int factor = 3;
+            if(currentWave > 4)
+            {
+                factor = 4;
+                if(currentWave > 8)
+                {
+                    factor = 6;
+                }
+            }
             return StartingShips + currentWave * factor;
         }
 
