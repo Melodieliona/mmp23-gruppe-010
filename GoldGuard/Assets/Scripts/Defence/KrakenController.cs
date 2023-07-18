@@ -36,21 +36,5 @@ namespace Defence
                 waterTiles.SetColliderType(position, Tile.ColliderType.Sprite);
             }
         }
-
-        private void FindTarget()
-        {
-            //RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange, transform.position, 0f, enemyMask);
-            //
-            //if (hits.Length > 0)
-            //{
-            //    target = hits[0].transform;
-            //}
-        }
-
-        private bool CheckTargetIsInRange()
-        {
-            //return Vector2.Distance(target.position, transform.position) <= targetingRange;
-            return true;
-        }
     }
 }

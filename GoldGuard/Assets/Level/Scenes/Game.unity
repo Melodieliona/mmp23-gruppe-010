@@ -5294,7 +5294,7 @@ PrefabInstance:
       objectReference: {fileID: 1178133801}
     - target: {fileID: 2580092390061179386, guid: 8e43cf1b510df3b4a9c0432924e34bda, type: 3}
       propertyPath: m_Name
-      value: HeayCannon
+      value: HeavyCannon
       objectReference: {fileID: 0}
     - target: {fileID: 5897676907076257038, guid: 8e43cf1b510df3b4a9c0432924e34bda, type: 3}
       propertyPath: m_Enabled
