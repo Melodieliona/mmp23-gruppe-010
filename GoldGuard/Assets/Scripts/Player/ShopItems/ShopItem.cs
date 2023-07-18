@@ -1,4 +1,6 @@
+using Defence;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player.ShopItems
@@ -9,17 +11,16 @@ namespace Player.ShopItems
         private readonly int slot;
         private readonly int cost;
         private readonly TileType tileType;
-        private readonly float range;
+        private float range;
         
         private readonly GameObject normalPrefab;
         private readonly GameObject transparentPrefab;
         
-        protected ShopItem(string weaponName, int slot, int cost, TileType tileType, float range)
+        protected ShopItem(string weaponName, int slot, int cost, TileType tileType)
         {
             this.slot = slot;
             this.cost = cost;
             this.tileType = tileType;
-            this.range = range;
 
             normalPrefab = GameObject.Find(weaponName);
             transparentPrefab = GameObject.Find("Transparent" + weaponName);
@@ -57,6 +58,7 @@ namespace Player.ShopItems
 
         public float GetRange()
         {
+            range = normalPrefab.GetComponent<CannonController>().GetRange();
             return range;
         }
     }

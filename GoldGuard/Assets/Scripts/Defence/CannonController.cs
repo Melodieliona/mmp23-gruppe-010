@@ -9,8 +9,10 @@ namespace Defence
         [SerializeField] private Transform turretRotationPoint;
         [SerializeField] private LayerMask enemyMask;
         [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private GameObject bulletStrongPrefab;
         [SerializeField] private Transform firingPoint;
         [SerializeField] private float targetingRange;
+        [SerializeField] private int cannonType;
 
         private const float RotationSpeed = 400f;
         private const float Bps = 1f;
@@ -51,9 +53,11 @@ namespace Defence
 
         private void Shoot()
         {
-            GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
+            GameObject currentPrefab = cannonType != 2 ? bulletPrefab : bulletStrongPrefab;
+            GameObject bulletObj = Instantiate(currentPrefab, firingPoint.position, Quaternion.identity);
             BulletController bulletScript = bulletObj.GetComponent<BulletController>();
             bulletScript.SetTarget(target);
+            if (cannonType == 2) bulletScript.SetStrong(true);
         }
 
         private void FindTarget()
@@ -79,6 +83,11 @@ namespace Defence
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
             turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, RotationSpeed * Time.deltaTime);
             //turretRotationPoint.rotation = targetRotation;
+        }
+
+        public float GetRange()
+        {
+            return targetingRange;
         }
     }
 }
