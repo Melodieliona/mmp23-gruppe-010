@@ -1,8 +1,6 @@
-using Player.ShopItems;
 using Player;
 using Sound;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Defence
@@ -20,9 +18,7 @@ namespace Defence
         [SerializeField] private Button upgradeButton;
         [SerializeField] private Button sellButton;
 
-
         [Header("Attribute")]
-
         [SerializeField] private float targetingRange;
         [SerializeField] private int upgradeCost = 100;
         private const float RotationSpeed = 400f;
@@ -38,7 +34,7 @@ namespace Defence
 
         private bool isUIOpen = false;
         private int canonLevel = 1;
-               
+
         private PlayerController playerController;
 
         private void Awake()
@@ -46,11 +42,11 @@ namespace Defence
             soundEffect = SoundEffectsPlayer.Instance;
         }
 
-        private void Start() { 
+        private void Start()
+        {
             bpsDefault = Bps;
             targetingRangeDefault = targetingRange;
             playerController = FindObjectOfType<PlayerController>();
-
         }
 
         private void Update()
@@ -114,7 +110,6 @@ namespace Defence
 
         private void OnMouseDown()
         {
-
             if (!isUIOpen)
             {
                 OpenUI();
@@ -125,17 +120,20 @@ namespace Defence
             }
         }
 
-        private void OpenUI() {
+        private void OpenUI()
+        {
             canonUI.SetActive(true);
             isUIOpen = true;
         }
 
-        private void CloseUI() {
-            canonUI.SetActive(false);  
+        private void CloseUI()
+        {
+            canonUI.SetActive(false);
             isUIOpen = false;
         }
 
-        public void UpgradeCanon() {
+        public void UpgradeCanon()
+        {
             Debug.Log("Upgrade Button Clicked");
         }
 

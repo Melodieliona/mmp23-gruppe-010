@@ -25,14 +25,14 @@ namespace Sound
         public AudioClip coins;
 
         [Header("Sound Sliders")]
-        public Slider sfxVolumeSlider;
-        public Slider musicVolumeSlider;
+        private Slider musicVolumeSlider;
+        private Slider sfxVolumeSlider;
 
         private bool isBackgroundMusicLooping = true;
-        private float fadeDuration = 5f;
-        private static float sfxVolume = 1f;
-        private static float musicVolume = 1f;
-        
+        private const float FadeDuration = 5f;
+        private const float SfxVolume = 1f;
+        private const float MusicVolume = 1f;
+
         private void Awake()
         {
             // Ensure only one instance of SoundEffectsPlayer exists
@@ -43,7 +43,7 @@ namespace Sound
             }
 
             Instance = this;
-           // DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
@@ -54,14 +54,13 @@ namespace Sound
             GUIManager guiManager = FindObjectOfType<GUIManager>();
             UIDocument uIDocument = guiManager.GetComponent<UIDocument>();
 
-            sfxVolumeSlider = uIDocument.rootVisualElement.Q<Slider>("SFXSlider");
-            musicVolumeSlider = uIDocument.rootVisualElement.Q<Slider>("VolumeSlider");
-
+            musicVolumeSlider = uIDocument.rootVisualElement.Q<Slider>("MusicSlider");
             musicVolumeSlider.RegisterValueChangedCallback(OnMusicVolumeChanged);
-            sfxVolumeSlider.RegisterValueChangedCallback(OnSfxVolumeChanged);
+            musicVolumeSlider.value = MusicVolume;
 
-            sfxVolumeSlider.value = sfxVolume;
-            musicVolumeSlider.value = musicVolume;
+            sfxVolumeSlider = uIDocument.rootVisualElement.Q<Slider>("SFXSlider");
+            sfxVolumeSlider.RegisterValueChangedCallback(OnSfxVolumeChanged);
+            sfxVolumeSlider.value = SfxVolume;
         }
 
         public static SoundEffectsPlayer Instance { get; private set; }
@@ -87,9 +86,9 @@ namespace Sound
         private IEnumerator FadeOutMusic(AudioClip newClip)
         {
             float elapsedTime = 0f;
-            while (elapsedTime < fadeDuration)
+            while (elapsedTime < FadeDuration)
             {
-                float fadeFactor = elapsedTime / fadeDuration;
+                float fadeFactor = elapsedTime / FadeDuration;
                 musicSource.volume = 1f - fadeFactor;
                 elapsedTime += Time.deltaTime;
                 yield return null;
@@ -106,14 +105,14 @@ namespace Sound
             musicSource.loop = isBackgroundMusicLooping;
         }
 
-        private void OnSfxVolumeChanged(ChangeEvent<float> evt)
-        {
-            sfxSource.volume = evt.newValue;
-        }
-
         private void OnMusicVolumeChanged(ChangeEvent<float> evt)
         {
             musicSource.volume = evt.newValue;
+        }
+
+        private void OnSfxVolumeChanged(ChangeEvent<float> evt)
+        {
+            sfxSource.volume = evt.newValue;
         }
     }
 }
