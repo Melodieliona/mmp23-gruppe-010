@@ -1,6 +1,8 @@
 using Player;
+using Player.ShopItems;
 using Sound;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 namespace Defence
@@ -37,6 +39,7 @@ namespace Defence
         private bool isUIOpen = false;
 
         private PlayerController playerController;
+        private ShopController shopController;
 
         private void Awake()
         {
@@ -47,7 +50,9 @@ namespace Defence
         {
             bpsDefault = bps;
             targetingRangeDefault = targetingRange;
+
             playerController = FindObjectOfType<PlayerController>();
+            shopController = FindObjectOfType<ShopController>();
         }
 
         private void Update()
@@ -151,6 +156,7 @@ namespace Defence
             playerController.AddGold(CalculateWorth());
             Debug.Log("Sold the cannon for: " + CalculateWorth() + " Gold");
             Destroy(gameObject);
+            shopController.GetLandTiles().RefreshAllTiles();
         }
 
         // Calculate cost of each upgrade

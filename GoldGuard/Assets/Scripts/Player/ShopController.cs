@@ -125,7 +125,7 @@ namespace Player
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Tilemap selectedTiles = selectedShopItem.GetTileType() == TileType.Land ? landTiles : waterTiles;
             Vector3Int cellPosition = selectedTiles.WorldToCell(mousePosition);
-            if (!IsEligible(cellPosition) || CheckForObstacle(mousePosition)) return;
+            if (!IsEligible(cellPosition) || HasObstacle(mousePosition)) return;
 
             int weaponCost = selectedShopItem.GetCost();
             playerController.RemoveGold(weaponCost);
@@ -151,11 +151,16 @@ namespace Player
             return tilemap.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
         }
 
-        private bool CheckForObstacle(Vector3 mousePosition)
+        private bool HasObstacle(Vector3 mousePosition)
         {
             return obstacleList.Any(obstacle => obstacle.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition));
         }
 
+        public Tilemap GetLandTiles()
+        {
+            return landTiles;
+        }
+        
         /// <summary>
         /// Check if the defence placement indicator should be activated.
         /// </summary>
@@ -168,7 +173,7 @@ namespace Player
             Vector3Int cellPosition = tiles.WorldToCell(mousePosition);
             Vector3 cellCenter = tiles.GetCellCenterWorld(cellPosition);
 
-            if (IsEligible(cellPosition) && !CheckForObstacle(mousePosition))
+            if (IsEligible(cellPosition) && !HasObstacle(mousePosition))
             {
                 //cursor follows the mouse
                 cursor.transform.position = cellCenter;
