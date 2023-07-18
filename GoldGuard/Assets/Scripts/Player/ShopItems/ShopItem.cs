@@ -12,10 +12,10 @@ namespace Player.ShopItems
         private readonly int cost;
         private readonly TileType tileType;
         private float range;
-        
+
         private readonly GameObject normalPrefab;
         private readonly GameObject transparentPrefab;
-        
+
         protected ShopItem(string weaponName, int slot, int cost, TileType tileType)
         {
             this.slot = slot;
@@ -58,8 +58,14 @@ namespace Player.ShopItems
 
         public float GetRange()
         {
-            range = normalPrefab.GetComponent<CannonController>().GetRange();
-            return range;
+            CannonController controller = normalPrefab.GetComponent<CannonController>();
+            if (controller == null)
+            {
+                // If item is not a cannon (i.e. Kraken), Range is always 1
+                return 1;
+            }
+
+            return controller.GetRange();
         }
     }
 
