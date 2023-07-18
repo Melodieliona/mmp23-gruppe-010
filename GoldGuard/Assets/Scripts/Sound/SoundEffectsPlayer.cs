@@ -1,6 +1,8 @@
+using Player;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Slider = UnityEngine.UIElements.Slider;
 
 namespace Sound
 {
@@ -28,43 +30,20 @@ namespace Sound
 
         private bool isBackgroundMusicLooping = true;
         private float fadeDuration = 5f;
-        private static SoundEffectsPlayer instance;
         private static float sfxVolume = 1f;
         private static float musicVolume = 1f;
-
-
+        
         private void Awake()
         {
             // Ensure only one instance of SoundEffectsPlayer exists
-            if (instance != null && instance != this)
+            if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
 
-            instance = this;
+            Instance = this;
            // DontDestroyOnLoad(gameObject);
-            FindSliderReferences();
-        }
-
-        private void FindSliderReferences()
-        {
-            Slider[] sliders = FindObjectsOfType<Slider>(true);
-            foreach (Slider slider in sliders)
-            {
-                if (slider.gameObject.name == "SFXVolumeSlider")
-                {
-                    sfxVolumeSlider = slider;
-                    sfxVolumeSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
-                    sfxVolumeSlider.value = sfxVolume;
-                }
-                else if (slider.gameObject.name == "MusicVolumeSlider")
-                {
-                    musicVolumeSlider = slider;
-                    musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
-                    musicVolumeSlider.value = musicVolume;
-                }
-            }
         }
 
         private void Start()
@@ -72,17 +51,20 @@ namespace Sound
             musicSource.clip = background;
             musicSource.Play();
 
+            GUIManager guiManager = FindObjectOfType<GUIManager>();
+            UIDocument uIDocument = guiManager.GetComponent<UIDocument>();
+
+            sfxVolumeSlider = uIDocument.rootVisualElement.Q<Slider>("SFXSlider");
+            musicVolumeSlider = uIDocument.rootVisualElement.Q<Slider>("VolumeSlider");
+
+            musicVolumeSlider.RegisterValueChangedCallback(OnMusicVolumeChanged);
+            sfxVolumeSlider.RegisterValueChangedCallback(OnSfxVolumeChanged);
+
             sfxVolumeSlider.value = sfxVolume;
             musicVolumeSlider.value = musicVolume;
-
-            sfxVolumeSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
-            musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
         }
 
-        public static SoundEffectsPlayer Instance
-        {
-            get { return instance; }
-        }
+        public static SoundEffectsPlayer Instance { get; private set; }
 
         public void PlaySfx(AudioClip clip)
         {
@@ -118,16 +100,20 @@ namespace Sound
             musicSource.Play();
         }
 
-        private void OnSfxVolumeChanged(float volume)
+        public void ToggleBackgroundMusicLoop()
         {
-            sfxSource.volume = volume;
-            sfxVolume = volume;
+            isBackgroundMusicLooping = !isBackgroundMusicLooping;
+            musicSource.loop = isBackgroundMusicLooping;
         }
 
-        private void OnMusicVolumeChanged(float volume)
+        private void OnSfxVolumeChanged(ChangeEvent<float> evt)
         {
-            musicSource.volume = volume;
-            musicVolume = volume;
+            sfxSource.volume = evt.newValue;
+        }
+
+        private void OnMusicVolumeChanged(ChangeEvent<float> evt)
+        {
+            musicSource.volume = evt.newValue;
         }
     }
 }
