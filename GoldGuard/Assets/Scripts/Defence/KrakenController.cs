@@ -12,8 +12,7 @@ namespace Defence
         [Header("Attribute")]
         [SerializeField] private float damage = 5f;
         [SerializeField] private float damageUntilDestroyed = 25f;
-
-
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other == null || other.gameObject == null)

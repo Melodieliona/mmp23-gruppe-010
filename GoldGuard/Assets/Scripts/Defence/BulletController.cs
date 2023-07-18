@@ -31,24 +31,20 @@ namespace Defence
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other == null || other.gameObject == null)
-            {
-                return;
-            }
+            if (other == null || other.gameObject == null) return;
 
             PirateShipController ship = other.gameObject.GetComponent<PirateShipController>();
-            if (ship != null)
+            if (ship == null) return;
+
+            Debug.Log(isStrong + " " + shipCount);
+            ship.Damage(BulletDamage);
+            if (isStrong && shipCount < maxShips)
             {
-                Debug.Log(isStrong + " " + shipCount);
-                ship.Damage(BulletDamage);
-                if (isStrong && shipCount < maxShips)
-                {
-                    shipCount++;
-                }
-                else
-                {
-                    Destroy(gameObject);
-                }
+                shipCount++;
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
 
