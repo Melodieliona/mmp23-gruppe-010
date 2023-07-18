@@ -10,8 +10,8 @@ namespace Defence
         [SerializeField] private Tilemap waterTiles;
 
         [Header("Attribute")]
-        [SerializeField] private float damage = 5f;
-        [SerializeField] private float damageUntilDestroyed = 25f;
+        [SerializeField] private float damage = 10f;
+        [SerializeField] private float damageUntilDestroyed = 50f;
         
         private void OnCollisionEnter2D(Collision2D other)
         {
