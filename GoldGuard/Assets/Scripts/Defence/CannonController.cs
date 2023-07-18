@@ -1,4 +1,5 @@
 using Player;
+using Player.ShopItems;
 using Sound;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,19 +22,20 @@ namespace Defence
         [Header("Attribute")]
         [SerializeField] private float targetingRange;
         [SerializeField] private int upgradeCost = 100;
-        [SerializeField] private float RotationSpeed;
-        private const float Bps = 1f;
+        [SerializeField] private float RotationSpeed = 400f;
+        [SerializeField] private float Bps = 1f;
 
         // Default attributes of the turret (with no upgrades)
         private float bpsDefault;
         private float targetingRangeDefault;
+        private int canonLevel = 1;
+        private int canonWorth;
+        private int canonDefaultCost = 50;
 
         private Transform target;
         private float timeUntilFire;
         private SoundEffectsPlayer soundEffect;
-
         private bool isUIOpen = false;
-        private int canonLevel = 1;
 
         private PlayerController playerController;
 
@@ -134,11 +136,51 @@ namespace Defence
 
         public void UpgradeCanon()
         {
-            Debug.Log("Upgrade Button Clicked");
+            if(canonLevel >= 5) {
+                Debug.Log("Max Canon level reached (Level 5)");
+                return;
+            }
+
+            if(CalculateCost() > playerController.GetGold()) {
+                Debug.Log("Too expensive! The upgrade cost is: " + CalculateCost() + " Gold");
+                return;
+            }
+
+            playerController.RemoveGold(CalculateCost());
+            canonLevel++;
+            Bps = CalculateBps();
+            targetingRange = CalculateRange();
+
+            Debug.Log("Canon Level: " + canonLevel);
+
         }
+
         public void SellCanon()
         {
-            Debug.Log("Sell Button Clicked");
+            playerController.AddGold(CalculateWorth());
+            Debug.Log("Sold the canon for: " + CalculateWorth() + " Gold");
+            Destroy(gameObject);
+        }
+
+        //Calculate cost of each upgrade
+        private int CalculateCost() 
+        {
+            return (canonDefaultCost + canonLevel*50);
+        }
+
+        //Calculate worth of the turret including its upgrades
+        private int CalculateWorth() 
+        {
+            return Mathf.RoundToInt(CalculateCost()/2);
+        }
+
+        private float CalculateBps() 
+        {
+            return bpsDefault * Mathf.Pow(canonLevel, 0.5f);
+        }
+        private float CalculateRange() 
+        {
+            return targetingRangeDefault * Mathf.Pow(canonLevel, 0.4f);
         }
 
         public float GetRange()
