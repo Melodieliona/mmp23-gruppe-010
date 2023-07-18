@@ -11,10 +11,12 @@ namespace Player.ShopItems
         private readonly int slot;
         private readonly int cost;
         private readonly TileType tileType;
-        private float range;
 
         private readonly GameObject normalPrefab;
         private readonly GameObject transparentPrefab;
+
+        private Sprite affordableSprite;
+        private Sprite tooExpensiveSprite;
 
         protected ShopItem(string weaponName, int slot, int cost, TileType tileType)
         {
@@ -24,6 +26,9 @@ namespace Player.ShopItems
 
             normalPrefab = GameObject.Find(weaponName);
             transparentPrefab = GameObject.Find("Transparent" + weaponName);
+
+            affordableSprite = Resources.Load<Sprite>(weaponName + "Affordable");
+            tooExpensiveSprite = Resources.Load<Sprite>(weaponName + "TooExpensive");
         }
 
         public GameObject GetPrefab()
@@ -66,6 +71,11 @@ namespace Player.ShopItems
             }
 
             return controller.GetRange();
+        }
+
+        public Sprite GetSprite(int playerGold)
+        {
+            return cost > playerGold ? tooExpensiveSprite : affordableSprite;
         }
     }
 

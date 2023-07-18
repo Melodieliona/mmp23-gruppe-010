@@ -1,10 +1,8 @@
 using System.Linq;
 using Player.ShopItems;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 namespace Player
 {
@@ -25,16 +23,6 @@ namespace Player
         [SerializeField] private GameObject cursor;
         [SerializeField] private GameObject radius;
         [SerializeField] private float fadeDuration = 0.25f;
-
-        [Header("Shop")]
-        [SerializeField] private Sprite cannon1IMG;
-        [SerializeField] private Sprite cannon1IMG_red;
-        [SerializeField] private Sprite cannon2IMG;
-        [SerializeField] private Sprite cannon2IMG_red;
-        [SerializeField] private Sprite cannon3IMG;
-        [SerializeField] private Sprite cannon3IMG_red;
-        [SerializeField] private Sprite krakenIMG;
-        [SerializeField] private Sprite krakenIMG_red;
 
         private PlayerController playerController;
         private Grid mapGrid;
@@ -123,29 +111,13 @@ namespace Player
 
         private void CheckForPrice()
         {
+            int playerGold = playerController.GetGold();
             foreach (ShopItem item in items)
             {
-                Sprite Sprite = null;
-                switch (item.GetSlot())
-                {
-                    case 1:
-                        Sprite = item.GetCost() > playerController.GetGold() ? cannon1IMG_red : cannon1IMG;
-                        break;
-                    case 2:
-                        Sprite = item.GetCost() > playerController.GetGold() ? cannon2IMG_red : cannon2IMG;
-                        break;
-                    case 3:
-                        Sprite = item.GetCost() > playerController.GetGold() ? cannon3IMG_red : cannon3IMG;
-                        break;
-                    case 4:
-                        Sprite = item.GetCost() > playerController.GetGold() ? krakenIMG_red : krakenIMG;
-                        break;
-                }
-                GetComponent<UIDocument>().rootVisualElement.Q<Button>("ShopButton" + item.GetSlot()).style.backgroundImage = new StyleBackground(Sprite);
+                GetComponent<UIDocument>().rootVisualElement.Q<Button>("ShopButton" + item.GetSlot()).style.backgroundImage = new StyleBackground(item.GetSprite(playerGold));
             }
         }
-
-
+        
         private void CheckForPlacement()
         {
             if (!Input.GetMouseButtonDown(0)) return;
