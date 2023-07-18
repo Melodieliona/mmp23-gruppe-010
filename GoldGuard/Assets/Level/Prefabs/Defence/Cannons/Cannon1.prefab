@@ -271,14 +271,14 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5953930906818198071, guid: ae91c88e58d90f771a5bbfeb5180ad98, type: 3}
   bulletStrongPrefab: {fileID: 5953930906818198071, guid: fc8e51dd14eefee46b824e35d116b074, type: 3}
   firingPoint: {fileID: 2580092388935625462}
-  cannonType: 1
-  canonUI: {fileID: 2790804491109474161}
+  cannonType: 0
+  cannonUI: {fileID: 0}
   upgradeButton: {fileID: 4939953079295808210}
   sellButton: {fileID: 6239452904156836680}
   targetingRange: 5
-  RotationSpeed: 400
-  Bps: 1
-  defaultUpgradeCost: 1
+  upgradeCost: 100
+  rotationSpeed: 400
+  bps: 1
 --- !u!212 &4419813023781334246
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -635,7 +635,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2580092390061179385}
         m_TargetAssemblyTypeName: Defence.CannonController, Assembly-CSharp
-        m_MethodName: UpgradeCanon
+        m_MethodName: UpgradeCannon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -874,7 +874,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2580092390061179385}
         m_TargetAssemblyTypeName: Defence.CannonController, Assembly-CSharp
-        m_MethodName: SellCanon
+        m_MethodName: SellCannon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

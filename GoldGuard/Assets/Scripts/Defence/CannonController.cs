@@ -14,23 +14,23 @@ namespace Defence
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private GameObject bulletStrongPrefab;
         [SerializeField] private Transform firingPoint;
-        [SerializeField] private int cannonType;
-        [SerializeField] private GameObject canonUI;
+        [SerializeField] private CannonType cannonType;
+        [SerializeField] private GameObject cannonUI;
         [SerializeField] private Button upgradeButton;
         [SerializeField] private Button sellButton;
 
         [Header("Attribute")]
         [SerializeField] private float targetingRange;
         [SerializeField] private int upgradeCost = 100;
-        [SerializeField] private float RotationSpeed = 400f;
-        [SerializeField] private float Bps = 1f;
+        [SerializeField] private float rotationSpeed = 400f;
+        [SerializeField] private float bps = 1f;
 
         // Default attributes of the turret (with no upgrades)
         private float bpsDefault;
         private float targetingRangeDefault;
-        private int canonLevel = 1;
-        private int canonWorth;
-        private int canonDefaultCost = 50;
+        private int cannonLevel = 1;
+        private int cannonWorth;
+        private int cannonDefaultCost = 50;
 
         private Transform target;
         private float timeUntilFire;
@@ -46,7 +46,7 @@ namespace Defence
 
         private void Start()
         {
-            bpsDefault = Bps;
+            bpsDefault = bps;
             targetingRangeDefault = targetingRange;
             playerController = FindObjectOfType<PlayerController>();
         }
@@ -68,7 +68,7 @@ namespace Defence
             }
 
             timeUntilFire += Time.deltaTime;
-            if (timeUntilFire >= 1f / Bps)
+            if (timeUntilFire >= 1f / bps)
             {
                 Shoot();
                 soundEffect.PlaySfx(soundEffect.cannon);
@@ -78,11 +78,12 @@ namespace Defence
 
         private void Shoot()
         {
-            GameObject currentPrefab = cannonType != 2 ? bulletPrefab : bulletStrongPrefab;
+            GameObject currentPrefab = cannonType != CannonType.Heavy ? bulletPrefab : bulletStrongPrefab;
             GameObject bulletObj = Instantiate(currentPrefab, firingPoint.position, Quaternion.identity);
+
             BulletController bulletScript = bulletObj.GetComponent<BulletController>();
             bulletScript.SetTarget(target);
-            if (cannonType == 2) bulletScript.SetStrong(true);
+            bulletScript.SetStrong(cannonType == CannonType.Heavy);
         }
 
         private void FindTarget()
@@ -106,7 +107,7 @@ namespace Defence
             Vector2 targetPos = target.position;
             float angle = Mathf.Atan2(targetPos.y - cannonPos.y, targetPos.x - cannonPos.x) * Mathf.Rad2Deg + 90f;
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-            turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, RotationSpeed * Time.deltaTime);
+            turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             //turretRotationPoint.rotation = targetRotation;
         }
 
@@ -114,73 +115,65 @@ namespace Defence
         {
             if (!isUIOpen)
             {
-                OpenUI();
+                cannonUI.SetActive(true);
+                isUIOpen = true;
             }
             else
             {
-                CloseUI();
+                cannonUI.SetActive(false);
+                isUIOpen = false;
             }
         }
 
-        private void OpenUI()
+        public void UpgradeCannon()
         {
-            canonUI.SetActive(true);
-            isUIOpen = true;
-        }
-
-        private void CloseUI()
-        {
-            canonUI.SetActive(false);
-            isUIOpen = false;
-        }
-
-        public void UpgradeCanon()
-        {
-            if(canonLevel >= 5) {
-                Debug.Log("Max Canon level reached (Level 5)");
+            if (cannonLevel >= 5)
+            {
+                Debug.Log("Max Cannon level reached (Level 5)");
                 return;
             }
 
-            if(CalculateCost() > playerController.GetGold()) {
+            if (CalculateCost() > playerController.GetGold())
+            {
                 Debug.Log("Too expensive! The upgrade cost is: " + CalculateCost() + " Gold");
                 return;
             }
 
             playerController.RemoveGold(CalculateCost());
-            canonLevel++;
-            Bps = CalculateBps();
+            cannonLevel++;
+            bps = CalculateBps();
             targetingRange = CalculateRange();
 
-            Debug.Log("Canon Level: " + canonLevel);
-
+            Debug.Log("Cannon Level: " + cannonLevel);
         }
 
-        public void SellCanon()
+        public void SellCannon()
         {
             playerController.AddGold(CalculateWorth());
-            Debug.Log("Sold the canon for: " + CalculateWorth() + " Gold");
+            Debug.Log("Sold the cannon for: " + CalculateWorth() + " Gold");
             Destroy(gameObject);
         }
 
         //Calculate cost of each upgrade
-        private int CalculateCost() 
+        private int CalculateCost()
         {
-            return (canonDefaultCost + canonLevel*50);
+            return cannonDefaultCost + cannonLevel * 50;
         }
 
         //Calculate worth of the turret including its upgrades
-        private int CalculateWorth() 
+        private int CalculateWorth()
         {
-            return Mathf.RoundToInt(CalculateCost()/2);
+            return Mathf.RoundToInt(CalculateCost() / 2);
         }
 
-        private float CalculateBps() 
+        private float CalculateBps()
         {
-            return bpsDefault * Mathf.Pow(canonLevel, 0.5f);
+            return bpsDefault * Mathf.Pow(cannonLevel, 0.5f);
         }
-        private float CalculateRange() 
+
+        private float CalculateRange()
         {
-            return targetingRangeDefault * Mathf.Pow(canonLevel, 0.4f);
+            return targetingRangeDefault * Mathf.Pow(cannonLevel, 0.4f);
         }
 
         public float GetRange()

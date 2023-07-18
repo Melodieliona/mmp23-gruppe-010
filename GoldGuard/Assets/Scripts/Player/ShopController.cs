@@ -69,9 +69,9 @@ namespace Player
         {
             items = new ShopItem[]
             {
-                new Cannon1Item(),
-                new Cannon2Item(),
-                new Cannon3Item(),
+                new NormalCannonItem(),
+                new HeavyCannonItem(),
+                new LongCannonItem(),
                 new KrakenItem()
             };
 
