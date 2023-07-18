@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Enemy.ShipVariants;
 using Player;
 using Sound;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,7 +20,7 @@ namespace Enemy
 
         private const int StartingShips = 3;
         private const int TimeBetweenWaves = 10;
-        private float ShipsPerSecond = 0.5f;
+        private float shipsPerSecond = 0.5f;
         private int timerCounter;
 
         private PlayerController playerController;
@@ -33,7 +30,6 @@ namespace Enemy
         private bool waveActive = true;
 
         private int currentWave = 0;
-        private int shipsAlive;
         private GameObject[] shipList;
         private int shipsLeftToSpawn;
         private float timeSinceLastSpawn;
@@ -63,16 +59,11 @@ namespace Enemy
 
             timeSinceLastSpawn += Time.deltaTime;
 
-            if (shipsLeftToSpawn > 0 && timeSinceLastSpawn >= (1f / ShipsPerSecond))
+            if (shipsLeftToSpawn > 0 && timeSinceLastSpawn >= (1f / shipsPerSecond))
             {
                 SpawnShip();
             }
-
-            //if (shipsLeftToSpawn <= 0 && shipsAlive <= 0)
-            //{
-            //    EndWave();
-            //}
-
+            
             shipList = GameObject.FindGameObjectsWithTag("PirateShip");
 
             if (shipsLeftToSpawn <= 0 && shipList.Length <= 0)
@@ -91,6 +82,7 @@ namespace Enemy
                 guiManager.UpdateTimer(timerCounter, percentageOfMax);
                 yield return new WaitForSeconds(1);
             }
+
             soundEffect.PlaySfx(soundEffect.horn);
             soundEffect.PlayBackgroundMusic(soundEffect.backgroundGame);
             guiManager.HideTimer();
@@ -98,8 +90,8 @@ namespace Enemy
             currentWave++;
             waveChangeEvent.Invoke();
             shipsLeftToSpawn = ShipsPerWave();
-            Debug.Log("hi " + currentWave + " Ships left: " + shipsLeftToSpawn);
-            ShipsPerSecond += currentWave * 0.1f;
+            Debug.Log("Wave: " + currentWave + ", Ships left: " + shipsLeftToSpawn);
+            shipsPerSecond += currentWave * 0.1f;
             waveActive = true;
         }
 
@@ -129,16 +121,13 @@ namespace Enemy
             {
                 ship = durableShip;
             }
-
-
-
+            
             // Change HP depending on the wave
             GameObject currentShip = Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
             currentShip.GetComponent<PirateShipController>().MultiplyHp(1 + currentWave * 0.125f);
 
             //shipList.Add(currentShip);
             shipsLeftToSpawn--;
-            shipsAlive++;
             timeSinceLastSpawn = 0f;
         }
 
@@ -147,7 +136,6 @@ namespace Enemy
         /// </summary>
         private void ReachTreasureChest()
         {
-            shipsAlive--;
             soundEffect.PlaySfx(soundEffect.hp);
             playerController.RemoveHealthPoints(1);
             Debug.Log("Ship has reached the gold. New HP: " + playerController.GetHealthPoints());
@@ -158,7 +146,6 @@ namespace Enemy
         /// </summary>
         private void EnemyDestroyed()
         {
-            shipsAlive--;
             soundEffect.PlaySfx(soundEffect.coins);
         }
 

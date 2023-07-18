@@ -1,17 +1,19 @@
+using System;
 using UnityEngine;
 
 namespace Player.ShopItems
 {
+    [Serializable]
     public class ShopItem
     {
         private readonly int slot;
         private readonly int cost;
         private readonly TileType tileType;
         private readonly float range;
-
+        
         private readonly GameObject normalPrefab;
         private readonly GameObject transparentPrefab;
-
+        
         protected ShopItem(string weaponName, int slot, int cost, TileType tileType, float range)
         {
             this.slot = slot;

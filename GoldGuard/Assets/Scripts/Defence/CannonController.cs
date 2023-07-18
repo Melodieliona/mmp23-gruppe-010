@@ -1,4 +1,3 @@
-using Player.ShopItems;
 using Sound;
 using UnityEngine;
 
@@ -11,10 +10,10 @@ namespace Defence
         [SerializeField] private LayerMask enemyMask;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private Transform firingPoint;
+        [SerializeField] private float targetingRange;
 
         private const float RotationSpeed = 400f;
         private const float Bps = 1f;
-        private float targetingRange;
 
         private Transform target;
         private float timeUntilFire;
@@ -22,7 +21,6 @@ namespace Defence
 
         private void Awake()
         {
-            targetingRange = new Cannon1Item().GetRange();
             soundEffect = SoundEffectsPlayer.Instance;
         }
 
@@ -81,12 +79,6 @@ namespace Defence
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
             turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, RotationSpeed * Time.deltaTime);
             //turretRotationPoint.rotation = targetRotation;
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            //Handles.color = Color.cyan;
-            //Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
         }
     }
 }
