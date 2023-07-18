@@ -130,9 +130,9 @@ namespace Enemy
                 Debug.Log("Spawning boss ship");
             }
 
-            Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
+            GameObject currentShip = Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
             // Change HP depending on the wave
-            //currentShip.GetComponent<PirateShipController>().MultiplyHp(1 + currentWave * 0.125f);
+            currentShip.GetComponent<PirateShipController>().MultiplyHp(1 + currentWave * 0.25f);
 
             shipsLeftToSpawn--;
             timeSinceLastSpawn = 0f;
