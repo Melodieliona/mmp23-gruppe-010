@@ -36,7 +36,6 @@ namespace Defence
             PirateShipController ship = other.gameObject.GetComponent<PirateShipController>();
             if (ship == null) return;
 
-            Debug.Log(isStrong + " " + shipCount);
             ship.Damage(BulletDamage);
             if (isStrong && shipCount < maxShips)
             {

@@ -64,7 +64,7 @@ namespace Enemy
             {
                 SpawnShip();
             }
-            
+
             shipList = GameObject.FindGameObjectsWithTag("PirateShip");
 
             if (shipsLeftToSpawn <= 0 && shipList.Length <= 0)
@@ -124,10 +124,14 @@ namespace Enemy
             }
 
             //Add 1 boss ship at the end of the 10th wave
-            if (currentWave == 1 && shipsLeftToSpawn == 5) ship = bossShip;
+            if (currentWave == 10 && shipsLeftToSpawn == 5)
+            {
+                ship = bossShip;
+                Debug.Log("Spawning boss ship");
+            }
 
+            Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
             // Change HP depending on the wave
-            GameObject currentShip = Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
             //currentShip.GetComponent<PirateShipController>().MultiplyHp(1 + currentWave * 0.125f);
 
             shipsLeftToSpawn--;

@@ -52,13 +52,13 @@ namespace Sound
             musicSource.Play();
 
             GUIManager guiManager = FindObjectOfType<GUIManager>();
-            UIDocument uIDocument = guiManager.GetComponent<UIDocument>();
+            UIDocument uiDocument = guiManager.GetComponent<UIDocument>();
 
-            musicVolumeSlider = uIDocument.rootVisualElement.Q<Slider>("MusicSlider");
+            musicVolumeSlider = uiDocument.rootVisualElement.Q<Slider>("MusicSlider");
             musicVolumeSlider.RegisterValueChangedCallback(OnMusicVolumeChanged);
             musicVolumeSlider.value = 0.7f;
 
-            sfxVolumeSlider = uIDocument.rootVisualElement.Q<Slider>("SFXSlider");
+            sfxVolumeSlider = uiDocument.rootVisualElement.Q<Slider>("SFXSlider");
             sfxVolumeSlider.RegisterValueChangedCallback(OnSfxVolumeChanged);
             sfxVolumeSlider.value = 0.7f;
         }

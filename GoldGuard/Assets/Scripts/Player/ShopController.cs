@@ -86,7 +86,7 @@ namespace Player
         {
             CalculateGridAlpha();
             ShowIndicator();
-            CheckForPrice();
+            CheckItemAffordability();
 
             if (selectedShopItem != null)
             {
@@ -109,7 +109,7 @@ namespace Player
             }
         }
 
-        private void CheckForPrice()
+        private void CheckItemAffordability()
         {
             int playerGold = playerController.GetGold();
             foreach (ShopItem item in items)
@@ -117,7 +117,7 @@ namespace Player
                 GetComponent<UIDocument>().rootVisualElement.Q<Button>("ShopButton" + item.GetSlot()).style.backgroundImage = new StyleBackground(item.GetSprite(playerGold));
             }
         }
-        
+
         private void CheckForPlacement()
         {
             if (!Input.GetMouseButtonDown(0)) return;
