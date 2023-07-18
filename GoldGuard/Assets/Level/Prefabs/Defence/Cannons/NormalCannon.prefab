@@ -77,7 +77,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2580092388935625462}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: FiringPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2580092389826512481}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: RotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2580092390046635617}
   - component: {fileID: 2580092390046635616}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cannon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 2580092390061179385}
   - component: {fileID: 4419813023781334246}
   - component: {fileID: 1320883840770742544}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: NormalCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 5341137858363986822}
   - component: {fileID: 1556509666579494323}
   - component: {fileID: 3676026616472029822}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 8537570603640983837}
   - component: {fileID: 5593363424995592598}
   - component: {fileID: 4939953079295808210}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: UpgradeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 7810662697592772669}
   - component: {fileID: 1631037699996014153}
   - component: {fileID: 5137470121758418367}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CanonUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 5085985822838759904}
   - component: {fileID: 4115111575017511742}
   - component: {fileID: 6239452904156836680}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: SellButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 2714318549629129688}
   - component: {fileID: 3113654439914357116}
   - component: {fileID: 2318352316002213355}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

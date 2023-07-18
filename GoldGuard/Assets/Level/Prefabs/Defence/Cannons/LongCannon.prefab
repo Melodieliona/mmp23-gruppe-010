@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2580092388935625462}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FiringPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2580092389826512481}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: RotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2580092390046635617}
   - component: {fileID: 2580092390046635616}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Cannon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 2580092390061179384}
   - component: {fileID: 2580092390061179385}
   - component: {fileID: 4419813023781334246}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: LongCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
