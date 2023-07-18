@@ -25,6 +25,16 @@ namespace Player
         [SerializeField] private GameObject radius;
         [SerializeField] private float fadeDuration = 0.25f;
 
+        [Header("ShopItems")]
+        [SerializeField] private Sprite cannon1IMG;
+        [SerializeField] private Sprite cannon1IMG_red;
+        [SerializeField] private Sprite cannon2IMG;
+        [SerializeField] private Sprite cannon2IMG_red;
+        [SerializeField] private Sprite cannon3IMG;
+        [SerializeField] private Sprite cannon3IMG_red;
+        [SerializeField] private Sprite krakenIMG;
+        [SerializeField] private Sprite krakenIMG_red;
+
         private PlayerController playerController;
         private Grid mapGrid;
         private GameObject[] obstacleList;
