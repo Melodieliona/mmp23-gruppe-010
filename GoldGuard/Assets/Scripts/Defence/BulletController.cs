@@ -8,11 +8,12 @@ namespace Defence
         [Header("References")]
         [SerializeField] private Rigidbody2D rb;
 
-        private float BulletSpeed = 10f;
-        private int BulletDamage = 5;
+        private float bulletSpeed = 10f;
+        private int bulletDamage = 5;
+
         private bool isStrong = false;
-        private const int maxShips = 3;
         private int shipCount = 0;
+        private const int MaxShips = 3;
 
         public void SetTarget(Transform target)
         {
@@ -20,12 +21,12 @@ namespace Defence
 
             if (isStrong)
             {
-                BulletSpeed *= 1.1f;
-                BulletDamage *= 2;
+                bulletSpeed *= 1.1f;
+                bulletDamage *= 2;
             }
 
             Vector2 direction = ((Vector2)target.position - (Vector2)transform.position).normalized;
-            rb.velocity = direction * BulletSpeed;
+            rb.velocity = direction * bulletSpeed;
             Destroy(gameObject, 10f);
         }
 
@@ -36,8 +37,8 @@ namespace Defence
             PirateShipController ship = other.gameObject.GetComponent<PirateShipController>();
             if (ship == null) return;
 
-            ship.Damage(BulletDamage);
-            if (isStrong && shipCount < maxShips)
+            ship.Damage(bulletDamage);
+            if (isStrong && shipCount < MaxShips)
             {
                 shipCount++;
             }
