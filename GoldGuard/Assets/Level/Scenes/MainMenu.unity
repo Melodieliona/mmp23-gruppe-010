@@ -502,8 +502,7 @@ MonoBehaviour:
   m_text: PLAY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
-  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5,
-    type: 2}
+  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1551,8 +1550,7 @@ MonoBehaviour:
   m_text: GOLD GUARD
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
-  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5,
-    type: 2}
+  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2352,8 +2350,7 @@ MonoBehaviour:
         m_MethodName: PlaySfx
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 4d5c03259cc255347aea4ca43ecf252b,
-            type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 4d5c03259cc255347aea4ca43ecf252b, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2574,8 +2571,7 @@ MonoBehaviour:
   m_text: QUIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
-  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5,
-    type: 2}
+  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2853,8 +2849,7 @@ MonoBehaviour:
   m_text: SFX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
-  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5,
-    type: 2}
+  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3136,8 +3131,7 @@ MonoBehaviour:
         m_MethodName: PlaySfx
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 4d5c03259cc255347aea4ca43ecf252b,
-            type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 4d5c03259cc255347aea4ca43ecf252b, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3245,8 +3239,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
-  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5,
-    type: 2}
+  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3332,7 +3325,7 @@ GameObject:
   - component: {fileID: 2100171591}
   m_Layer: 5
   m_Name: VolumeSlider
-  m_TagString: Untagged
+  m_TagString: UImanager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3351,8 +3344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 2cacac1c9973ca243bf1811791f3cb7c, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: fd69ac1fa2510e349891c59540875acf,
-    type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: fd69ac1fa2510e349891c59540875acf, type: 3}
   m_SortingOrder: 0
 --- !u!4 &2100171592
 Transform:

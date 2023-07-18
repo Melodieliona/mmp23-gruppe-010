@@ -52,7 +52,15 @@ namespace Sound
             musicSource.Play();
 
             GUIManager guiManager = FindObjectOfType<GUIManager>();
-            UIDocument uiDocument = guiManager.GetComponent<UIDocument>();
+            UIDocument uiDocument = null;
+            if (guiManager != null )
+            {
+                uiDocument = guiManager.GetComponent<UIDocument>();
+            }
+            else
+            {
+                uiDocument = GameObject.Find("VolumeSlider").GetComponent<UIDocument>();
+            }
 
             musicVolumeSlider = uiDocument.rootVisualElement.Q<Slider>("MusicSlider");
             musicVolumeSlider.RegisterValueChangedCallback(OnMusicVolumeChanged);
