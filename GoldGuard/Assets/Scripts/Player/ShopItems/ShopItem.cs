@@ -2,6 +2,7 @@ using Defence;
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Player.ShopItems
 {
@@ -45,7 +46,7 @@ namespace Player.ShopItems
         {
             return transparentPrefab.GetComponent<SpriteRenderer>();
         }
-
+        
         public int GetSlot()
         {
             return slot;

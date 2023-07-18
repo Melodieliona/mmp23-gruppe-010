@@ -117,7 +117,7 @@ namespace Player
                 GetComponent<UIDocument>().rootVisualElement.Q<Button>("ShopButton" + item.GetSlot()).style.backgroundImage = new StyleBackground(item.GetSprite(playerGold));
             }
         }
-        
+
         private void CheckForPlacement()
         {
             if (!Input.GetMouseButtonDown(0)) return;

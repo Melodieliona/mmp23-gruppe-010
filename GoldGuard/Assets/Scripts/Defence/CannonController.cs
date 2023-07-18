@@ -61,7 +61,7 @@ namespace Defence
 
             RotateTowardsTarget();
 
-            if (!CheckTargetIsInRange())
+            if (!IsTargetInRange())
             {
                 target = null;
                 return;
@@ -96,7 +96,7 @@ namespace Defence
             }
         }
 
-        private bool CheckTargetIsInRange()
+        private bool IsTargetInRange()
         {
             return Vector2.Distance(target.position, transform.position) <= targetingRange;
         }
@@ -154,13 +154,13 @@ namespace Defence
             Destroy(gameObject);
         }
 
-        //Calculate cost of each upgrade
+        // Calculate cost of each upgrade
         private int CalculateCost()
         {
             return cannonDefaultCost + cannonLevel * 50;
         }
 
-        //Calculate worth of the turret including its upgrades
+        // Calculate worth of the turret including its upgrades
         private int CalculateWorth()
         {
             return Mathf.RoundToInt(CalculateCost() / 2);
