@@ -45,7 +45,7 @@ namespace Player
         public void AddGold(int gold)
         {
             goldCount += gold;
-            goldChangeEvent.Invoke();   
+            goldChangeEvent.Invoke();
         }
 
         public bool RemoveGold(int gold)
@@ -56,11 +56,9 @@ namespace Player
                 goldChangeEvent.Invoke();
                 return true;
             }
-            else
-            {
-                //Show the user that he can't afford it
-                return false;
-            }
+
+            // Show the user that he can't afford it
+            return false;
         }
 
         public void AddScore(int score)
