@@ -136,6 +136,10 @@ namespace Defence
         {
             Debug.Log("Upgrade Button Clicked");
         }
+        public void SellCanon()
+        {
+            Debug.Log("Sell Button Clicked");
+        }
 
         public float GetRange()
         {
