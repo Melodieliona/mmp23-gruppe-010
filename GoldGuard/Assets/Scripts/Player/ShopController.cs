@@ -89,6 +89,13 @@ namespace Player
 
             if (selectedShopItem != null)
             {
+                if (playerController.GetGold() < selectedShopItem.GetCost())
+                {
+                    Debug.Log("Too expensive! You can't afford it");
+                    selectedShopItem = null;
+                    return;
+                }
+
                 CheckMousePosition();
                 ActivateGrid();
                 CheckForPlacement();
@@ -111,11 +118,7 @@ namespace Player
             if (!IsEligible(cellPosition) || CheckForObstacle(mousePosition)) return;
 
             int weaponCost = selectedShopItem.GetCost();
-            if (!playerController.RemoveGold(weaponCost))
-            {
-                Debug.Log("Too expensive! You can't afford it");
-                return;
-            }
+            playerController.RemoveGold(weaponCost);
 
             DeactivateGrid();
 
