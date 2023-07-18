@@ -17,6 +17,7 @@ namespace Enemy
         [SerializeField] private GameObject normalShip;
         [SerializeField] private GameObject fastShip;
         [SerializeField] private GameObject durableShip;
+        [SerializeField] private GameObject bossShip;
 
         private const int StartingShips = 3;
         private const int TimeBetweenWaves = 10;
@@ -121,12 +122,14 @@ namespace Enemy
             {
                 ship = durableShip;
             }
-            
+
+            //Add 1 boss ship at the end of the 10th wave
+            if (currentWave == 1 && shipsLeftToSpawn == 5) ship = bossShip;
+
             // Change HP depending on the wave
             GameObject currentShip = Instantiate(ship, spawnPoint.position, spawnPoint.rotation);
-            currentShip.GetComponent<PirateShipController>().MultiplyHp(1 + currentWave * 0.125f);
+            //currentShip.GetComponent<PirateShipController>().MultiplyHp(1 + currentWave * 0.125f);
 
-            //shipList.Add(currentShip);
             shipsLeftToSpawn--;
             timeSinceLastSpawn = 0f;
         }
