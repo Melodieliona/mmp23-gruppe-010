@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Scenes
 {
-    public class GameOverScreen : MonoBehaviour
+    public class WinScreen : MonoBehaviour
     {
         public Text scoreNumber;
         private SoundEffectsPlayer soundEffect;
@@ -15,13 +15,13 @@ namespace Scenes
         {
             scoreNumber.text = "SCORE: " + ScoreController.GetScore();
             soundEffect = SoundEffectsPlayer.Instance;
-            soundEffect.PlaySfx(soundEffect.lost);
+            soundEffect.PlaySfx(soundEffect.lost); // Change to different sound
             soundEffect.PlayBackgroundMusic(soundEffect.background);
 
             Debug.Log(scoreNumber.text);
         }
 
-        public void RetryButton()
+        public void PlayAgainButton()
         {
             SceneManager.LoadScene("Game");
             Debug.Log("Retry");

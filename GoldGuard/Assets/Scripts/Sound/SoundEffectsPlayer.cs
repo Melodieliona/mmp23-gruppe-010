@@ -30,8 +30,6 @@ namespace Sound
 
         private bool isBackgroundMusicLooping = true;
         private const float FadeDuration = 5f;
-        private const float SfxVolume = 1f;
-        private const float MusicVolume = 1f;
 
         private void Awake()
         {

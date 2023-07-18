@@ -3,6 +3,7 @@ using Player;
 using Sound;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace Enemy
 {
@@ -20,6 +21,7 @@ namespace Enemy
         [SerializeField] private GameObject bossShip;
 
         private const int StartingShips = 3;
+        private const int MaxWaves = 10;
         private const int TimeBetweenWaves = 10;
         private float shipsPerSecond = 0.5f;
         private int timerCounter;
@@ -75,6 +77,12 @@ namespace Enemy
 
         private IEnumerator StartWave()
         {
+            if (currentWave == MaxWaves)
+            {
+                SceneManager.LoadScene("WinScreen");
+                yield return null;
+            }
+            
             guiManager.ShowTimer();
             soundEffect.PlayBackgroundMusic(soundEffect.settingTime);
             for (timerCounter = TimeBetweenWaves; timerCounter >= 0; timerCounter--)
@@ -162,15 +170,7 @@ namespace Enemy
         /// <returns>The amount of ships</returns>
         private int ShipsPerWave()
         {
-            int factor = 3;
-            if(currentWave > 4)
-            {
-                factor = 4;
-                if(currentWave > 8)
-                {
-                    factor = 6;
-                }
-            }
+            int factor = currentWave > 4 ? currentWave > 8 ? 6 : 4 : 3;
             return StartingShips + currentWave * factor;
         }
 
