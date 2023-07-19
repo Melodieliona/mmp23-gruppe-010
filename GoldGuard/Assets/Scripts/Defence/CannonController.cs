@@ -25,10 +25,22 @@ namespace Defence
         private PlayerController playerController;
         private ShopController shopController;
 
+        /// <summary>
+        /// Gets the stats the cannon has when first placed.
+        /// </summary>
+        /// <returns>The stats the cannon has when first placed</returns>
         protected abstract CannonStats GetBaseStats();
 
+        /// <summary>
+        /// Gets the stats after the cannon has has been upgraded for the first time.
+        /// </summary>
+        /// <returns>The stats after the cannon has has been upgraded for the first time</returns>
         protected abstract CannonStats GetFirstUpgrade();
 
+        /// <summary>
+        /// Gets the stats after the cannon has has been upgraded for the second time.
+        /// </summary>
+        /// <returns>The stats after the cannon has has been upgraded for the second time</returns>
         protected abstract CannonStats GetSecondUpgrade();
 
         public CannonStats GetCurrentLevel()
