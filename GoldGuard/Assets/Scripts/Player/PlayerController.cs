@@ -63,7 +63,7 @@ namespace Player
 
         public void AddScore(int score)
         {
-            ScoreController.AddScore(score);
+            PlayerStats.Score += score;
         }
     }
 }
