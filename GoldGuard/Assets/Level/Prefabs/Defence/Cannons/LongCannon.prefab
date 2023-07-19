@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 2580092390046635617}
   - component: {fileID: 2580092390046635616}
   m_Layer: 0
-  m_Name: LongCannon
+  m_Name: LongCannonSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -443,6 +443,8 @@ MonoBehaviour:
   firingPoint: {fileID: 2580092388935625462}
   cannonType: 2
   cannonUI: {fileID: 1085988741924192134}
+  cannon3Level1: {fileID: 21300000, guid: 05df39c4881384b47bf8d7bd1ea36c35, type: 3}
+  cannon3Level2: {fileID: 21300000, guid: 765375196ae8911418e3ae363fc130d6, type: 3}
 --- !u!212 &4419813023781334246
 SpriteRenderer:
   m_ObjectHideFlags: 0
