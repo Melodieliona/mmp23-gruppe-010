@@ -14,11 +14,10 @@ namespace Scenes
         private void Awake()
         {
             scoreNumber.text = "SCORE: " + PlayerStats.Score;
+            
             soundEffect = SoundEffectsPlayer.Instance;
             soundEffect.PlaySfx(soundEffect.won);
             soundEffect.PlayBackgroundMusic(soundEffect.background);
-
-            Debug.Log(scoreNumber.text);
         }
 
         public void PlayAgainButton()

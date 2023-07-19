@@ -14,6 +14,7 @@ namespace Scenes
         private void Awake()
         {
             scoreNumber.text = "SCORE: " + PlayerStats.Score;
+            
             soundEffect = SoundEffectsPlayer.Instance;
             soundEffect.PlaySfx(soundEffect.lost);
             soundEffect.PlayBackgroundMusic(soundEffect.background);
