@@ -23,12 +23,14 @@ namespace Scenes
 
         public void PlayAgainButton()
         {
+            soundEffect.PlaySfx(soundEffect.button);
             SceneManager.LoadScene("Game");
             Debug.Log("Retry");
         }
 
         public void QuitButton()
         {
+            soundEffect.PlaySfx(soundEffect.button);
             Application.Quit();
             Debug.Log("Main");
         }

@@ -318,7 +318,8 @@ MonoBehaviour:
   hp: {fileID: 8300000, guid: d2a55c0fedaa4c14c9b7f84566dc4521, type: 3}
   cannon: {fileID: 8300000, guid: 01aea12957b58f2418cf0ea858b53cd4, type: 3}
   horn: {fileID: 8300000, guid: 4025b66659d08784e991553a5c2868f8, type: 3}
-  lost: {fileID: 8300000, guid: 6e14f050f2a25074e82c0687de882c54, type: 3}
+  lost: {fileID: 8300000, guid: e736b9f312d476b4ebd29e382d0cb509, type: 3}
+  won: {fileID: 8300000, guid: e736b9f312d476b4ebd29e382d0cb509, type: 3}
   coins: {fileID: 8300000, guid: 5d643cb835014e548a0a7909fd2364e5, type: 3}
 --- !u!1 &45420598
 GameObject:
