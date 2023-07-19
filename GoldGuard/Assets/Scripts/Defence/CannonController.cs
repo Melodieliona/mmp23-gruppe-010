@@ -1,6 +1,7 @@
 using Player;
 using Sound;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Defence
 {
@@ -24,6 +25,7 @@ namespace Defence
 
         private PlayerController playerController;
         private ShopController shopController;
+        private GameObject eventSystem;
 
         /// <summary>
         /// Gets the stats the cannon has when first placed.
@@ -59,6 +61,7 @@ namespace Defence
 
             playerController = FindObjectOfType<PlayerController>();
             shopController = FindObjectOfType<ShopController>();
+            eventSystem = GameObject.Find("EventSystemUI");
 
             cannonUI.GetComponent<Canvas>().worldCamera = Camera.main;
         }
@@ -128,12 +131,14 @@ namespace Defence
                 isUIOpen = true;
                 shopController.ChangeRadiusOpacity(1f);
                 shopController.ChangeRadiusSizeAndPos(currentLevel.GetRange(), gameObject.transform.position);
+                eventSystem.SetActive(false);
             }
             else
             {
                 cannonUI.SetActive(false);
                 isUIOpen = false;
                 shopController.ChangeRadiusOpacity(0f);
+                eventSystem.SetActive(true);
             }
         }
 
@@ -173,6 +178,7 @@ namespace Defence
             Destroy(gameObject);
             shopController.GetLandTiles().RefreshAllTiles();
             shopController.ChangeRadiusOpacity(0f);
+            eventSystem.SetActive(true);
         }
 
         /// <summary>
