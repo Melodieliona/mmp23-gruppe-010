@@ -7,6 +7,7 @@ TagManager:
   - UImanager
   - Obstacles
   - Audio
+  - Undefined
   - PirateShip
   layers:
   - Default
