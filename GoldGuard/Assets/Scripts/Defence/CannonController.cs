@@ -1,9 +1,6 @@
 using Player;
-using Player.ShopItems;
 using Sound;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 namespace Defence
 {
@@ -17,17 +14,8 @@ namespace Defence
         [SerializeField] private CannonType cannonType;
         [SerializeField] private GameObject cannonUI;
 
-        [Header("Attribute")]
-        [SerializeField] private float targetingRange;
-        [SerializeField] private int cannonDefaultCost;
-        [SerializeField] private float rotationSpeed = 400f;
-        [SerializeField] private float bps = 1f;
-
-        // Base attributes of the turret (i.e. no upgrades)
         private const int MaxLevel = 3;
-        private int currentLevel = 1;
-        private float baseBps;
-        private float baseTargetingRange;
+        private CannonStats currentLevel;
 
         private Transform target;
         private float timeUntilFire;
@@ -37,6 +25,17 @@ namespace Defence
         private PlayerController playerController;
         private ShopController shopController;
 
+        protected abstract CannonStats GetBaseStats();
+
+        protected abstract CannonStats GetFirstUpgrade();
+
+        protected abstract CannonStats GetSecondUpgrade();
+
+        public CannonStats GetCurrentLevel()
+        {
+            return currentLevel;
+        }
+
         private void Awake()
         {
             soundEffect = SoundEffectsPlayer.Instance;
@@ -44,8 +43,7 @@ namespace Defence
 
         private void Start()
         {
-            baseBps = bps;
-            baseTargetingRange = targetingRange;
+            currentLevel = GetBaseStats();
 
             playerController = FindObjectOfType<PlayerController>();
             shopController = FindObjectOfType<ShopController>();
@@ -70,7 +68,7 @@ namespace Defence
             }
 
             timeUntilFire += Time.deltaTime;
-            if (timeUntilFire >= 1f / bps)
+            if (timeUntilFire >= 1f / currentLevel.GetBps())
             {
                 Shoot();
                 soundEffect.PlaySfx(soundEffect.cannon);
@@ -88,7 +86,7 @@ namespace Defence
 
         private void FindTarget()
         {
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange, transform.position, 0f, enemyMask);
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, currentLevel.GetRange(), transform.position, 0f, enemyMask);
 
             if (hits.Length > 0)
             {
@@ -98,7 +96,7 @@ namespace Defence
 
         private bool IsTargetInRange()
         {
-            return Vector2.Distance(target.position, transform.position) <= targetingRange;
+            return Vector2.Distance(target.position, transform.position) <= currentLevel.GetRange();
         }
 
         private void RotateTowardsTarget()
@@ -107,7 +105,7 @@ namespace Defence
             Vector2 targetPos = target.position;
             float angle = Mathf.Atan2(targetPos.y - cannonPos.y, targetPos.x - cannonPos.x) * Mathf.Rad2Deg + 90f;
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-            turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, currentLevel.GetRotationSpeed() * Time.deltaTime);
         }
 
         private void OnMouseDown()
@@ -129,7 +127,7 @@ namespace Defence
 
         public void UpgradeCannon()
         {
-            if (currentLevel >= MaxLevel)
+            if (currentLevel.GetLevel() == GetSecondUpgrade().GetLevel())
             {
                 Debug.Log("Max Cannon level reached (Level " + MaxLevel + ")");
                 return;
@@ -142,11 +140,18 @@ namespace Defence
             }
 
             playerController.RemoveGold(CalculateCost());
-            currentLevel++;
-            bps = CalculateBps();
-            targetingRange = CalculateRange();
 
-            Debug.Log("Cannon Level: " + currentLevel);
+            switch (currentLevel.GetLevel())
+            {
+                case 1:
+                    currentLevel = GetFirstUpgrade();
+                    break;
+                case 2:
+                    currentLevel = GetSecondUpgrade();
+                    break;
+            }
+
+            Debug.Log("Upgraded cannon! " + currentLevel);
         }
 
         public void SellCannon()
@@ -164,7 +169,7 @@ namespace Defence
         /// <returns>The amount of gold that the next update level costs</returns>
         private int CalculateCost()
         {
-            return cannonDefaultCost + currentLevel * 50;
+            return GetBaseStats().GetCost() + currentLevel.GetLevel() * 50;
         }
 
         /// <summary>
@@ -174,21 +179,6 @@ namespace Defence
         private int CalculateValue()
         {
             return Mathf.RoundToInt(CalculateCost() / 2);
-        }
-
-        private float CalculateBps()
-        {
-            return baseBps * Mathf.Pow(currentLevel, 0.5f);
-        }
-
-        private float CalculateRange()
-        {
-            return baseTargetingRange * Mathf.Pow(currentLevel, 0.4f);
-        }
-
-        public float GetRange()
-        {
-            return targetingRange;
         }
     }
 }

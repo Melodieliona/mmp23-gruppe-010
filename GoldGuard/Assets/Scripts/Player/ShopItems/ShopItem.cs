@@ -71,7 +71,7 @@ namespace Player.ShopItems
                 return 1;
             }
 
-            return controller.GetRange();
+            return controller.GetCurrentLevel().GetRange();
         }
 
         public Sprite GetSprite(int playerGold)
