@@ -21,9 +21,8 @@ namespace Scenes
 
         public void QuitButton()
         {
-            Application.Quit();
             soundEffect.PlaySfx(soundEffect.button);
-            Debug.Log("Quit Application");
+            Application.Quit();
         }
     }
 }

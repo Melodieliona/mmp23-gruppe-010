@@ -52,7 +52,7 @@ namespace Sound
 
             GUIManager guiManager = FindObjectOfType<GUIManager>();
             UIDocument uiDocument = null;
-            if (guiManager != null )
+            if (guiManager != null)
             {
                 uiDocument = guiManager.GetComponent<UIDocument>();
             }
@@ -63,11 +63,11 @@ namespace Sound
 
             musicVolumeSlider = uiDocument.rootVisualElement.Q<Slider>("MusicSlider");
             musicVolumeSlider.RegisterValueChangedCallback(OnMusicVolumeChanged);
-            musicVolumeSlider.value = 0.7f;
+            musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolume", 0.5f);
 
             sfxVolumeSlider = uiDocument.rootVisualElement.Q<Slider>("SFXSlider");
             sfxVolumeSlider.RegisterValueChangedCallback(OnSfxVolumeChanged);
-            sfxVolumeSlider.value = 0.7f;
+            sfxVolumeSlider.value = PlayerPrefs.GetFloat("sfxVolume", 0.5f);
         }
 
         public static SoundEffectsPlayer Instance { get; private set; }
@@ -115,11 +115,15 @@ namespace Sound
         private void OnMusicVolumeChanged(ChangeEvent<float> evt)
         {
             musicSource.volume = evt.newValue;
+            PlayerPrefs.SetFloat("musicVolume", evt.newValue);
+            PlayerPrefs.Save();
         }
 
         private void OnSfxVolumeChanged(ChangeEvent<float> evt)
         {
             sfxSource.volume = evt.newValue;
+            PlayerPrefs.SetFloat("sfxVolume", evt.newValue);
+            PlayerPrefs.Save();
         }
     }
 }

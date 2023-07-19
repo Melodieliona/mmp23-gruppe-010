@@ -13,26 +13,23 @@ namespace Scenes
 
         private void Awake()
         {
-            scoreNumber.text = "SCORE: " + ScoreController.GetScore();
+            scoreNumber.text = "SCORE: " + PlayerStats.Score;
+            
             soundEffect = SoundEffectsPlayer.Instance;
             soundEffect.PlaySfx(soundEffect.lost);
             soundEffect.PlayBackgroundMusic(soundEffect.background);
-
-            Debug.Log(scoreNumber.text);
         }
 
         public void RetryButton()
         {
             soundEffect.PlaySfx(soundEffect.button);
             SceneManager.LoadScene("Game");
-            Debug.Log("Retry");
         }
 
         public void QuitButton()
         {
             soundEffect.PlaySfx(soundEffect.button);
             Application.Quit();
-            Debug.Log("Main");
         }
     }
 }
