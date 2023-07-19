@@ -160,8 +160,8 @@ namespace Defence
             }
 
             playerController.RemoveGold(cost);
-            currentLevel = nextLevel;
             shopController.ChangeRadiusSizeAndPos(nextLevel.GetRange(), gameObject.transform.position);
+            currentLevel = nextLevel;
             Debug.Log("Upgraded cannon! " + nextLevel);
         }
 

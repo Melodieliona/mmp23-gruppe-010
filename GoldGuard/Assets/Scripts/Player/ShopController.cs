@@ -1,9 +1,7 @@
-using System.Linq;
 using Player.ShopItems;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.Port;
 
 namespace Player
 {
@@ -27,7 +25,6 @@ namespace Player
 
         private PlayerController playerController;
         private Grid mapGrid;
-        private GameObject[] obstacleList;
         private Material gridMaterial;
         private Material cursorMaterial;
         private Material radiusMaterial;
@@ -45,7 +42,6 @@ namespace Player
         {
             mapGrid = map.GetComponent<Grid>();
             playerController = FindObjectOfType<PlayerController>();
-            obstacleList = GameObject.FindGameObjectsWithTag("Obstacles");
 
             // Instantiate the material to prevent the changes to stay even after the game ended
             var meshRenderer = placementGrid.GetComponent<MeshRenderer>();
@@ -126,7 +122,7 @@ namespace Player
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Tilemap selectedTiles = selectedShopItem.GetTileType() == TileType.Land ? landTiles : waterTiles;
             Vector3Int cellPosition = selectedTiles.WorldToCell(mousePosition);
-            if (!IsEligible(cellPosition) || HasObstacle(mousePosition)) return;
+            if (!IsEligible(cellPosition)) return;
 
             int weaponCost = selectedShopItem.GetCost();
             playerController.RemoveGold(weaponCost);
@@ -152,11 +148,6 @@ namespace Player
             return tilemap.GetColliderType(cellPosition) == Tile.ColliderType.Sprite;
         }
 
-        private bool HasObstacle(Vector3 mousePosition)
-        {
-            return obstacleList.Any(obstacle => obstacle.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition));
-        }
-
         public Tilemap GetLandTiles()
         {
             return landTiles;
@@ -174,28 +165,25 @@ namespace Player
             Vector3Int cellPosition = tiles.WorldToCell(mousePosition);
             Vector3 cellCenter = tiles.GetCellCenterWorld(cellPosition);
 
-            if (IsEligible(cellPosition) && !HasObstacle(mousePosition))
+            bool eligible = IsEligible(cellPosition);
+            if (eligible)
             {
-                //cursor follows the mouse
-                cursor.transform.position = cellCenter;
-                //Set the radius of the item
-                radius.transform.position = cellCenter;
-                //show the preview of the item
-                selectedShopItem.GetTransparentRenderer().color = new Color(1f, 1f, 1f, 110 / 255f);
-                cursorMaterial.SetColor(Color, new Color(1f, 1f, 1f, 1f));
-                radiusMaterial.SetColor(Color, new Color(1f, 1f, 1f, 1f));
-            }
-            else
-            {
-                selectedShopItem.GetTransparentRenderer().color = new Color(1f, 0f, 0f, 110 / 255f);
-                cursorMaterial.SetColor(Color, new Color(1f, 0.3f, 0.3f, 1f));
-                radiusMaterial.SetColor(Color, new Color(1f, 0.3f, 0.3f, 1f));
+                cursor.transform.position = cellCenter; // Cursor follows the mouse
+                radius.transform.position = cellCenter; // Set the radius of the item
             }
 
+            Color itemColor = eligible ? new Color(1f, 1f, 1f, 110 / 255f) : new Color(1f, 0f, 0f, 110 / 255f);
+            selectedShopItem.GetTransparentRenderer().color = itemColor;
             selectedShopItem.GetTransparent().transform.position = cellCenter;
+
+            Color cursorColor = eligible ? new Color(1f, 1f, 1f, 1f) : new Color(1f, 0.3f, 0.3f, 1f);
+            cursorMaterial.SetColor(Color, cursorColor);
+            radiusMaterial.SetColor(Color, cursorColor);
+
             cursor.transform.position = cellCenter;
             radius.transform.position = cellCenter;
-            var currentRange = selectedShopItem.GetRange() * 10;
+
+            float currentRange = selectedShopItem.GetRange() * 10;
             radius.transform.localScale = new Vector3(currentRange, currentRange, currentRange);
             radiusMaterial.SetFloat(Thickness, currentRange >= 24 ? 0.05f : 0.1f);
         }
