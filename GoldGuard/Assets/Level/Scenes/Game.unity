@@ -843,10 +843,11 @@ MonoBehaviour:
   backgroundGame: {fileID: 8300000, guid: d44b068753ffde440a4ae34025614374, type: 3}
   settingTime: {fileID: 8300000, guid: 4c63cc3c61a5f0f49955b93884665476, type: 3}
   timer: {fileID: 8300000, guid: 4fa3767178c8d9242b835898fdb4da8b, type: 3}
-  hp: {fileID: 8300000, guid: d2a55c0fedaa4c14c9b7f84566dc4521, type: 3}
+  hp: {fileID: 8300000, guid: 66ded77120ddfee45ba4fa262525c1de, type: 3}
   cannon: {fileID: 8300000, guid: 01aea12957b58f2418cf0ea858b53cd4, type: 3}
   horn: {fileID: 8300000, guid: 4025b66659d08784e991553a5c2868f8, type: 3}
   lost: {fileID: 8300000, guid: 6e14f050f2a25074e82c0687de882c54, type: 3}
+  won: {fileID: 8300000, guid: e736b9f312d476b4ebd29e382d0cb509, type: 3}
   coins: {fileID: 8300000, guid: 5d643cb835014e548a0a7909fd2364e5, type: 3}
 --- !u!224 &242725730
 RectTransform:

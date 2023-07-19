@@ -22,6 +22,7 @@ namespace Sound
         public AudioClip cannon;
         public AudioClip horn;
         public AudioClip lost;
+        public AudioClip won;
         public AudioClip coins;
 
         [Header("Sound Sliders")]

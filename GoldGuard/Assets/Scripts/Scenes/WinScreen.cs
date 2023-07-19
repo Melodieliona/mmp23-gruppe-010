@@ -15,7 +15,7 @@ namespace Scenes
         {
             scoreNumber.text = "SCORE: " + ScoreController.GetScore();
             soundEffect = SoundEffectsPlayer.Instance;
-            soundEffect.PlaySfx(soundEffect.lost); // Change to different sound
+            soundEffect.PlaySfx(soundEffect.won);
             soundEffect.PlayBackgroundMusic(soundEffect.background);
 
             Debug.Log(scoreNumber.text);
