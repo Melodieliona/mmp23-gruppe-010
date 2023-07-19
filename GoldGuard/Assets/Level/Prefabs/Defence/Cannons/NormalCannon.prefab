@@ -225,7 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2580092390061179384}
-  - component: {fileID: 2896535170151675616}
+  - component: {fileID: 7223283282798587039}
   - component: {fileID: 4419813023781334246}
   - component: {fileID: 1320883840770742544}
   m_Layer: 0
@@ -252,7 +252,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2896535170151675616
+--- !u!114 &7223283282798587039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2580092390061179386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 522bb54ac89616cc39c4d9183f9e5fad, type: 3}
+  m_Script: {fileID: 11500000, guid: 22a8e92deafe4eb89b28fa0c7b8ec270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   turretRotationPoint: {fileID: 2580092389826512481}
@@ -269,16 +269,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   bulletPrefab: {fileID: 5953930906818198071, guid: ae91c88e58d90f771a5bbfeb5180ad98, type: 3}
-  bulletStrongPrefab: {fileID: 5953930906818198071, guid: fc8e51dd14eefee46b824e35d116b074, type: 3}
   firingPoint: {fileID: 2580092388935625462}
   cannonType: 0
   cannonUI: {fileID: 2790804491109474161}
-  upgradeButton: {fileID: 4939953079295808210}
-  sellButton: {fileID: 6239452904156836680}
   targetingRange: 5
   cannonDefaultCost: 50
-  cannonMaxLvl: 5
-  upgradeCost: 100
   rotationSpeed: 400
   bps: 1
 --- !u!212 &4419813023781334246
@@ -635,7 +630,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2896535170151675616}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Defence.NormalCannonController, Assembly-CSharp
         m_MethodName: UpgradeCannon
         m_Mode: 1
@@ -874,7 +869,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2896535170151675616}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Defence.NormalCannonController, Assembly-CSharp
         m_MethodName: SellCannon
         m_Mode: 1

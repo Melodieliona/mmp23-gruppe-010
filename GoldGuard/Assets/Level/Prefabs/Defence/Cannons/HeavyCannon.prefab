@@ -604,16 +604,12 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
-  bulletPrefab: {fileID: 5953930906818198071, guid: ae91c88e58d90f771a5bbfeb5180ad98, type: 3}
-  bulletStrongPrefab: {fileID: 5953930906818198071, guid: fc8e51dd14eefee46b824e35d116b074, type: 3}
+  bulletPrefab: {fileID: 5953930906818198071, guid: fc8e51dd14eefee46b824e35d116b074, type: 3}
   firingPoint: {fileID: 2580092388935625462}
   cannonType: 1
   cannonUI: {fileID: 7652013514550058378}
-  upgradeButton: {fileID: 934060953985823069}
-  sellButton: {fileID: 5616974655734631888}
   targetingRange: 5
   cannonDefaultCost: 125
-  cannonMaxLvl: 5
   rotationSpeed: 400
   bps: 1
 --- !u!212 &5897676907076257038
