@@ -258,5 +258,10 @@ namespace Player
             radius.transform.position = offScreen;
             selectedShopItem.GetTransparent().transform.position = offScreen;
         }
+
+        public void ChangeRadiusOpacity(float opacity)
+        {
+            radiusMaterial.SetFloat(Opacity, opacity);
+        }
     }
 }

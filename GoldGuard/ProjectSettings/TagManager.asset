@@ -29,7 +29,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - UI Buttons
   - 
   - 
   - 
@@ -50,4 +50,7 @@ TagManager:
     locked: 0
   - name: Sprites
     uniqueID: 2131010895
+    locked: 0
+  - name: UI
+    uniqueID: 2678530321
     locked: 0

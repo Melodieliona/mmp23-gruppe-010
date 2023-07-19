@@ -53,6 +53,8 @@ namespace Defence
 
             playerController = FindObjectOfType<PlayerController>();
             shopController = FindObjectOfType<ShopController>();
+
+            cannonUI.GetComponent<Canvas>().worldCamera = Camera.main;
         }
 
         private void Update()
@@ -121,11 +123,13 @@ namespace Defence
             {
                 cannonUI.SetActive(true);
                 isUIOpen = true;
+                shopController.ChangeRadiusOpacity(1f);
             }
             else
             {
                 cannonUI.SetActive(false);
                 isUIOpen = false;
+                shopController.ChangeRadiusOpacity(0f);
             }
         }
 
@@ -157,6 +161,7 @@ namespace Defence
             Debug.Log("Sold the cannon for: " + CalculateWorth() + " Gold");
             Destroy(gameObject);
             shopController.GetLandTiles().RefreshAllTiles();
+            shopController.ChangeRadiusOpacity(0f);
         }
 
         // Calculate cost of each upgrade
