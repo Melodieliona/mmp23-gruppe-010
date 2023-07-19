@@ -161,7 +161,7 @@ namespace Player
         {
             return landTiles;
         }
-        
+
         /// <summary>
         /// Check if the defence placement indicator should be activated.
         /// </summary>
