@@ -124,6 +124,7 @@ namespace Defence
                 cannonUI.SetActive(true);
                 isUIOpen = true;
                 shopController.ChangeRadiusOpacity(1f);
+                shopController.ChangeRadiusPosition(gameObject.transform.position);
             }
             else
             {

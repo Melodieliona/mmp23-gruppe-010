@@ -263,5 +263,10 @@ namespace Player
         {
             radiusMaterial.SetFloat(Opacity, opacity);
         }
+
+        public void ChangeRadiusPosition(Vector2 position)
+        {
+            radius.transform.position = position;
+        }
     }
 }
