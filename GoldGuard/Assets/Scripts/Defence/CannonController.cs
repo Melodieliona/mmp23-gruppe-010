@@ -135,18 +135,11 @@ namespace Defence
         {
             if (!isUIOpen)
             {
-                eventSystem.SetActive(false);
-                cannonUI.SetActive(true);
-                isUIOpen = true;
-                shopController.ChangeRadiusOpacity(1f);
-                shopController.ChangeRadiusSizeAndPos(currentLevel.GetRange(), gameObject.transform.position);
+                ActivateUpgradeUI();
             }
             else
             {
-                cannonUI.SetActive(false);
-                isUIOpen = false;
-                shopController.ChangeRadiusOpacity(0f);
-                eventSystem.SetActive(true);
+                DeactivateUpgradeUI();
             }
         }
 
@@ -177,8 +170,7 @@ namespace Defence
             Debug.Log("Sold the cannon for: " + CalculateValue() + " Gold");
             Destroy(gameObject);
             shopController.GetLandTiles().RefreshAllTiles();
-            shopController.ChangeRadiusOpacity(0f);
-            eventSystem.SetActive(true);
+            DeactivateUpgradeUI();
         }
 
         /// <summary>
@@ -188,6 +180,23 @@ namespace Defence
         private int CalculateValue()
         {
             return Mathf.RoundToInt(currentLevel.GetCost() / 2f);
+        }
+
+        public void ActivateUpgradeUI()
+        {
+            eventSystem.SetActive(false);
+            cannonUI.SetActive(true);
+            isUIOpen = true;
+            shopController.ChangeRadiusOpacity(1f);
+            shopController.ChangeRadiusSizeAndPos(currentLevel.GetRange(), gameObject.transform.position);
+        }
+
+        public void DeactivateUpgradeUI()
+        {
+            cannonUI.SetActive(false);
+            isUIOpen = false;
+            shopController.ChangeRadiusOpacity(0f);
+            eventSystem.SetActive(true);
         }
     }
 }
