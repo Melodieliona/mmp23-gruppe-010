@@ -3,6 +3,7 @@ using Player.ShopItems;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.Port;
 
 namespace Player
 {
@@ -264,9 +265,12 @@ namespace Player
             radiusMaterial.SetFloat(Opacity, opacity);
         }
 
-        public void ChangeRadiusPosition(Vector2 position)
+        public void ChangeRadiusSizeAndPos(float size, Vector2 position)
         {
             radius.transform.position = position;
+            var currentRange = size * 10;
+            radius.transform.localScale = new Vector3(currentRange, currentRange, currentRange);
+            radiusMaterial.SetFloat(Thickness, currentRange >= 24 ? 0.05f : 0.1f);
         }
     }
 }
