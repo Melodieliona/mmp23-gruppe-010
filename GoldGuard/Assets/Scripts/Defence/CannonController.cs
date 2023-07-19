@@ -1,7 +1,6 @@
 using Player;
 using Sound;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Defence
 {
@@ -44,9 +43,7 @@ namespace Defence
         /// </summary>
         /// <returns>The stats after the cannon has has been upgraded for the second time</returns>
         protected abstract CannonStats GetSecondUpgrade();
-
-        protected abstract void ChangeSprite(int level);
-
+        
         public CannonStats GetCurrentLevel()
         {
             return currentLevel;
