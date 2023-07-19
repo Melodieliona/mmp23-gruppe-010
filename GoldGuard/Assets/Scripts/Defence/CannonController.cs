@@ -50,6 +50,16 @@ namespace Defence
             return currentLevel;
         }
 
+        private CannonStats GetNextLevel()
+        {
+            return currentLevel.GetLevel() switch
+            {
+                1 => GetFirstUpgrade(),
+                2 => GetSecondUpgrade(),
+                _ => null
+            };
+        }
+
         private void Awake()
         {
             soundEffect = SoundEffectsPlayer.Instance;
@@ -102,7 +112,6 @@ namespace Defence
         private void FindTarget()
         {
             RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, currentLevel.GetRange(), transform.position, 0f, enemyMask);
-
             if (hits.Length > 0)
             {
                 target = hits[0].transform;
@@ -144,31 +153,23 @@ namespace Defence
 
         public void UpgradeCannon()
         {
-            if (currentLevel.GetLevel() == GetSecondUpgrade().GetLevel())
+            if (currentLevel.GetLevel() == MaxLevel)
             {
                 Debug.Log("Max Cannon level reached (Level " + MaxLevel + ")");
                 return;
             }
 
-            if (CalculateCost() > playerController.GetGold())
+            CannonStats nextLevel = GetNextLevel();
+            int cost = nextLevel.GetCost();
+            if (cost > playerController.GetGold())
             {
-                Debug.Log("Too expensive! The upgrade cost is: " + CalculateCost() + " Gold");
+                Debug.Log("Too expensive! The upgrade cost is: " + cost + " Gold");
                 return;
             }
 
-            playerController.RemoveGold(CalculateCost());
-
-            switch (currentLevel.GetLevel())
-            {
-                case 1:
-                    currentLevel = GetFirstUpgrade();
-                    break;
-                case 2:
-                    currentLevel = GetSecondUpgrade();
-                    break;
-            }
-
-            Debug.Log("Upgraded cannon! " + currentLevel);
+            playerController.RemoveGold(cost);
+            currentLevel = nextLevel;
+            Debug.Log("Upgraded cannon! " + nextLevel);
         }
 
         public void SellCannon()
@@ -182,21 +183,12 @@ namespace Defence
         }
 
         /// <summary>
-        /// Calculates the cost of each upgrade level.
-        /// </summary>
-        /// <returns>The amount of gold that the next update level costs</returns>
-        private int CalculateCost()
-        {
-            return GetBaseStats().GetCost() + currentLevel.GetLevel() * 50;
-        }
-
-        /// <summary>
         /// Calculates the value of the cannon including its upgrades
         /// </summary>
         /// <returns>The amount of gold that the next update level costs</returns>
         private int CalculateValue()
         {
-            return Mathf.RoundToInt(CalculateCost() / 2);
+            return Mathf.RoundToInt(currentLevel.GetCost() / 2f);
         }
     }
 }
