@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 2580092390046635617}
   - component: {fileID: 2580092390046635616}
   m_Layer: 0
-  m_Name: Cannon2
+  m_Name: HeavyCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -608,10 +608,6 @@ MonoBehaviour:
   firingPoint: {fileID: 2580092388935625462}
   cannonType: 1
   cannonUI: {fileID: 7652013514550058378}
-  targetingRange: 5
-  cannonDefaultCost: 125
-  rotationSpeed: 400
-  bps: 1
 --- !u!212 &5897676907076257038
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -790,7 +786,7 @@ GameObject:
   - component: {fileID: 808636141372425651}
   - component: {fileID: 363273264182732227}
   m_Layer: 0
-  m_Name: CanonUI
+  m_Name: CannonUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
