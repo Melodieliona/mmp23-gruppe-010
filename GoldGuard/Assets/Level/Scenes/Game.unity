@@ -1374,6 +1374,11 @@ Transform:
   m_Father: {fileID: 22357636}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!4 &364462763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2580092388935625462, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
+  m_PrefabInstance: {fileID: 1773140995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &397891664
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,6 +2169,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f061e5bcc490949c087dd65c8fd94b30, type: 3}
+--- !u!1 &668477899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2580092390061179386, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
+  m_PrefabInstance: {fileID: 1773140995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &672982109
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,7 +3416,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1820023437}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Defence.CannonController, Assembly-CSharp
         m_MethodName: UpgradeCannon
         m_Mode: 1
@@ -3691,7 +3701,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1820023437}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Defence.CannonController, Assembly-CSharp
         m_MethodName: SellCannon
         m_Mode: 1
@@ -4076,7 +4086,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1820023437}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Defence.CannonController, Assembly-CSharp
         m_MethodName: SellCannon
         m_Mode: 1
@@ -5230,6 +5240,11 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!4 &1620968879 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2580092389826512481, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
+  m_PrefabInstance: {fileID: 1773140995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1621057020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5298,6 +5313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeavyCannon
       objectReference: {fileID: 0}
+    - target: {fileID: 5671146702937484325, guid: 8e43cf1b510df3b4a9c0432924e34bda, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5953930906818198071, guid: fc8e51dd14eefee46b824e35d116b074, type: 3}
     - target: {fileID: 5897676907076257038, guid: 8e43cf1b510df3b4a9c0432924e34bda, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -5871,7 +5890,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1820023437}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Defence.CannonController, Assembly-CSharp
         m_MethodName: UpgradeCannon
         m_Mode: 1
@@ -6088,6 +6107,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 207432032}
     m_Modifications:
+    - target: {fileID: 122199842124458501, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2580092390061179384, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6144,10 +6167,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonUI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4939953079295808210, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239452904156836680, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2896535170151675616, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2580092390061179386, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1820023440}
   m_SourcePrefab: {fileID: 100100000, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
 --- !u!4 &1773140996 stripped
 Transform:
@@ -6289,17 +6324,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818961985}
   m_CullTransparentMesh: 1
---- !u!114 &1820023437 stripped
+--- !u!114 &1820023440
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2580092390061179385, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
-  m_PrefabInstance: {fileID: 1773140995}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 668477899}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 522bb54ac89616cc39c4d9183f9e5fad, type: 3}
+  m_Script: {fileID: 11500000, guid: 22a8e92deafe4eb89b28fa0c7b8ec270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turretRotationPoint: {fileID: 1620968879}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 128
+  bulletPrefab: {fileID: 5953930906818198071, guid: ae91c88e58d90f771a5bbfeb5180ad98, type: 3}
+  firingPoint: {fileID: 364462763}
+  cannonType: 0
+  cannonUI: {fileID: 856889360}
+  targetingRange: 5
+  cannonDefaultCost: 50
+  rotationSpeed: 400
+  bps: 1
 --- !u!4 &1869299723 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1083296689904648794, guid: f061e5bcc490949c087dd65c8fd94b30, type: 3}

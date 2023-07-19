@@ -7,33 +7,27 @@ using UnityEngine.UI;
 
 namespace Defence
 {
-    public class CannonController : MonoBehaviour
+    public abstract class CannonController : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private Transform turretRotationPoint;
         [SerializeField] private LayerMask enemyMask;
         [SerializeField] private GameObject bulletPrefab;
-        [SerializeField] private GameObject bulletStrongPrefab;
         [SerializeField] private Transform firingPoint;
         [SerializeField] private CannonType cannonType;
         [SerializeField] private GameObject cannonUI;
-        [SerializeField] private Button upgradeButton;
-        [SerializeField] private Button sellButton;
 
         [Header("Attribute")]
         [SerializeField] private float targetingRange;
         [SerializeField] private int cannonDefaultCost;
-         [SerializeField] private int cannonMaxLvl;
-        [SerializeField] private int upgradeCost = 100;
         [SerializeField] private float rotationSpeed = 400f;
         [SerializeField] private float bps = 1f;
 
-        // Default attributes of the turret (with no upgrades)
-        private float bpsDefault;
-        private float targetingRangeDefault;
-        private int cannonLevel = 1;
-        private int cannonWorth;
-
+        // Base attributes of the turret (i.e. no upgrades)
+        private const int MaxLevel = 3;
+        private int currentLevel = 1;
+        private float baseBps;
+        private float baseTargetingRange;
 
         private Transform target;
         private float timeUntilFire;
@@ -50,8 +44,8 @@ namespace Defence
 
         private void Start()
         {
-            bpsDefault = bps;
-            targetingRangeDefault = targetingRange;
+            baseBps = bps;
+            baseTargetingRange = targetingRange;
 
             playerController = FindObjectOfType<PlayerController>();
             shopController = FindObjectOfType<ShopController>();
@@ -86,9 +80,7 @@ namespace Defence
 
         private void Shoot()
         {
-            GameObject currentPrefab = cannonType != CannonType.Heavy ? bulletPrefab : bulletStrongPrefab;
-            GameObject bulletObj = Instantiate(currentPrefab, firingPoint.position, Quaternion.identity);
-
+            GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
             BulletController bulletScript = bulletObj.GetComponent<BulletController>();
             bulletScript.SetTarget(target);
             bulletScript.SetStrong(cannonType == CannonType.Heavy);
@@ -116,7 +108,6 @@ namespace Defence
             float angle = Mathf.Atan2(targetPos.y - cannonPos.y, targetPos.x - cannonPos.x) * Mathf.Rad2Deg + 90f;
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
             turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            //turretRotationPoint.rotation = targetRotation;
         }
 
         private void OnMouseDown()
@@ -138,9 +129,9 @@ namespace Defence
 
         public void UpgradeCannon()
         {
-            if (cannonLevel >= cannonMaxLvl)
+            if (currentLevel >= MaxLevel)
             {
-                Debug.Log("Max Cannon level reached (Level 5)");
+                Debug.Log("Max Cannon level reached (Level " + MaxLevel + ")");
                 return;
             }
 
@@ -151,42 +142,48 @@ namespace Defence
             }
 
             playerController.RemoveGold(CalculateCost());
-            cannonLevel++;
+            currentLevel++;
             bps = CalculateBps();
             targetingRange = CalculateRange();
 
-            Debug.Log("Cannon Level: " + cannonLevel);
+            Debug.Log("Cannon Level: " + currentLevel);
         }
 
         public void SellCannon()
         {
-            playerController.AddGold(CalculateWorth());
-            Debug.Log("Sold the cannon for: " + CalculateWorth() + " Gold");
+            playerController.AddGold(CalculateValue());
+            Debug.Log("Sold the cannon for: " + CalculateValue() + " Gold");
             Destroy(gameObject);
             shopController.GetLandTiles().RefreshAllTiles();
             shopController.ChangeRadiusOpacity(0f);
         }
 
-        // Calculate cost of each upgrade
+        /// <summary>
+        /// Calculates the cost of each upgrade level.
+        /// </summary>
+        /// <returns>The amount of gold that the next update level costs</returns>
         private int CalculateCost()
         {
-            return cannonDefaultCost + cannonLevel * 50;
+            return cannonDefaultCost + currentLevel * 50;
         }
 
-        // Calculate worth of the turret including its upgrades
-        private int CalculateWorth()
+        /// <summary>
+        /// Calculates the value of the cannon including its upgrades
+        /// </summary>
+        /// <returns>The amount of gold that the next update level costs</returns>
+        private int CalculateValue()
         {
             return Mathf.RoundToInt(CalculateCost() / 2);
         }
 
         private float CalculateBps()
         {
-            return bpsDefault * Mathf.Pow(cannonLevel, 0.5f);
+            return baseBps * Mathf.Pow(currentLevel, 0.5f);
         }
 
         private float CalculateRange()
         {
-            return targetingRangeDefault * Mathf.Pow(cannonLevel, 0.4f);
+            return baseTargetingRange * Mathf.Pow(currentLevel, 0.4f);
         }
 
         public float GetRange()
