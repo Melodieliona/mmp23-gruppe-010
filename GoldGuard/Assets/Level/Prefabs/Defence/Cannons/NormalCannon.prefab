@@ -626,8 +626,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Defence.NormalCannonController, Assembly-CSharp
+      - m_Target: {fileID: 7223283282798587039}
+        m_TargetAssemblyTypeName: Defence.CannonController, Assembly-CSharp
         m_MethodName: UpgradeCannon
         m_Mode: 1
         m_Arguments:
@@ -865,8 +865,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Defence.NormalCannonController, Assembly-CSharp
+      - m_Target: {fileID: 7223283282798587039}
+        m_TargetAssemblyTypeName: Defence.CannonController, Assembly-CSharp
         m_MethodName: SellCannon
         m_Mode: 1
         m_Arguments:
