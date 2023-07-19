@@ -43,7 +43,7 @@ namespace Defence
         /// </summary>
         /// <returns>The stats after the cannon has has been upgraded for the second time</returns>
         protected abstract CannonStats GetSecondUpgrade();
-        
+
         public CannonStats GetCurrentLevel()
         {
             return currentLevel;
@@ -161,6 +161,7 @@ namespace Defence
 
             playerController.RemoveGold(cost);
             currentLevel = nextLevel;
+            shopController.ChangeRadiusSizeAndPos(nextLevel.GetRange(), gameObject.transform.position);
             Debug.Log("Upgraded cannon! " + nextLevel);
         }
 
