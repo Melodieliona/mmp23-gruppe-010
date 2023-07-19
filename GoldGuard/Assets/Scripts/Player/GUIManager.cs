@@ -1,3 +1,4 @@
+using System.Linq;
 using Enemy;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -39,14 +40,14 @@ namespace Player
 
         public void UpdateHp()
         {
-            hpLabel.text = "HP: " + playerController.GetHealthPoints();
+            hpLabel.text = string.Concat(Enumerable.Repeat("<sprite name=\"heart\">", playerController.GetHealthPoints()));
         }
-        
+
         public void UpdateGold()
         {
-            goldLabel.text = "Gold: " + playerController.GetGold();
+            goldLabel.text = playerController.GetGold() + "<sprite name=\"coin\">";
         }
-    
+
         public void UpdateWave()
         {
             waveLabel.text = "Wave: " + shipSpawner.GetCurrentWave();
