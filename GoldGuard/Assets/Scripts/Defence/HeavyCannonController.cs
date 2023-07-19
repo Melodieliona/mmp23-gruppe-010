@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Defence
 {
-    public class CannonController : MonoBehaviour
+    public class HeavyCannonController : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private Transform turretRotationPoint;
@@ -24,7 +24,6 @@ namespace Defence
         [SerializeField] private float targetingRange;
         [SerializeField] private int cannonDefaultCost;
          [SerializeField] private int cannonMaxLvl;
-        [SerializeField] private int upgradeCost = 100;
         [SerializeField] private float rotationSpeed = 400f;
         [SerializeField] private float bps = 1f;
 
@@ -126,7 +125,6 @@ namespace Defence
                 cannonUI.SetActive(true);
                 isUIOpen = true;
                 shopController.ChangeRadiusOpacity(1f);
-                shopController.ChangeRadiusPosition(gameObject.transform.position);
             }
             else
             {

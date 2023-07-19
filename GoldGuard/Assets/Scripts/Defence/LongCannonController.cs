@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Defence
 {
-    public class CannonController : MonoBehaviour
+    public class LongCannonController : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private Transform turretRotationPoint;
@@ -126,7 +126,6 @@ namespace Defence
                 cannonUI.SetActive(true);
                 isUIOpen = true;
                 shopController.ChangeRadiusOpacity(1f);
-                shopController.ChangeRadiusPosition(gameObject.transform.position);
             }
             else
             {
