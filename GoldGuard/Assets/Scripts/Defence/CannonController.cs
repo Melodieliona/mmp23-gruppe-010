@@ -136,11 +136,11 @@ namespace Defence
         {
             if (!isUIOpen)
             {
+                eventSystem.SetActive(false);
                 cannonUI.SetActive(true);
                 isUIOpen = true;
                 shopController.ChangeRadiusOpacity(1f);
                 shopController.ChangeRadiusSizeAndPos(currentLevel.GetRange(), gameObject.transform.position);
-                eventSystem.SetActive(false);
             }
             else
             {
