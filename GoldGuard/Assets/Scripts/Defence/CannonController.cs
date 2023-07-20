@@ -49,6 +49,14 @@ namespace Defence
         protected abstract CannonLevel GetSecondUpgrade();
 
         /// <summary>
+        /// Updates the text in the upgrade UI with the correct values 
+        /// </summary>
+        /// <param name="currentLevel">The cannon's current level</param>
+        /// <param name="nextLevel">The level that will be upgraded to</param>
+        /// <param name="cannonValue">The cannon's value</param>
+        protected abstract void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int cannonValue);
+
+        /// <summary>
         /// Changes the sprite of the cannon to that of the given level
         /// </summary>
         /// <param name="level">The level of the sprite to use</param>
@@ -203,16 +211,7 @@ namespace Defence
         {
             eventSystem.SetActive(false);
             cannonUI.SetActive(true);
-
-            CannonLevel nextLevel = GetNextLevel();
-            Transform panel = gameObject.transform.Find("CannonUI/Panel");
-            panel.Find("Level Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetLevelText(currentLevel));
-            panel.Find("Stats1 Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetStats1Text(currentLevel));
-            panel.Find("Stats2 Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetStats2Text(currentLevel));
-            panel.Find("Stats2 Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetStats2Text(currentLevel));
-            panel.Find("UpgradeButton/Text").GetComponent<TextMeshProUGUI>().SetText($"UPGRADE {nextLevel.GetCost()} <sprite name=\"coin\">");
-            panel.Find("SellButton/Text").GetComponent<TextMeshProUGUI>().SetText($"SELL {CalculateValue()} <sprite name=\"coin\">");
-
+            UpdateUpgradeText(currentLevel, GetNextLevel(), CalculateValue());
             isUIOpen = true;
             shopController.ChangeRadiusOpacity(1f);
             shopController.ChangeRadiusSizeAndPos(currentLevel.GetRange(), gameObject.transform.position);

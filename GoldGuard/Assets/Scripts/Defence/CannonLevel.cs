@@ -49,14 +49,19 @@ namespace Defence
             return $"{currentLevel.GetLevel()}<sprite name=\"arrow\"> {level}";
         }
         
-        public string GetStats1Text(CannonLevel currentLevel)
+        public string GetUpgradeRangeText(CannonLevel currentLevel)
         {
             return $"Range: {currentLevel.GetRange()}<sprite name=\"arrow\"> {range}";
         }
         
-        public string GetStats2Text(CannonLevel currentLevel)
+        public string GetUpgradeDamageText(CannonLevel currentLevel)
         {
             return $"Damage: {currentLevel.GetDamage()}<sprite name=\"arrow\"> {damage}";
+        }
+        
+        public string GetBpsDamageText(CannonLevel currentLevel)
+        {
+            return $"BPS: {currentLevel.GetBps()}<sprite name=\"arrow\"> {bps}";
         }
         
         public override string ToString()
