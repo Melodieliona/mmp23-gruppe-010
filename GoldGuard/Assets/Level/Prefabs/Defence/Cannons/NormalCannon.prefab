@@ -134,7 +134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Range: 5<sprite name="arrow"> 6'
+  m_text: 'Range: 5<sprite name="arrow"> 5.5'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
@@ -793,7 +793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &911003613130723279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Damage: 20<sprite name="arrow"> 30'
+  m_text: 'Damage: 2.5<sprite name="arrow"> 5'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
@@ -1429,7 +1429,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2<sprite name="arrow"> 3
+  m_text: 1<sprite name="arrow"> 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
@@ -1564,7 +1564,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SELL 50 <sprite name="coin">
+  m_text: SELL 25 <sprite name="coin">
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
