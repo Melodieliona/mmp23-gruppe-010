@@ -25,21 +25,28 @@ Das Ziel des Spiels ist es, alle Piratenschiffe daran zu hindern, deine Schatztr
 Im Shop gibt es 4 verschiedene Waffen die man kaufen kann. Es gibt 3 Kanonen die unterschiedliche Eigenschaften und Kosten haben, die auf Feldern um den Fluss platziert werden können. Zudem gibt es noch eine Krake die man im Wasser platzieren kann und feindliche Schiffe aufhalten soll. Die Waffen können während des Spiels geupgraded und verkauft werden.
 
 - Basic Kanone: Kosten (50)
+![Basic Kanone](mmp23-gruppe-010/GoldGuard/Assets/Art/Sprites/Cannon/cannon1.png)
 - Lange Kanone: Kosten (75)
+![Lange Kanone](mmp23-gruppe-010/GoldGuard/Assets/Art/Sprites/Cannon/cannon2.png)
 - Schwere Kanone: Kosten (125)
+![Schwere Kanone](mmp23-gruppe-010/GoldGuard/Assets/Art/Sprites/Cannon/cannon3.png)
 - Krake: Kosten (50)
+![Krake](mmp23-gruppe-010/GoldGuard/Assets/Art/Sprites/kraken2.png)
 
 ## Upgrades
 
-Für die Kanonen können jeweils, 3 Upgrades gekauft werden, die die Range, den angerichteten Schaden und die Schussgeschwindigkeit erhöht. Das erste Upgrade kostet 100 und das zweite 150.
+Für die Kanonen können jeweils, 3 Upgrades gekauft werden, die die Range, den angerichteten Schaden und die Schussgeschwindigkeit erhöht. Das erste Upgrade kostet 75 und das zweite 100.
 
 ## Gegnerische Schiffe
 
 In jedem Level spwanen unterschiedlich viele Schiffe die verschiedene Eigenschaften haben. Je höher desto mehr Schiffe spawnen, um deine Schatztruhe zu plündern.
 
 - Normales Schiff: Hat eine mittlere Geschwindigkeit
-- Schnelles Schiff: Hat weniger Leben, hat aber eine hohe Geschwindigkeit
+![Normales Schiff](mmp23-gruppe-010/GoldGuard/Assets/Art/Sprites/Ship/NormalShip/Pirate_Ship.png)
+- Schnelles Schiff: Hat weniger Leben, hat aber eine hohe 
+![Schnelles Schiff](mmp23-gruppe-010/GoldGuard/Assets/Art/Sprites/FastShip/FastShip.png)
 - Starkes Schiff: Hat viel Leben, hat aber eine niedrige Geschwindigkeit
+![Starkes Schiff](mmp23-gruppe-010/GoldGuard/Assets/Art/Sprites/Boss/Boss.png)
 
 
 ## Steuerung
