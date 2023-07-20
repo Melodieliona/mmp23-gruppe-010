@@ -167,11 +167,7 @@ namespace Defence
 
         public void UpgradeCannon()
         {
-            if (currentLevel.GetLevel() == MaxLevel)
-            {
-                Debug.Log("Max Cannon level reached (Level " + MaxLevel + ")");
-                return;
-            }
+            // Whether cannon can be upgraded is already checked when opening the update UI
 
             CannonLevel nextLevel = GetNextLevel();
             int cost = nextLevel.GetCost();
@@ -209,12 +205,18 @@ namespace Defence
 
         private void ActivateUpgradeUI()
         {
+            if (currentLevel.GetLevel() == MaxLevel)
+            {
+                Debug.Log("Max Cannon level reached (Level " + MaxLevel + ")");
+                return;
+            }
+
             eventSystem.SetActive(false);
             cannonUI.SetActive(true);
             UpdateUpgradeText(currentLevel, GetNextLevel(), CalculateValue());
-            isUIOpen = true;
             shopController.ChangeRadiusOpacity(1f);
             shopController.ChangeRadiusSizeAndPos(currentLevel.GetRange(), gameObject.transform.position);
+            isUIOpen = true;
         }
 
         private void DeactivateUpgradeUI()
