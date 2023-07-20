@@ -137,8 +137,7 @@ MonoBehaviour:
   m_text: 'Range: 5<sprite name="arrow"> 5.5'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
-  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5,
-    type: 2}
+  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -404,8 +403,7 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
-  bulletPrefab: {fileID: 5953930906818198071, guid: ae91c88e58d90f771a5bbfeb5180ad98,
-    type: 3}
+  bulletPrefab: {fileID: 5953930906818198071, guid: ae91c88e58d90f771a5bbfeb5180ad98, type: 3}
   firingPoint: {fileID: 2580092388935625462}
   cannonType: 0
   cannonUI: {fileID: 2790804491109474161}
@@ -577,8 +575,7 @@ MonoBehaviour:
   m_text: UPGRADE 50 <sprite name="coin">
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
-  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5,
-    type: 2}
+  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -809,8 +806,8 @@ RectTransform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6421874472720632135}
   - {fileID: 4240714588419289699}
+  - {fileID: 6421874472720632135}
   - {fileID: 5205141682072281197}
   m_Father: {fileID: 2580092390061179384}
   m_RootOrder: -1
@@ -1166,8 +1163,7 @@ MonoBehaviour:
   m_text: 'Damage: 2.5<sprite name="arrow"> 5'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
-  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5,
-    type: 2}
+  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1436,8 +1432,7 @@ MonoBehaviour:
   m_text: 1<sprite name="arrow"> 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
-  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5,
-    type: 2}
+  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1572,8 +1567,7 @@ MonoBehaviour:
   m_text: SELL 25 <sprite name="coin">
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
-  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5,
-    type: 2}
+  m_sharedMaterial: {fileID: 1031570106731662763, guid: 26c00dc60c57a4029b9ed20f3a06cdd5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
