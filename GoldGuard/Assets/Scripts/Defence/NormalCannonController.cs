@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace Defence
@@ -23,6 +24,16 @@ namespace Defence
         protected override CannonLevel GetSecondUpgrade()
         {
             return new CannonLevel(3, 150, 6f, 2f, 7.5f);
+        }
+
+        protected override void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int cannonValue)
+        {
+            Transform panel = gameObject.transform.Find("CannonUI/Panel");
+            panel.Find("Level Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetLevelText(currentLevel));
+            panel.Find("Stats1 Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetUpgradeRangeText(currentLevel));
+            panel.Find("Stats2 Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetUpgradeDamageText(currentLevel));
+            panel.Find("UpgradeButton/Text").GetComponent<TextMeshProUGUI>().SetText($"UPGRADE {nextLevel.GetCost()} <sprite name=\"coin\">");
+            panel.Find("SellButton/Text").GetComponent<TextMeshProUGUI>().SetText($"SELL {cannonValue} <sprite name=\"coin\">");
         }
 
         protected override void ChangeSprite(int level)
