@@ -1,6 +1,6 @@
 namespace Defence
 {
-    public class CannonStats
+    public class CannonLevel
     {
         private readonly int level;
         private readonly int cost;
@@ -8,7 +8,7 @@ namespace Defence
         private readonly float bps;
         private readonly float damage;
 
-        public CannonStats(int level, int cost, float range, float bps, float damage)
+        public CannonLevel(int level, int cost, float range, float bps, float damage)
         {
             this.level = level;
             this.cost = cost;

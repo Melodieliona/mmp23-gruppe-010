@@ -15,7 +15,7 @@ namespace Defence
         [SerializeField] private GameObject cannonUI;
 
         private const int MaxLevel = 3;
-        private CannonStats currentLevel;
+        private CannonLevel currentLevel;
 
         private Transform target;
         private float timeUntilFire;
@@ -30,19 +30,19 @@ namespace Defence
         /// Gets the stats the cannon has when first placed.
         /// </summary>
         /// <returns>The stats the cannon has when first placed</returns>
-        protected abstract CannonStats GetBaseStats();
+        protected abstract CannonLevel GetBaseStats();
 
         /// <summary>
         /// Gets the stats after the cannon has has been upgraded for the first time.
         /// </summary>
         /// <returns>The stats after the cannon has has been upgraded for the first time</returns>
-        protected abstract CannonStats GetFirstUpgrade();
+        protected abstract CannonLevel GetFirstUpgrade();
 
         /// <summary>
         /// Gets the stats after the cannon has has been upgraded for the second time.
         /// </summary>
         /// <returns>The stats after the cannon has has been upgraded for the second time</returns>
-        protected abstract CannonStats GetSecondUpgrade();
+        protected abstract CannonLevel GetSecondUpgrade();
 
         /// <summary>
         /// Changes the sprite of the cannon to that of the given level
@@ -50,12 +50,12 @@ namespace Defence
         /// <param name="level">The level of the sprite to use</param>
         protected abstract void ChangeSprite(int level);
 
-        public CannonStats GetCurrentLevel()
+        public CannonLevel GetCurrentLevel()
         {
             return currentLevel;
         }
 
-        private CannonStats GetNextLevel()
+        private CannonLevel GetNextLevel()
         {
             return currentLevel.GetLevel() switch
             {
@@ -158,7 +158,7 @@ namespace Defence
                 return;
             }
 
-            CannonStats nextLevel = GetNextLevel();
+            CannonLevel nextLevel = GetNextLevel();
             int cost = nextLevel.GetCost();
             if (cost > playerController.GetGold())
             {

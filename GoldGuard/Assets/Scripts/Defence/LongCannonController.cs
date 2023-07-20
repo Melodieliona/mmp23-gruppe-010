@@ -10,19 +10,19 @@ namespace Defence
 
         private SpriteRenderer spriteRenderer;
 
-        protected override CannonStats GetBaseStats()
+        protected override CannonLevel GetBaseStats()
         {
-            return new CannonStats(1, 75, 7f, 0.5f, 7.5f);
+            return new CannonLevel(1, 75, 7f, 0.5f, 7.5f);
         }
 
-        protected override CannonStats GetFirstUpgrade()
+        protected override CannonLevel GetFirstUpgrade()
         {
-            return new CannonStats(2, 150, 8f, 0.75f, 10f);
+            return new CannonLevel(2, 150, 8f, 0.75f, 10f);
         }
 
-        protected override CannonStats GetSecondUpgrade()
+        protected override CannonLevel GetSecondUpgrade()
         {
-            return new CannonStats(3, 200, 9f, 1f, 12.5f);
+            return new CannonLevel(3, 200, 9f, 1f, 12.5f);
         }
 
         protected override void ChangeSprite(int level)
