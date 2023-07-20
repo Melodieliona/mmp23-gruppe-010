@@ -250,6 +250,7 @@ namespace Player
 
         public void ChangeRadiusOpacity(float opacity)
         {
+            radiusMaterial.SetColor(Color, new Color(1f, 1f, 1f, 1f));
             radiusMaterial.SetFloat(Opacity, opacity);
         }
 

@@ -9,9 +9,8 @@ namespace Defence
         [Header("References")]
         [SerializeField] private Tilemap waterTiles;
 
-        [Header("Attribute")]
-        [SerializeField] private float damage = 10f;
-        [SerializeField] private float damageUntilDestroyed = 50f;
+        private float damage;
+        private int shipsUntilDestroyed = 5;
         
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -26,9 +25,10 @@ namespace Defence
                 return;
             }
 
+            damage = (float)(ship.GetMaxHealth() * 0.3);
             ship.Damage(damage);
-            damageUntilDestroyed -= damage;
-            if (damageUntilDestroyed <= 0f)
+            shipsUntilDestroyed--;
+            if (shipsUntilDestroyed <= 0)
             {
                 Destroy(gameObject);
                 Vector3Int position = waterTiles.WorldToCell(gameObject.transform.position);

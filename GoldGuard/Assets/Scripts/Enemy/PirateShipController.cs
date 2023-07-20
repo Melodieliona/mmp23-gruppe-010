@@ -112,5 +112,10 @@ namespace Enemy
             currentHealth *= factor;
             maxHealth *= factor;
         }
+
+        public double GetMaxHealth()
+        {
+            return maxHealth;
+        }
     }
 }
