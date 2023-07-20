@@ -1,6 +1,9 @@
+using System;
+using System.Diagnostics;
 using Player;
 using Sound;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Defence
 {
@@ -117,16 +120,27 @@ namespace Defence
 
         private void FindTarget()
         {
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, currentLevel.GetRange(), transform.position, 0f, enemyMask);
-            if (hits.Length > 0)
-            {
-                target = hits[0].transform;
-            }
+            Vector2 position = transform.position;
+            RaycastHit2D result = Physics2D.CircleCast(position, currentLevel.GetRange(), position, 0f, enemyMask);
+            target = result.transform;
         }
 
         private bool IsTargetInRange()
         {
-            return Vector2.Distance(target.position, transform.position) <= currentLevel.GetRange();
+            Vector2 cannonPosition = transform.position;
+            Vector2 targetPosition = target.position;
+            float dX = cannonPosition.x - targetPosition.x;
+            float dY = cannonPosition.y - targetPosition.y;
+
+            return dX * dX + dY * dY <= currentLevel.GetRange() * currentLevel.GetRange();
+        }
+
+        private static long nanoTime()
+        {
+            long nano = 10000L * Stopwatch.GetTimestamp();
+            nano /= TimeSpan.TicksPerMillisecond;
+            nano *= 100L;
+            return nano;
         }
 
         private void RotateTowardsTarget()
@@ -191,7 +205,7 @@ namespace Defence
             return Mathf.RoundToInt(currentLevel.GetCost() / 2f);
         }
 
-        public void ActivateUpgradeUI()
+        private void ActivateUpgradeUI()
         {
             eventSystem.SetActive(false);
             cannonUI.SetActive(true);
@@ -200,7 +214,7 @@ namespace Defence
             shopController.ChangeRadiusSizeAndPos(currentLevel.GetRange(), gameObject.transform.position);
         }
 
-        public void DeactivateUpgradeUI()
+        private void DeactivateUpgradeUI()
         {
             cannonUI.SetActive(false);
             isUIOpen = false;
