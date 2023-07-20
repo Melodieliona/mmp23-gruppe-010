@@ -18,12 +18,12 @@ namespace Defence
 
         protected override CannonLevel GetFirstUpgrade()
         {
-            return new CannonLevel(2, 100, 5.5f, 2f, 5f);
+            return new CannonLevel(2, 75, 5.5f, 2f, 5f);
         }
 
         protected override CannonLevel GetSecondUpgrade()
         {
-            return new CannonLevel(3, 150, 6f, 2f, 7.5f);
+            return new CannonLevel(3, 100, 6f, 2f, 7.5f);
         }
 
         protected override void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int cannonValue)

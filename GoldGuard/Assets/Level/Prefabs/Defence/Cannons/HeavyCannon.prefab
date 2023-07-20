@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5671146702937484325}
         m_TargetAssemblyTypeName: Defence.CannonController, Assembly-CSharp
         m_MethodName: DeactivateUpgradeUI
         m_Mode: 1
@@ -577,7 +577,6 @@ MonoBehaviour:
   turretRotationPoint: {fileID: 2580092389826512481}
   firingPoint: {fileID: 2580092388935625462}
   bulletPrefab: {fileID: 5953930906818198071, guid: fc8e51dd14eefee46b824e35d116b074, type: 3}
-  isUpgradeUiOpen: 0
   level2Sprite: {fileID: 21300000, guid: 88a09426e9a3e6b43a7772d266bab7f6, type: 3}
   level3Sprite: {fileID: 21300000, guid: d8b4d3851cfa05649afac7249e926182, type: 3}
 --- !u!212 &5897676907076257038
