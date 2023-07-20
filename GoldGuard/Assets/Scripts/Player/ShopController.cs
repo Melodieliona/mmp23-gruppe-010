@@ -214,9 +214,9 @@ namespace Player
             cursor.transform.position = cellCenter;
             radius.transform.position = cellCenter;
 
-            float currentRange = selectedShopItem.GetRange() * 10;
+            float currentRange = selectedShopItem.GetRange() * 11;
             radius.transform.localScale = new Vector3(currentRange, currentRange, currentRange);
-            radiusMaterial.SetFloat(Thickness, currentRange >= 24 ? 0.05f : 0.1f);
+            radiusMaterial.SetFloat(Thickness, currentRange >= 24 ? 0.04f : 0.06f);
         }
 
         private void ActivateGrid()
@@ -288,9 +288,9 @@ namespace Player
         public void ChangeRadiusSizeAndPos(float size, Vector2 position)
         {
             radius.transform.position = position;
-            var currentRange = size * 10;
+            var currentRange = size * 11;
             radius.transform.localScale = new Vector3(currentRange, currentRange, currentRange);
-            radiusMaterial.SetFloat(Thickness, currentRange >= 24 ? 0.05f : 0.1f);
+            radiusMaterial.SetFloat(Thickness, currentRange >= 24 ? 0.04f : 0.06f);
         }
     }
 }
