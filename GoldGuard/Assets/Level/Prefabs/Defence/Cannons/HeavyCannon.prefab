@@ -576,7 +576,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5953930906818198071, guid: fc8e51dd14eefee46b824e35d116b074, type: 3}
   firingPoint: {fileID: 2580092388935625462}
   cannonType: 1
-  cannonUI: {fileID: 0}
+  cannonUI: {fileID: 2473390563340237328}
   level2Sprite: {fileID: 21300000, guid: 88a09426e9a3e6b43a7772d266bab7f6, type: 3}
   level3Sprite: {fileID: 21300000, guid: d8b4d3851cfa05649afac7249e926182, type: 3}
 --- !u!212 &5897676907076257038
