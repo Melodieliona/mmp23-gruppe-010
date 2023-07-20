@@ -7,12 +7,12 @@ namespace Defence
     public abstract class CannonController : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private Transform turretRotationPoint;
-        [SerializeField] private LayerMask enemyMask;
-        [SerializeField] private GameObject bulletPrefab;
-        [SerializeField] private Transform firingPoint;
         [SerializeField] private CannonType cannonType;
         [SerializeField] private GameObject cannonUI;
+        [SerializeField] private LayerMask enemyMask;
+        [SerializeField] private Transform turretRotationPoint;
+        [SerializeField] private Transform firingPoint;
+        [SerializeField] private GameObject bulletPrefab;
 
         private const int MaxLevel = 3;
         private CannonLevel currentLevel;
@@ -20,7 +20,6 @@ namespace Defence
         private Transform target;
         private float timeUntilFire;
         private SoundEffectsPlayer soundEffect;
-        private bool isUIOpen = false;
 
         private PlayerController playerController;
         private ShopController shopController;
@@ -101,23 +100,10 @@ namespace Defence
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
             turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, 400 * Time.deltaTime);
         }
-
-        private void OnMouseDown()
-        {
-            if (!isUIOpen)
-            {
-                ActivateUpgradeUI();
-            }
-            else
-            {
-                DeactivateUpgradeUI();
-            }
-        }
-
+        
         public void UpgradeCannon()
         {
             // Whether cannon can be upgraded is already checked when opening the update UI
-
             CannonLevel nextLevel = GetNextLevel();
             int cost = nextLevel.GetCost();
             if (cost > playerController.GetGold())
@@ -136,11 +122,12 @@ namespace Defence
 
         public void SellCannon()
         {
-            playerController.AddGold(CalculateValue());
-            Debug.Log("Sold the cannon for: " + CalculateValue() + " Gold");
+            shopController.RemoveCannon(gameObject.transform.position);
             Destroy(gameObject);
             DeactivateUpgradeUI();
             shopController.GetLandTiles().RefreshAllTiles();
+            playerController.AddGold(CalculateValue());
+            Debug.Log("Sold the cannon for: " + CalculateValue() + " Gold");
         }
 
         /// <summary>
@@ -199,8 +186,9 @@ namespace Defence
             return Mathf.RoundToInt(currentLevel.GetCost() / 2f);
         }
 
-        private void ActivateUpgradeUI()
+        public void ActivateUpgradeUI()
         {
+            if (currentLevel == null) return;
             if (currentLevel.GetLevel() == MaxLevel)
             {
                 Debug.Log("Max Cannon level reached (Level " + MaxLevel + ")");
@@ -212,13 +200,11 @@ namespace Defence
             UpdateUpgradeText(currentLevel, GetNextLevel(), CalculateValue());
             shopController.ChangeRadiusOpacity(1f);
             shopController.ChangeRadiusSizeAndPos(currentLevel.GetRange(), gameObject.transform.position);
-            isUIOpen = true;
         }
 
-        private void DeactivateUpgradeUI()
+        public void DeactivateUpgradeUI()
         {
             cannonUI.SetActive(false);
-            isUIOpen = false;
             shopController.ChangeRadiusOpacity(0f);
             eventSystem.SetActive(true);
         }

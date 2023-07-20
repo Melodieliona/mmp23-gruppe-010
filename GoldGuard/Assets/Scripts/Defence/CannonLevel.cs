@@ -1,5 +1,3 @@
-using System;
-
 namespace Defence
 {
     public class CannonLevel
@@ -59,7 +57,7 @@ namespace Defence
             return $"Damage: {currentLevel.GetDamage()}<sprite name=\"arrow\"> {damage}";
         }
         
-        public string GetBpsDamageText(CannonLevel currentLevel)
+        public string GetUpgradeBpsText(CannonLevel currentLevel)
         {
             return $"BPS: {currentLevel.GetBps()}<sprite name=\"arrow\"> {bps}";
         }

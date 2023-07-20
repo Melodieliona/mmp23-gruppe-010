@@ -166,8 +166,8 @@ RectTransform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6712528827211962093}
   - {fileID: 7849214618759200743}
+  - {fileID: 6712528827211962093}
   - {fileID: 7437769303856654095}
   m_Father: {fileID: 2580092390061179384}
   m_RootOrder: -1
@@ -651,14 +651,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661f7a240d5cb406790d49d5db7180c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretRotationPoint: {fileID: 2580092389826512481}
+  cannonType: 2
+  cannonUI: {fileID: 1085988741924192134}
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
-  bulletPrefab: {fileID: 5953930906818198071, guid: ae91c88e58d90f771a5bbfeb5180ad98, type: 3}
+  turretRotationPoint: {fileID: 2580092389826512481}
   firingPoint: {fileID: 2580092388935625462}
-  cannonType: 2
-  cannonUI: {fileID: 1085988741924192134}
+  bulletPrefab: {fileID: 5953930906818198071, guid: ae91c88e58d90f771a5bbfeb5180ad98, type: 3}
+  isUpgradeUiOpen: 0
   level2Sprite: {fileID: 21300000, guid: 05df39c4881384b47bf8d7bd1ea36c35, type: 3}
   level3Sprite: {fileID: 21300000, guid: 765375196ae8911418e3ae363fc130d6, type: 3}
 --- !u!212 &4419813023781334246
