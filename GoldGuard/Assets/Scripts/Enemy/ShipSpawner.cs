@@ -61,14 +61,12 @@ namespace Enemy
             if (!waveActive || currentWave == 0) return;
 
             timeSinceLastSpawn += Time.deltaTime;
-
             if (shipsLeftToSpawn > 0 && timeSinceLastSpawn >= (1f / shipsPerSecond))
             {
                 SpawnShip();
             }
 
             shipList = GameObject.FindGameObjectsWithTag("PirateShip");
-
             if (shipsLeftToSpawn <= 0 && shipList.Length <= 0)
             {
                 EndWave();
@@ -82,7 +80,7 @@ namespace Enemy
                 SceneManager.LoadScene("WinScreen");
                 yield return null;
             }
-            
+
             guiManager.ShowTimer();
             soundEffect.PlayBackgroundMusic(soundEffect.settingTime);
             for (timerCounter = TimeBetweenWaves; timerCounter >= 0; timerCounter--)
@@ -131,7 +129,7 @@ namespace Enemy
                 ship = durableShip;
             }
 
-            //Add 1 boss ship at the end of the 10th wave
+            // Add 1 boss ship at the end of the 10th wave
             if (currentWave == 10 && shipsLeftToSpawn == 5)
             {
                 ship = bossShip;

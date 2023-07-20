@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Defence;
 using Player.ShopItems;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -30,6 +32,8 @@ namespace Player
         private Material radiusMaterial;
         private SpriteRenderer radiusRenderer;
         private MeshRenderer cursorRenderer;
+
+        private Dictionary<Vector3Int, CannonController> cannons = new();
 
         private ShopItem selectedShopItem;
         private bool canPlaceItem = false;
@@ -104,6 +108,27 @@ namespace Player
                 DeactivateGrid();
                 canPlaceItem = false;
             }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                CheckForCannon();
+            }
+        }
+
+        private void CheckForCannon()
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int cellPosition = landTiles.WorldToCell(mousePosition);
+            if (cannons.TryGetValue(cellPosition, out CannonController cannon))
+            {
+                cannon.ActivateUpgradeUI();
+            }
+        }
+
+        public void RemoveCannon(Vector3 position)
+        {
+            Vector3Int cellPosition = landTiles.WorldToCell(position);
+            cannons.Remove(cellPosition);
         }
 
         private void CheckItemAffordability()
@@ -131,7 +156,13 @@ namespace Player
 
             Vector3 cellCenter = selectedTiles.GetCellCenterWorld(cellPosition);
             GameObject weaponPrefab = selectedShopItem.GetPrefab();
-            Instantiate(weaponPrefab, cellCenter, weaponPrefab.transform.rotation);
+            GameObject newWeapon = Instantiate(weaponPrefab, cellCenter, weaponPrefab.transform.rotation);
+
+            if (selectedShopItem.GetTileType() == TileType.Land) // TileType.Land == Cannon
+            {
+                cannons.Add(cellPosition, newWeapon.GetComponent<CannonController>());
+            }
+
             landTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
             waterTiles.SetColliderType(cellPosition, Tile.ColliderType.None);
 

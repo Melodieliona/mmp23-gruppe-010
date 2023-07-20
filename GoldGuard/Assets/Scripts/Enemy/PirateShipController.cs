@@ -30,8 +30,6 @@ namespace Enemy
 
         private int waypointIndex = 0;
         private Transform target;
-        private float directionX;
-        private float directionY;
 
         private AnimationClip[] animationClips;
         private Animator animator;
@@ -86,11 +84,8 @@ namespace Enemy
         private void SetAnimationForDirection(Vector2 direction)
         {
             direction.Normalize();
-            directionX = Mathf.RoundToInt(direction.x);
-            directionY = Mathf.RoundToInt(direction.y);
-
-            animator.SetFloat(DirectionX, directionX);
-            animator.SetFloat(DirectionY, directionY);
+            animator.SetFloat(DirectionX, Mathf.RoundToInt(direction.x));
+            animator.SetFloat(DirectionY, Mathf.RoundToInt(direction.y));
         }
 
         public void Damage(double amount)

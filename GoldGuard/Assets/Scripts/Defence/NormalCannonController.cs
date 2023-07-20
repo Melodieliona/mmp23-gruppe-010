@@ -29,11 +29,16 @@ namespace Defence
         protected override void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int cannonValue)
         {
             Transform panel = gameObject.transform.Find("CannonUI/Panel");
-            panel.Find("Level Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetLevelText(currentLevel));
-            panel.Find("Stats1 Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetUpgradeRangeText(currentLevel));
-            panel.Find("Stats2 Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetUpgradeDamageText(currentLevel));
-            panel.Find("UpgradeButton/Text").GetComponent<TextMeshProUGUI>().SetText($"UPGRADE {nextLevel.GetCost()} <sprite name=\"coin\">");
-            panel.Find("SellButton/Text").GetComponent<TextMeshProUGUI>().SetText($"SELL {cannonValue} <sprite name=\"coin\">");
+            SetPanelText(panel, "Level Text", nextLevel.GetLevelText(currentLevel));
+            SetPanelText(panel, "Stats1 Text", nextLevel.GetUpgradeRangeText(currentLevel));
+            SetPanelText(panel, "Stats2 Text", nextLevel.GetUpgradeDamageText(currentLevel));
+            SetPanelText(panel, "UpgradeButton/Text", $"UPGRADE {nextLevel.GetCost()} <sprite name=\"coin\">");
+            SetPanelText(panel, "SellButton/Text", $"SELL {cannonValue} <sprite name=\"coin\">");
+        }
+
+        private static void SetPanelText(Transform panel, string label, string text)
+        {
+            panel.Find(label).GetComponent<TextMeshProUGUI>().SetText(text);
         }
 
         protected override void ChangeSprite(int level)
