@@ -12,17 +12,17 @@ namespace Defence
 
         protected override CannonStats GetBaseStats()
         {
-            return new CannonStats(1, 125, 3.5f, 0.25f, 20f);
+            return new CannonStats(1, 125, 4.5f, 0.5f, 20f);
         }
 
         protected override CannonStats GetFirstUpgrade()
         {
-            return new CannonStats(2, 175, 4f, 0.5f, 25f);
+            return new CannonStats(2, 175, 5f, 0.75f, 25f);
         }
 
         protected override CannonStats GetSecondUpgrade()
         {
-            return new CannonStats(3, 250, 4.5f, 0.75f, 30f);
+            return new CannonStats(3, 250, 5.5f, 1f, 30f);
         }
 
         protected override void ChangeSprite(int level)
