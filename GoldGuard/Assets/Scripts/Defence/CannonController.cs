@@ -104,8 +104,9 @@ namespace Defence
         {
             GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
             BulletController bulletScript = bulletObj.GetComponent<BulletController>();
-            bulletScript.SetTarget(target);
             bulletScript.SetStrong(cannonType == CannonType.Heavy);
+            bulletScript.SetDamage(currentLevel.GetDamage());
+            bulletScript.SetTarget(target);
         }
 
         private void FindTarget()
@@ -128,7 +129,7 @@ namespace Defence
             Vector2 targetPos = target.position;
             float angle = Mathf.Atan2(targetPos.y - cannonPos.y, targetPos.x - cannonPos.x) * Mathf.Rad2Deg + 90f;
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-            turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, currentLevel.GetRotationSpeed() * Time.deltaTime);
+            turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, 400 * Time.deltaTime);
         }
 
         private void OnMouseDown()

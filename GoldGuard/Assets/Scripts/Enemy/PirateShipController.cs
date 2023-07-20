@@ -95,6 +95,7 @@ namespace Enemy
 
         public void Damage(double amount)
         {
+            Debug.Log("Damaged ship: " + amount);
             currentHealth -= amount;
             healthBar.SetHealth(currentHealth, maxHealth);
 
