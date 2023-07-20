@@ -4964,6 +4964,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2790804491109474161, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4939953079295808210, guid: c75a4f0a0f6f6f133a2ccafa50ca50b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

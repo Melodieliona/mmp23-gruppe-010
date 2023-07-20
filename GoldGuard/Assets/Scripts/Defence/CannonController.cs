@@ -1,9 +1,10 @@
 using System;
-using System.Diagnostics;
 using Player;
 using Sound;
+using TMPro;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 namespace Defence
 {
@@ -134,7 +135,7 @@ namespace Defence
 
             return dX * dX + dY * dY <= currentLevel.GetRange() * currentLevel.GetRange();
         }
-        
+
         private void RotateTowardsTarget()
         {
             Vector2 cannonPos = transform.position;
@@ -175,6 +176,7 @@ namespace Defence
             playerController.RemoveGold(cost);
             shopController.ChangeRadiusSizeAndPos(nextLevel.GetRange(), gameObject.transform.position);
             ChangeSprite(nextLevel.GetLevel());
+            DeactivateUpgradeUI();
             currentLevel = nextLevel;
             Debug.Log("Upgraded cannon! " + nextLevel);
         }
@@ -184,8 +186,8 @@ namespace Defence
             playerController.AddGold(CalculateValue());
             Debug.Log("Sold the cannon for: " + CalculateValue() + " Gold");
             Destroy(gameObject);
-            shopController.GetLandTiles().RefreshAllTiles();
             DeactivateUpgradeUI();
+            shopController.GetLandTiles().RefreshAllTiles();
         }
 
         /// <summary>
@@ -201,6 +203,16 @@ namespace Defence
         {
             eventSystem.SetActive(false);
             cannonUI.SetActive(true);
+
+            CannonLevel nextLevel = GetNextLevel();
+            Transform panel = gameObject.transform.Find("CannonUI/Panel");
+            panel.Find("Level Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetLevelText(currentLevel));
+            panel.Find("Stats1 Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetStats1Text(currentLevel));
+            panel.Find("Stats2 Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetStats2Text(currentLevel));
+            panel.Find("Stats2 Text").GetComponent<TextMeshProUGUI>().SetText(nextLevel.GetStats2Text(currentLevel));
+            panel.Find("UpgradeButton/Text").GetComponent<TextMeshProUGUI>().SetText($"UPGRADE {nextLevel.GetCost()} <sprite name=\"coin\">");
+            panel.Find("SellButton/Text").GetComponent<TextMeshProUGUI>().SetText($"SELL {CalculateValue()} <sprite name=\"coin\">");
+
             isUIOpen = true;
             shopController.ChangeRadiusOpacity(1f);
             shopController.ChangeRadiusSizeAndPos(currentLevel.GetRange(), gameObject.transform.position);

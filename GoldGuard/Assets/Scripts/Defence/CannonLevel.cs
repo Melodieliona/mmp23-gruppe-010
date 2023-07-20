@@ -1,3 +1,5 @@
+using System;
+
 namespace Defence
 {
     public class CannonLevel
@@ -41,7 +43,22 @@ namespace Defence
         {
             return damage;
         }
-
+        
+        public string GetLevelText(CannonLevel currentLevel)
+        {
+            return $"{currentLevel.GetLevel()}<sprite name=\"arrow\"> {level}";
+        }
+        
+        public string GetStats1Text(CannonLevel currentLevel)
+        {
+            return $"Range: {currentLevel.GetRange()}<sprite name=\"arrow\"> {range}";
+        }
+        
+        public string GetStats2Text(CannonLevel currentLevel)
+        {
+            return $"Damage: {currentLevel.GetDamage()}<sprite name=\"arrow\"> {damage}";
+        }
+        
         public override string ToString()
         {
             return "Level: " + level + ", Range: " + range + ", BPS: " + bps + ", Damage: " + damage;
