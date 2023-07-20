@@ -134,15 +134,7 @@ namespace Defence
 
             return dX * dX + dY * dY <= currentLevel.GetRange() * currentLevel.GetRange();
         }
-
-        private static long nanoTime()
-        {
-            long nano = 10000L * Stopwatch.GetTimestamp();
-            nano /= TimeSpan.TicksPerMillisecond;
-            nano *= 100L;
-            return nano;
-        }
-
+        
         private void RotateTowardsTarget()
         {
             Vector2 cannonPos = transform.position;
