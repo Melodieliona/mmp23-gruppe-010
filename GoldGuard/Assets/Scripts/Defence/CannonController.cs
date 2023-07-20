@@ -1,10 +1,6 @@
-using System;
 using Player;
 using Sound;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
 
 namespace Defence
 {
@@ -29,53 +25,6 @@ namespace Defence
         private PlayerController playerController;
         private ShopController shopController;
         private GameObject eventSystem;
-
-        /// <summary>
-        /// Gets the stats the cannon has when first placed.
-        /// </summary>
-        /// <returns>The stats the cannon has when first placed</returns>
-        protected abstract CannonLevel GetBaseStats();
-
-        /// <summary>
-        /// Gets the stats after the cannon has has been upgraded for the first time.
-        /// </summary>
-        /// <returns>The stats after the cannon has has been upgraded for the first time</returns>
-        protected abstract CannonLevel GetFirstUpgrade();
-
-        /// <summary>
-        /// Gets the stats after the cannon has has been upgraded for the second time.
-        /// </summary>
-        /// <returns>The stats after the cannon has has been upgraded for the second time</returns>
-        protected abstract CannonLevel GetSecondUpgrade();
-
-        /// <summary>
-        /// Updates the text in the upgrade UI with the correct values 
-        /// </summary>
-        /// <param name="currentLevel">The cannon's current level</param>
-        /// <param name="nextLevel">The level that will be upgraded to</param>
-        /// <param name="cannonValue">The cannon's value</param>
-        protected abstract void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int cannonValue);
-
-        /// <summary>
-        /// Changes the sprite of the cannon to that of the given level
-        /// </summary>
-        /// <param name="level">The level of the sprite to use</param>
-        protected abstract void ChangeSprite(int level);
-
-        public CannonLevel GetCurrentLevel()
-        {
-            return currentLevel;
-        }
-
-        private CannonLevel GetNextLevel()
-        {
-            return currentLevel.GetLevel() switch
-            {
-                1 => GetFirstUpgrade(),
-                2 => GetSecondUpgrade(),
-                _ => null
-            };
-        }
 
         private void Awake()
         {
@@ -192,6 +141,53 @@ namespace Defence
             Destroy(gameObject);
             DeactivateUpgradeUI();
             shopController.GetLandTiles().RefreshAllTiles();
+        }
+
+        /// <summary>
+        /// Gets the stats the cannon has when first placed.
+        /// </summary>
+        /// <returns>The stats the cannon has when first placed</returns>
+        protected abstract CannonLevel GetBaseStats();
+
+        /// <summary>
+        /// Gets the stats after the cannon has has been upgraded for the first time.
+        /// </summary>
+        /// <returns>The stats after the cannon has has been upgraded for the first time</returns>
+        protected abstract CannonLevel GetFirstUpgrade();
+
+        /// <summary>
+        /// Gets the stats after the cannon has has been upgraded for the second time.
+        /// </summary>
+        /// <returns>The stats after the cannon has has been upgraded for the second time</returns>
+        protected abstract CannonLevel GetSecondUpgrade();
+
+        /// <summary>
+        /// Updates the text in the upgrade UI with the correct values 
+        /// </summary>
+        /// <param name="currentLevel">The cannon's current level</param>
+        /// <param name="nextLevel">The level that will be upgraded to</param>
+        /// <param name="cannonValue">The cannon's value</param>
+        protected abstract void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int cannonValue);
+
+        /// <summary>
+        /// Changes the sprite of the cannon to that of the given level
+        /// </summary>
+        /// <param name="level">The level of the sprite to use</param>
+        protected abstract void ChangeSprite(int level);
+
+        public CannonLevel GetCurrentLevel()
+        {
+            return currentLevel;
+        }
+
+        private CannonLevel GetNextLevel()
+        {
+            return currentLevel.GetLevel() switch
+            {
+                1 => GetFirstUpgrade(),
+                2 => GetSecondUpgrade(),
+                _ => null
+            };
         }
 
         /// <summary>
