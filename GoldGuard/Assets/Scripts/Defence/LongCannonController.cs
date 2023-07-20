@@ -17,17 +17,15 @@ namespace Defence
 
         protected override CannonStats GetFirstUpgrade()
         {
-            ChangeSprite(2);
             return new CannonStats(2, 150, 8f, 0.75f, 10f);
         }
 
         protected override CannonStats GetSecondUpgrade()
         {
-            ChangeSprite(3);
             return new CannonStats(3, 200, 9f, 1f, 12.5f);
         }
 
-        private void ChangeSprite(int level)
+        protected override void ChangeSprite(int level)
         {
             spriteRenderer = gameObject.transform.Find("RotationPoint/LongCannonSprite").GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = level == 2 ? level2Sprite : level3Sprite;

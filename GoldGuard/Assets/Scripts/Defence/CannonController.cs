@@ -44,6 +44,12 @@ namespace Defence
         /// <returns>The stats after the cannon has has been upgraded for the second time</returns>
         protected abstract CannonStats GetSecondUpgrade();
 
+        /// <summary>
+        /// Changes the sprite of the cannon to that of the given level
+        /// </summary>
+        /// <param name="level">The level of the sprite to use</param>
+        protected abstract void ChangeSprite(int level);
+
         public CannonStats GetCurrentLevel()
         {
             return currentLevel;
@@ -162,6 +168,7 @@ namespace Defence
 
             playerController.RemoveGold(cost);
             shopController.ChangeRadiusSizeAndPos(nextLevel.GetRange(), gameObject.transform.position);
+            ChangeSprite(nextLevel.GetLevel());
             currentLevel = nextLevel;
             Debug.Log("Upgraded cannon! " + nextLevel);
         }
