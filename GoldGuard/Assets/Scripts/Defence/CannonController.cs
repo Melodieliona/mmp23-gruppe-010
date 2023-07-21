@@ -1,5 +1,6 @@
 using Player;
 using Sound;
+using TMPro;
 using UnityEngine;
 
 namespace Defence
@@ -43,7 +44,10 @@ namespace Defence
 
         private void Update()
         {
-            UpdateUpgradeText(currentLevel, GetNextLevel(), playerController.GetGold(), CalculateValue());
+            if (IsCannonUIActive())
+            {
+                UpdateUpgradeText(currentLevel, GetNextLevel(), playerController.GetGold(), CalculateValue());    
+            }
             
             if (target == null)
             {
@@ -151,7 +155,7 @@ namespace Defence
         protected abstract CannonLevel GetSecondUpgrade();
 
         /// <summary>
-        /// Updates the text in the upgrade UI with the correct values 
+        /// Updates the text in the upgrade UI with the correct values. 
         /// </summary>
         /// <param name="currentLevel">The cannon's current level</param>
         /// <param name="nextLevel">The level that will be upgraded to</param>
@@ -160,7 +164,21 @@ namespace Defence
         protected abstract void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int gold, int cannonValue);
 
         /// <summary>
-        /// Changes the sprite of the cannon to that of the given level
+        /// Sets the text of a panel.
+        /// </summary>
+        /// <param name="panel">The panel component</param>
+        /// <param name="label">The name of the label</param>
+        /// <param name="text">The text to change to</param>
+        /// <param name="color">The color of the text</param>
+        protected static void SetPanelText(Transform panel, string label, string text, Color color)
+        {
+            TextMeshProUGUI textMeshPro = panel.Find(label).GetComponent<TextMeshProUGUI>();
+            textMeshPro.color = color;
+            textMeshPro.SetText(text);
+        }
+
+        /// <summary>
+        /// Changes the sprite of the cannon to that of the given level.
         /// </summary>
         /// <param name="level">The level of the sprite to use</param>
         protected abstract void ChangeSprite(int level);
@@ -181,7 +199,7 @@ namespace Defence
         }
 
         /// <summary>
-        /// Calculates the value of the cannon including its upgrades
+        /// Calculates the value of the cannon including its upgrades.
         /// </summary>
         /// <returns>The amount of gold that the next update level costs</returns>
         private int CalculateValue()
