@@ -1691,9 +1691,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameOverScreen, Assembly-CSharp
-        m_MethodName: RetryButton
+      - m_Target: {fileID: 1260783905}
+        m_TargetAssemblyTypeName: Scenes.WinScreen, Assembly-CSharp
+        m_MethodName: PlayAgainButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016b9cf209904628b890bcf5bc271415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreNumber: {fileID: 0}
+  scoreNumber: {fileID: 1843383682}
 --- !u!1 &1357840014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,8 +2828,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameOverScreen, Assembly-CSharp
+      - m_Target: {fileID: 1260783905}
+        m_TargetAssemblyTypeName: Scenes.WinScreen, Assembly-CSharp
         m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
@@ -2889,7 +2889,6 @@ GameObject:
   - component: {fileID: 1843383685}
   - component: {fileID: 1843383684}
   - component: {fileID: 1843383682}
-  - component: {fileID: 1843383683}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -2931,19 +2930,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Score:'
---- !u!114 &1843383683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843383681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83911d512b6d8a14797e80403b756859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreNumber: {fileID: 1843383682}
 --- !u!222 &1843383684
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2983,7 +2969,6 @@ GameObject:
   - component: {fileID: 1864609017}
   - component: {fileID: 1864609020}
   - component: {fileID: 1864609019}
-  - component: {fileID: 1864609021}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -3051,19 +3036,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864609016}
   m_CullTransparentMesh: 1
---- !u!114 &1864609021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864609016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 016b9cf209904628b890bcf5bc271415, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreNumber: {fileID: 0}
 --- !u!1 &1935442627
 GameObject:
   m_ObjectHideFlags: 0
