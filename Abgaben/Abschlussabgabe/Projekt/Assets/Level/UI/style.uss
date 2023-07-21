@@ -1,0 +1,30 @@
+.shopButton {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-grow: 1;
+    opacity: 1;
+    visibility: visible;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: transparent;
+    border-width: 0px;
+}
+
+.label {
+    -unity-font: url('project://database/Assets/ThirdParty/TextMesh%20Pro/Fonts/alagard.ttf?fileID=12800000&guid=da7226d4b3c6d41a393a12760e66905a&type=3#alagard');
+    -unity-font-definition: initial;
+    font-size: initial;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 1px 0 rgba(38, 38, 38, 0);
+    background-image: none;
+    -unity-background-scale-mode: scale-to-fit;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}

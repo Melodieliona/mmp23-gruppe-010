@@ -1,0 +1,32 @@
+Stephan
+- Sprites (Kanonen, UI Elemente)
+- Tilemap und Tilesets
+- Kraken und Schwere Kanone
+- Shop und Währung
+- Platzieren von Kanonen/Kraken
+- UI außerhalb von Menüs (Shop, Upgradefenster, Timer, Infoanzeige)
+- Upgraden von Kanonen
+
+Thomas
+- Pathfinding der Schiffe
+- Verschiedene Arten von Schiffen spawnen
+- Health Bar Anzeige bei Schiffen
+- Wellen der Schiffe
+- Hauptmenü
+- Upgraden von Kanonen
+
+Petra
+- Sprites und Animationen (verschiedene Schiffarten)
+- Musik & Soundeffekte
+- Win condition
+- Game Over und Win Menü
+- Video
+
+Mihnea
+- Kanonen und Bullets (Zielen und Schießen)
+- Verkaufen von Kanonen
+- Upgraden von Kanonen
+
+Max
+- Logo
+- ReadMe
