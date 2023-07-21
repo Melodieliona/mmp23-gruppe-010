@@ -83,21 +83,18 @@ spawnen, um deine Schatztruhe zu plündern.
 
 ### **Normales Schiff**
 
+![Normales Schiff](GoldGuard/Assets/Art/Sprites/NormalShip.png)  
 > Durchschnittliche Geschwindigkeit & Leben
-
-![Normales Schiff](GoldGuard/Assets/Art/Sprites/Ship/NormalShip/Pirate_Ship.png)
 
 ### **Schnelles Schiff**
 
+![Schnelles Schiff](GoldGuard/Assets/Art/Sprites/FastShip.png)
 > Hohe Geschwindigkeit, dafür aber weniger Leben
-
-![Schnelles Schiff](GoldGuard/Assets/Art/Sprites/Ship/FastShip/FastShip.png)
 
 ### **Starkes Schiff**
 
+![Starkes Schiff](GoldGuard/Assets/Art/Sprites/Boss.png)
 > Niedrige Geschwindigkeit, dafür aber viel Leben
-
-![Starkes Schiff](GoldGuard/Assets/Art/Sprites/Ship/Boss/Boss.png)
 
 ## Steuerung
 
