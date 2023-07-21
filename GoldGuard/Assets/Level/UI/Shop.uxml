@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Level/UI/style.uss?fileID=7433441132597879392&amp;guid=6fe8556d612c0744d8bc8939030d735d&amp;type=3#style" />
-    <ui:VisualElement style="flex-grow: 1; width: 16%; height: 100%; right: auto; left: 84%; background-color: rgba(159, 159, 159, 0.42); background-image: url(&apos;project://database/Assets/Art/UI/gui_mirror.png?fileID=2800000&amp;guid=ea4b12dd0cffd1a4ba89ded472005512&amp;type=3#gui_mirror&apos;);">
+    <ui:VisualElement style="flex-grow: 1; width: 16%; height: 100%; right: auto; left: 84%; background-color: rgba(255, 255, 255, 0); background-image: url(&apos;project://database/Assets/Art/UI/gui_mirror.png?fileID=2800000&amp;guid=ea4b12dd0cffd1a4ba89ded472005512&amp;type=3#gui_mirror&apos;);">
         <ui:VisualElement style="flex-grow: 0; align-items: flex-start;">
             <ui:Label text="Shop" display-tooltip-when-elided="true" class="label" style="max-width: none; padding-left: 10%; padding-right: 10%; align-items: center; width: 100%; margin-left: 0; margin-top: 3%; padding-top: 10%; justify-content: flex-start; -unity-text-align: upper-center; font-size: 80%; padding-bottom: 10%; margin-bottom: 0; flex-grow: 1; flex-shrink: 1; background-image: url(&apos;project://database/Assets/Art/UI/sign.png?fileID=2800000&amp;guid=8f755430721c9bb4f8065718db5bf7e4&amp;type=3#sign&apos;); -unity-background-scale-mode: scale-and-crop;" />
         </ui:VisualElement>
