@@ -78,23 +78,23 @@ angerichteten Schaden und die Schussgeschwindigkeit erhöht.
 
 ## Gegnerische Schiffe
 
-In jeder Welle spwanen unterschiedlich viele Schiffe die verschiedene Eigenschaften haben. Je höher desto mehr Schiffe
-spawnen, um deine Schatztruhe zu plündern.
+In jeder Welle spawnen unterschiedlich viele Schiffe, die verschiedene Eigenschaften haben.  
+Je höher, desto mehr Schiffe spawnen, um deine Schatztruhe zu plündern.
 
 ### **Normales Schiff**
 
 ![Normales Schiff](GoldGuard/Assets/Art/Sprites/NormalShip.png)  
-> Durchschnittliche Geschwindigkeit & Leben
+**Besonderheit:** Durchschnittliche Geschwindigkeit & Leben
 
 ### **Schnelles Schiff**
 
-![Schnelles Schiff](GoldGuard/Assets/Art/Sprites/FastShip.png)
-> Hohe Geschwindigkeit, dafür aber weniger Leben
+![Schnelles Schiff](GoldGuard/Assets/Art/Sprites/FastShip.png)  
+**Besonderheit:** Hohe Geschwindigkeit, dafür aber weniger Leben
 
 ### **Starkes Schiff**
 
-![Starkes Schiff](GoldGuard/Assets/Art/Sprites/Boss.png)
-> Niedrige Geschwindigkeit, dafür aber viel Leben
+![Starkes Schiff](GoldGuard/Assets/Art/Sprites/Boss.png)  
+**Besonderheit:** Niedrige Geschwindigkeit, dafür aber viel Leben
 
 ## Steuerung
 
