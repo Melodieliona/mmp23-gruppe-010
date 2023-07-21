@@ -15,87 +15,86 @@ kannst du strategisch deine Waffen verkaufen, um stärkere Waffen nach zu kaufen
 ## Spielablauf
 
 1. **Startbildschirm**: Der Spieler wird mit einem Startbildschirm begrüßt, auf dem er das Spiel starten oder
-   Anleitungen
-   erhalten kann.
+   Anleitungen erhalten kann.
 
 2. **Vorbereitung**: Vor Beginn jeder Welle und auch während der verschiedenen Wellen, hat der Spieler die Möglichkeit,
    seine Waffen zu kaufen und zu platzieren. Der Spieler verwendet das Gold aus der Schatztruhe, um verschiedene Waffen
    zu erwerben. Jede Waffe hat unterschiedliche Kosten und Fähigkeiten.
 
-3. **Kampf**: Sobald das Level gestartet ist, beginnen die feindlichen Piratenschiffe entlang des Flusses zu spawnen und
+3. **Kampf**: Sobald die Welle gestartet ist, beginnen die feindlichen Piratenschiffe entlang des Flusses zu spawnen und
    sich auf die Schatztruhe zuzubewegen. Der Spieler muss seine Waffen effektiv einsetzen, um die Schiffe zu zerstören,
    bevor sie die Schatztruhe erreichen. Der Spieler Upgrades für seine Waffen kaufen, um ihre Leistung zu verbessern.
 
 4. **Belohnungen**: Für jedes zerstörte Piratenschiff erhält der Spieler zusätzliches Gold. Der Spieler kann dieses Gold
-   verwenden, um im laufenden Level weitere Waffen oder Upgrades zu kaufen.
+   verwenden, um in der laufenden Welle weitere Waffen oder Upgrades zu kaufen.
 
-5. **Levelabschluss**: Das Level endet, wenn alle Piratenschiffe zerstört wurden oder wenn 5 Piratenschiffe die
-   Schatztruhe
-   erreicht haben. Wenn der Spieler alle Wellen erfolgreich abgeschlossen hat, gewinnt er das Spiel.
+5. **Wellenabschluss**: Die Welle endet, wenn alle Piratenschiffe zerstört wurden oder wenn 5 Piratenschiffe die
+   Schatztruhe erreicht haben. Wenn der Spieler alle Wellen erfolgreich abgeschlossen hat, gewinnt er das Spiel.
 
 6. **Game Over**: Wenn 5 Pirateschiffe die Schatztruhe erreicht haben, und der Spieler alle seine Leben verloren hat,
-   endet
-   das Spiel. Der Score der Runde wird dann im Game Over Screen angezeigt.
+   endet das Spiel. Der Score der Runde wird dann im Game Over Screen angezeigt.
 
 ## Shop und Waffen
 
-Im Shop gibt es 4 verschiedene Waffen die man kaufen kann. Es gibt 3 Kanonen die unterschiedliche Eigenschaften und
-Kosten haben, die auf Feldern um den Fluss platziert werden können. Zudem gibt es noch eine Krake die man im Wasser
-platzieren kann und feindliche Schiffe aufhalten soll. Die Waffen können während des Spiels geupgraded und verkauft
-werden.
+Im Shop gibt es **4 verschiedene Waffen** die man kaufen kann. Es gibt **3 Kanonen** die unterschiedliche Eigenschaften
+und Kosten haben, die auf Feldern um den Fluss platziert werden können. Zudem gibt es noch eine **Krake** die man im Wasser
+platzieren kann und feindliche Schiffe aufhalten soll. Die Waffen können während des Spiels **geupgraded** und 
+**verkauft** werden.
 
-- **Basic Kanone**  
-  ![Basic Kanone](GoldGuard/Assets/Art/Sprites/Cannon/cannon1.png)
+### **Basic Kanone**
 
-| Level | Kosten (Gold) | Reichweite (Tiles) | Schüsse/Sekunde | Schaden |
-|-------|---------------|--------------------|-----------------|---------|
-| 1     | 50            | 5                  | 2               | 2,5     |
-| 2     | 75            | 5,5                | 2               | 5       |
-| 3     | 100           | 6                  | 2               | 7,5     |
+| Level | Sprite                                                                     | Kosten (Gold) | Reichweite (Tiles) | Schüsse/Sekunde | Schaden |
+|-------|----------------------------------------------------------------------------|---------------|--------------------|-----------------|---------|
+| 1     | ![Basic Kanone L1](GoldGuard/Assets/Art/Sprites/Cannon/cannon1.png)        | 50            | 5                  | 2               | 2,5     |
+| 2     | ![Basic Kanone L2](GoldGuard/Assets/Art/Sprites/Cannon/cannon1_level2.png) | 75            | 5,5                | 2               | 5       |
+| 3     | ![Basic Kanone L3](GoldGuard/Assets/Art/Sprites/Cannon/cannon1_level3.png) | 100           | 6                  | 2               | 7,5     |
 
-- **Schwere Kanone**  
-  ![Schwere Kanone](GoldGuard/Assets/Art/Sprites/Cannon/cannon2.png)
+### **Schwere Kanone**
 
-| Level | Kosten (Gold) | Reichweite (Tiles) | Schüsse/Sekunde | Schaden |
-|-------|---------------|--------------------|-----------------|---------|
-| 1     | 125           | 4,5                | 0,5             | 15      |
-| 2     | 175           | 5                  | 0,75            | 20      |
-| 3     | 250           | 5,5                | 1               | 25      |
+| Level | Sprite                                                                       | Kosten (Gold) | Reichweite (Tiles) | Schüsse/Sekunde | Schaden |
+|-------|------------------------------------------------------------------------------|---------------|--------------------|-----------------|---------|
+| 1     | ![Schwere Kanone L1](GoldGuard/Assets/Art/Sprites/Cannon/cannon2.png)        | 125           | 4,5                | 0,5             | 15      |
+| 2     | ![Schwere Kanone L2](GoldGuard/Assets/Art/Sprites/Cannon/cannon2_level2.png) | 175           | 5                  | 0,75            | 20      |
+| 3     | ![Schwere Kanone L3](GoldGuard/Assets/Art/Sprites/Cannon/cannon2_level3.png) | 250           | 5,5                | 1               | 25      |
 
-- **Lange Kanone**  
-  ![Lange Kanone](GoldGuard/Assets/Art/Sprites/Cannon/cannon3.png)
+### **Lange Kanone**
 
-| Level | Kosten (Gold) | Reichweite (Tiles) | Schüsse/Sekunde | Schaden |
-|-------|---------------|--------------------|-----------------|---------|
-| 1     | 50            | 5                  | 2               | 2,5     |
-| 2     | 75            | 5,5                | 2               | 5       |
-| 3     | 100           | 6                  | 2               | 7,5     |
+| Level | Sprite                                                                     | Kosten (Gold) | Reichweite (Tiles) | Schüsse/Sekunde | Schaden |
+|-------|----------------------------------------------------------------------------|---------------|--------------------|-----------------|---------|
+| 1     | ![Lange Kanone L1](GoldGuard/Assets/Art/Sprites/Cannon/cannon3.png)        | 75            | 8                  | 0,75            | 7,5     |
+| 2     | ![Lange Kanone L2](GoldGuard/Assets/Art/Sprites/Cannon/cannon3_level2.png) | 100           | 9                  | 1               | 10      |
+| 3     | ![Lange Kanone L3](GoldGuard/Assets/Art/Sprites/Cannon/cannon3_level3.png) | 150           | 10                 | 1,25            | 12,5    |
 
-- **Krake**  
-  ![Krake](GoldGuard/Assets/Art/Sprites/kraken2.png)
+### **Krake**
 
-| Level | Kosten (Gold) | Reichweite (Tiles) | Schüsse/Sekunde | Schaden                     |
-|-------|---------------|--------------------|-----------------|-----------------------------|
-| 1     | 50            | 1                  | -               | 30% des gegnerischen Lebens |
+| Level | Sprite                                            | Kosten (Gold) | Reichweite (Tiles) | Schüsse/Sekunde | Schaden                     |
+|-------|---------------------------------------------------|---------------|--------------------|-----------------|-----------------------------|
+| 1     | ![Krake](GoldGuard/Assets/Art/Sprites/kraken.png) | 50            | 1                  | -               | 30% des gegnerischen Lebens |
 
 ## Upgrades
 
-Für die Kanonen können **jeweils 2 Upgrades** gekauft werden (also **insgesamt 3 Level**), die die Range, den
+Für die Kanonen können **jeweils 2 Upgrades** gekauft werden (also **insgesamt 3 Level**), die die Reichweite, den
 angerichteten Schaden und die Schussgeschwindigkeit erhöht.
 
 ## Gegnerische Schiffe
 
-In jedem Level spwanen unterschiedlich viele Schiffe die verschiedene Eigenschaften haben. Je höher desto mehr Schiffe
-spawnen, um deine Schatztruhe zu plündern.
+In jeder Welle spawnen unterschiedlich viele Schiffe, die verschiedene Eigenschaften haben.  
+Je höher, desto mehr Schiffe spawnen, um deine Schatztruhe zu plündern.
 
-- **Normales Schiff**: Durchschnittliche Geschwindigkeit & Leben
-  ![Normales Schiff](GoldGuard/Assets/Art/Sprites/Ship/NormalShip/Pirate_Ship.png)
+### **Normales Schiff**
 
-- **Schnelles Schiff**: Hohe Geschwindigkeit, dafür aber weniger Leben
-  ![Schnelles Schiff](GoldGuard/Assets/Art/Sprites/Ship/FastShip/FastShip.png)
+![Normales Schiff](GoldGuard/Assets/Art/Sprites/NormalShip.png)  
+**Besonderheit:** Durchschnittliche Geschwindigkeit & Leben
 
-- **Starkes Schiff**: Niedrige Geschwindigkeit, dafür aber viel Leben
-  ![Starkes Schiff](GoldGuard/Assets/Art/Sprites/Ship/Boss/Boss.png)
+### **Schnelles Schiff**
+
+![Schnelles Schiff](GoldGuard/Assets/Art/Sprites/FastShip.png)  
+**Besonderheit:** Hohe Geschwindigkeit, dafür aber weniger Leben
+
+### **Starkes Schiff**
+
+![Starkes Schiff](GoldGuard/Assets/Art/Sprites/Boss.png)  
+**Besonderheit:** Niedrige Geschwindigkeit, dafür aber viel Leben
 
 ## Steuerung
 

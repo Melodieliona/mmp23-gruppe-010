@@ -43,6 +43,8 @@ namespace Defence
 
         private void Update()
         {
+            UpdateUpgradeText(currentLevel, GetNextLevel(), playerController.GetGold(), CalculateValue());
+            
             if (target == null)
             {
                 FindTarget();
@@ -100,7 +102,7 @@ namespace Defence
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
             turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, 400 * Time.deltaTime);
         }
-        
+
         public void UpgradeCannon()
         {
             // Whether cannon can be upgraded is already checked when opening the update UI
@@ -153,8 +155,9 @@ namespace Defence
         /// </summary>
         /// <param name="currentLevel">The cannon's current level</param>
         /// <param name="nextLevel">The level that will be upgraded to</param>
+        /// <param name="gold">The amount of gold the player has</param>
         /// <param name="cannonValue">The cannon's value</param>
-        protected abstract void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int cannonValue);
+        protected abstract void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int gold, int cannonValue);
 
         /// <summary>
         /// Changes the sprite of the cannon to that of the given level
@@ -197,7 +200,6 @@ namespace Defence
 
             eventSystem.SetActive(false);
             cannonUI.SetActive(true);
-            UpdateUpgradeText(currentLevel, GetNextLevel(), CalculateValue());
             shopController.ChangeRadiusOpacity(1f);
             shopController.ChangeRadiusSizeAndPos(currentLevel.GetRange(), gameObject.transform.position);
         }

@@ -26,19 +26,26 @@ namespace Defence
             return new CannonLevel(3, 100, 6f, 2f, 7.5f);
         }
 
-        protected override void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int cannonValue)
+        protected override void UpdateUpgradeText(CannonLevel currentLevel, CannonLevel nextLevel, int gold, int cannonValue)
         {
             Transform panel = gameObject.transform.Find("CannonUI/Panel");
             SetPanelText(panel, "Level Text", nextLevel.GetLevelText(currentLevel));
             SetPanelText(panel, "Stats1 Text", nextLevel.GetUpgradeRangeText(currentLevel));
             SetPanelText(panel, "Stats2 Text", nextLevel.GetUpgradeDamageText(currentLevel));
-            SetPanelText(panel, "UpgradeButton/Text", $"UPGRADE {nextLevel.GetCost()} <sprite name=\"coin\">");
+            SetPanelText(panel, "UpgradeButton/Text", $"UPGRADE {nextLevel.GetCost()} <sprite name=\"coin\">", nextLevel.GetCost() <= gold ? Color.white : new Color(1f, 0.44f, 0.44f));
             SetPanelText(panel, "SellButton/Text", $"SELL {cannonValue} <sprite name=\"coin\">");
         }
 
         private static void SetPanelText(Transform panel, string label, string text)
         {
-            panel.Find(label).GetComponent<TextMeshProUGUI>().SetText(text);
+            SetPanelText(panel, label, text, Color.white);
+        }
+
+        private static void SetPanelText(Transform panel, string label, string text, Color color)
+        {
+            TextMeshProUGUI textMeshPro = panel.Find(label).GetComponent<TextMeshProUGUI>();
+            textMeshPro.color = color;
+            textMeshPro.SetText(text);
         }
 
         protected override void ChangeSprite(int level)
