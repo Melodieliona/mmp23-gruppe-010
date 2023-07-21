@@ -109,6 +109,7 @@ Die Steuerung des Spiels erfolgt über die Maus:
 Um das Spiel zu spielen, muss folgendes Schritte getan werden:
 
 - Spieler können das Spiel im Webbrowser spielen, indem sie die URL zum Host des Spiels aufrufen.
+- In Unity: Assets -> Level -> Scenes
 
 ## Mitwirkende
 
