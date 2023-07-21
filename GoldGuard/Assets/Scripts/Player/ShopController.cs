@@ -113,6 +113,21 @@ namespace Player
             {
                 CheckForCannon();
             }
+
+            bool isAnyUIOpened = false;
+            foreach(CannonController cannon in cannons.Values)
+            {
+                if(cannon.IsCannonUIActive())
+                {
+                    isAnyUIOpened = true;
+                    break;
+                }
+            }
+            if (isAnyUIOpened || selectedShopItem != null)
+            {
+                ChangeRadiusOpacity(1f);
+            }
+            else ChangeRadiusOpacity(0f);
         }
 
         private void CheckForCannon()

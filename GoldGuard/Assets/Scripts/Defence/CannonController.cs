@@ -205,8 +205,12 @@ namespace Defence
         public void DeactivateUpgradeUI()
         {
             cannonUI.SetActive(false);
-            shopController.ChangeRadiusOpacity(0f);
             eventSystem.SetActive(true);
+        }
+
+        public bool IsCannonUIActive()
+        {
+            return cannonUI.activeInHierarchy;
         }
     }
 }
