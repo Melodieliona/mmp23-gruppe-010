@@ -50,6 +50,7 @@ platzieren kann und feindliche Schiffe aufhalten soll. Die Waffen können währe
 | 3     | ![Basic Kanone L3](GoldGuard/Assets/Art/Sprites/Cannon/cannon1_level3.png) | 100           | 6                  | 2               | 7,5     |
 
 ### **Schwere Kanone**
+Kann durch mehrere Schiffe durchschießen
 
 | Level | Sprite                                                                       | Kosten (Gold) | Reichweite (Tiles) | Schüsse/Sekunde | Schaden |
 |-------|------------------------------------------------------------------------------|---------------|--------------------|-----------------|---------|
@@ -108,6 +109,7 @@ Die Steuerung des Spiels erfolgt über die Maus:
 Um das Spiel zu spielen, muss folgendes Schritte getan werden:
 
 - Spieler können das Spiel im Webbrowser spielen, indem sie die URL zum Host des Spiels aufrufen.
+- In Unity: Assets -> Level -> Scenes
 
 ## Mitwirkende
 
